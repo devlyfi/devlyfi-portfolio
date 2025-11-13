@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Devlyfi Portfolio Website
+
+A modern, performant portfolio website built with Next.js 14+, TypeScript, TailwindCSS, and shadcn/ui.
+
+## Tech Stack
+
+- **Framework**: Next.js 16.0.2 (App Router)
+- **Language**: TypeScript (strict mode)
+- **Styling**: TailwindCSS v4 with custom brand color (#0354C4)
+- **UI Components**: shadcn/ui (customized)
+- **Animations**: GSAP (GreenSock Animation Platform)
+- **Form Handling**: React Hook Form with Zod validation
+- **Package Manager**: npm
+
+## Project Structure
+
+```
+devlyfi-portfolio/
+├── src/
+│   ├── app/                    # Next.js App Router pages
+│   ├── components/
+│   │   ├── ui/                # shadcn/ui components
+│   │   ├── layout/            # Header, Footer, Navigation
+│   │   ├── home/              # Home page components
+│   │   ├── shared/            # Reusable components
+│   │   └── animations/        # GSAP animation utilities
+│   ├── lib/
+│   │   ├── data/              # Centralized data (dummy.ts)
+│   │   ├── types.ts           # TypeScript type definitions
+│   │   └── utils.ts           # Utility functions
+│   └── styles/
+│       └── globals.css        # Global styles and Tailwind config
+├── public/
+│   └── images/                # Static images
+└── components.json            # shadcn/ui configuration
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ 
+- npm
+
+### Installation
+
+Dependencies are already installed. If you need to reinstall:
+
+```bash
+npm install
+```
+
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a production build:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Start Production Server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Features
 
-## Deploy on Vercel
+- ✅ Next.js 14+ with App Router
+- ✅ TypeScript with strict mode
+- ✅ TailwindCSS v4 with custom brand color (#0354C4)
+- ✅ shadcn/ui components (customized)
+- ✅ GSAP for professional animations
+- ✅ React Hook Form + Zod for form validation
+- ✅ Responsive design (mobile-first)
+- ✅ SEO optimized
+- ✅ Performance optimized
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Custom Brand Color
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The primary brand color (#0354C4) is configured throughout the application:
+- CSS variables in `src/styles/globals.css`
+- Used for primary buttons, links, and accents
+- Consistent across light and dark modes
+
+## Next Steps
+
+1. Populate `src/lib/data/dummy.ts` with actual content
+2. Create page components (About, Services, Works, Blog)
+3. Implement GSAP animations
+4. Add shadcn/ui components as needed
+5. Build out the contact form with API route
+
+## License
+
+Private - All rights reserved
+# devlyfi-portfolio
