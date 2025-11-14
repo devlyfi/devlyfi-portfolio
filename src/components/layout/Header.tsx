@@ -91,33 +91,30 @@ const Navigation = () => {
                       
                       {isServicesOpen && (
                         <div className="w-[750px] bg-white rounded-2xl shadow-2xl border border-gray-200 p-6">
-                          <div className="grid grid-cols-2 gap-3">
+                          <div className="grid grid-cols-2 gap-4">
                             {item.dropdownItems?.map((dropdownItem) => (
                               <Link
                                 key={dropdownItem.href}
                                 href={dropdownItem.href}
-                                className="group/item p-4 rounded-xl hover:bg-gray-50 border border-gray-200 hover:border-gray-300 transition-all"
+                                className="group/item relative p-5 rounded-2xl border border-gray-200 hover:border-blue-500/50 transition-all duration-300 cursor-pointer overflow-hidden hover:shadow-2xl"
                               >
-                                <div className="font-semibold text-gray-900 group-hover/item:text-blue-600 transition-colors flex items-center justify-between mb-1">
-                                  {dropdownItem.label}
-                                  <ArrowRight className="w-4 h-4 opacity-0 group-hover/item:opacity-100 transition-opacity" />
+                                {/* Background layers - same as WhatDefinesUs */}
+                                <div className="absolute inset-0 bg-white transition-opacity duration-300 group-hover/item:opacity-0" />
+                                <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover/item:opacity-100" />
+                                <div className="absolute inset-0 bg-gradient-radial from-blue-900/40 via-black to-black opacity-0 transition-opacity duration-300 group-hover/item:opacity-100" />
+                                
+                                {/* Content */}
+                                <div className="relative z-10">
+                                  <div className="font-semibold text-gray-900 group-hover/item:text-white transition-colors duration-300 flex items-center justify-between mb-2">
+                                    {dropdownItem.label}
+                                    <ArrowRight className="w-4 h-4 opacity-0 group-hover/item:opacity-100 group-hover/item:text-blue-400 transition-all duration-300" />
+                                  </div>
+                                  <p className="text-sm text-gray-600 group-hover/item:text-gray-300 leading-relaxed transition-colors duration-300">
+                                    {dropdownItem.description}
+                                  </p>
                                 </div>
-                                <p className="text-sm text-gray-600 leading-relaxed">
-                                  {dropdownItem.description}
-                                </p>
                               </Link>
                             ))}
-                            
-                            {/* View All Products as last grid item */}
-                            <Link
-                              href="/services"
-                              className="group/item p-4 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-900 transition-all flex items-center justify-center"
-                            >
-                              <div className="font-semibold text-white flex items-center gap-2">
-                                VIEW ALL PRODUCTS
-                                <ArrowRight className="w-4 h-4" />
-                              </div>
-                            </Link>
                           </div>
                         </div>
                       )}

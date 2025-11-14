@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { services } from '@/lib/data/dummy';
-import ServiceDetail from '@/components/services/ServiceDetail';
+import ServiceDetailNew from '@/components/services/ServiceDetailNew';
 
 // Generate static params for all service slugs
 export async function generateStaticParams() {
@@ -126,7 +126,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      <ServiceDetail service={service} />
+      <ServiceDetailNew service={service} />
     </>
   );
 }

@@ -30,6 +30,7 @@ export interface Service {
   icon: string;
   features: string[];
   process?: string[];
+  featureImages?: string[]; // Images for bento grid cards at index 0 and 2
 }
 
 export interface Work {
