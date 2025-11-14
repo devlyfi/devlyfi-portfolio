@@ -157,6 +157,64 @@ export const aboutPageData: AboutPageData = {
   ],
 };
 
+export const servicesData = [
+  {
+    id: 1,
+    title: 'Web Development',
+    description: 'We build fast, scalable websites and apps with seamless performance.',
+    description2:
+      'Our stack includes modern frameworks like Next.js, React, and Node.js—delivering maintainable, high-performance solutions that grow with your business.',
+    tools: ['Next.js', 'React', 'Node.js', 'Express.js', 'MongoDB', 'TailwindCSS', 'TypeScript'],
+    // image: one,
+  },
+  {
+    id: 2,
+    title: 'Mobile App Development',
+    description: 'We create engaging Android and iOS apps designed for speed and reliability.',
+    description2:
+      'From ideation to deployment, we integrate APIs, real-time data, and cloud services to deliver seamless, high-performing mobile experiences.',
+    tools: ['React Native', 'Expo', 'Firebase', 'Node.js', 'TypeScript', 'Redux Toolkit', 'REST API'],
+    // image: two,
+  },
+  {
+    id: 3,
+    title: 'UI/UX Design',
+    description: 'We design intuitive and visually striking interfaces that elevate your brand.',
+    description2:
+      'Every design decision is rooted in empathy—crafting experiences that feel natural, beautiful, and accessible to all users.',
+    tools: ['Figma', 'Adobe XD', 'Framer', 'Sketch', 'Illustrator', 'Photoshop'],
+    // image: three,
+  },
+  {
+    id: 4,
+    title: 'Digital Marketing',
+    description: 'We grow brands through strategies that increase visibility and engagement.',
+    description2:
+      'By analyzing trends and audience behavior, we craft targeted campaigns that maximize ROI and build brand loyalty.',
+    tools: ['Google Ads', 'Meta Business Suite', 'SEMrush', 'Ahrefs', 'Mailchimp', 'Google Analytics'],
+    // image: three,
+  },
+  {
+    id: 5,
+    title: 'Brand Strategy & Identity',
+    description: 'We build memorable brands that connect emotionally and communicate clearly.',
+    description2:
+      'Our process blends creativity and strategy—helping you craft an authentic brand that inspires trust and stands out in the market.',
+    tools: ['Figma', 'Illustrator', 'Photoshop', 'Canva', 'Notion', 'Miro'],
+    // image: one,
+  },
+  {
+    id: 6,
+    title: 'Cloud & DevOps Solutions',
+    description: 'We optimize scalability and reliability with automated cloud and DevOps tools.',
+    description2:
+      'Our DevOps practices ensure faster delivery, reduced downtime, and seamless scalability as your business grows.',
+    tools: ['AWS', 'GCP', 'Docker', 'Kubernetes', 'Jenkins', 'Nginx', 'GitHub Actions'],
+    // image: two,
+  },
+]
+
+
 // Services Data
 export const services: Service[] = [
   {

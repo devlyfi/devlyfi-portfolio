@@ -1,10 +1,13 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import { HeroSection } from '@/components/home/HeroSection';
-import { homePageData, services, works } from '@/lib/data/dummy';
+
+import { services, works } from '@/lib/data/dummy';
+import HeroSection from '@/components/home/HeroSection';
+import WhatDefinesUs from '@/components/home/WhatDefinesUs';
+
 
 // Lazy load below-the-fold components
-const CompanyIntro = dynamic(() => import('@/components/home/CompanyIntro').then(mod => ({ default: mod.CompanyIntro })), {
+const OurExperience = dynamic(() => import('@/components/home/OurExperience').then(mod => ({ default: mod.OurExperience })), {
   loading: () => <div className="h-96 animate-pulse bg-muted" />,
 });
 
@@ -71,18 +74,13 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
-      <HeroSection
-        title={homePageData.hero.title}
-        subtitle={homePageData.hero.subtitle}
-        ctaText={homePageData.hero.ctaText}
-        ctaLink={homePageData.hero.ctaLink}
-      />
+      <HeroSection />
       
-      <CompanyIntro
-        title={homePageData.about.title}
-        description={homePageData.about.description}
-        stats={homePageData.about.stats}
-      />
+      <WhatDefinesUs />
+      
+      <OurExperience />
+
+
       
       <ServicesPreview services={services} maxDisplay={3} />
       

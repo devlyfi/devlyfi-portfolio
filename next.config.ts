@@ -1,8 +1,18 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === 'development';
+
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
+  
+  // Disable caching in development
+  ...(isDev && {
+    onDemandEntries: {
+      maxInactiveAge: 0,
+      pagesBufferLength: 0,
+    },
+  }),
   
   // Image optimization configuration
   images: {
@@ -15,8 +25,8 @@ const nextConfig: NextConfig = {
     // Image sizes for srcset generation
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     
-    // Cache optimized images for 60 seconds
-    minimumCacheTTL: 60,
+    // Cache optimized images - disable in dev for HMR
+    minimumCacheTTL: process.env.NODE_ENV === 'production' ? 60 : 0,
     
     // Allow SVG images (with security restrictions)
     dangerouslyAllowSVG: true,
@@ -26,32 +36,51 @@ const nextConfig: NextConfig = {
     // Disable static image imports optimization for better control
     disableStaticImages: false,
     
-    // Remote patterns for external images (if needed)
-    // remotePatterns: [
-    //   {
-    //     protocol: 'https',
-    //     hostname: 'example.com',
-    //   },
-    // ],
+    // Remote patterns for external images
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.prod.website-files.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.fbcdn.net',  // all facebook CDN regions
+      },
+      {
+        protocol: 'https',
+        hostname: 'lookaside.facebook.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.facebook.com',
+      },
+    ],
   },
 
   // Experimental optimizations
   experimental: {
-    // Optimize package imports to reduce bundle size
-    optimizePackageImports: [
-      'gsap',
-      'lucide-react',
-      '@radix-ui/react-label',
-      '@radix-ui/react-slot',
-      'react-hook-form',
-      'zod',
-    ],
+    // Optimize package imports to reduce bundle size (only in production)
+    ...(process.env.NODE_ENV === 'production' && {
+      optimizePackageImports: [
+        'gsap',
+        'lucide-react',
+        '@radix-ui/react-label',
+        '@radix-ui/react-slot',
+        'react-hook-form',
+        'zod',
+      ],
+    }),
     
-    // Enable optimized CSS loading
-    optimizeCss: true,
+    // Enable optimized CSS loading (only in production)
+    optimizeCss: process.env.NODE_ENV === 'production',
     
-    // Enable optimized font loading
-    optimizeServerReact: true,
+    // Enable optimized font loading (only in production)
+    optimizeServerReact: process.env.NODE_ENV === 'production',
+    
+    // Disable webpack cache in development
+    ...(isDev && {
+      webpackBuildWorker: false,
+    }),
   },
 
   // Compiler options for better performance
@@ -79,6 +108,43 @@ const nextConfig: NextConfig = {
   
   // Headers for better caching and security
   async headers() {
+    if (isDev) {
+      // Aggressive no-cache headers for development
+      return [
+        {
+          source: '/:path*',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+            },
+            {
+              key: 'Pragma',
+              value: 'no-cache',
+            },
+            {
+              key: 'Expires',
+              value: '0',
+            },
+            {
+              key: 'Surrogate-Control',
+              value: 'no-store',
+            },
+          ],
+        },
+        {
+          source: '/_next/:path*',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'no-store, no-cache, must-revalidate, max-age=0',
+            },
+          ],
+        },
+      ];
+    }
+    
+    // Production caching
     return [
       {
         source: '/:all*(svg|jpg|jpeg|png|webp|avif|gif|ico)',

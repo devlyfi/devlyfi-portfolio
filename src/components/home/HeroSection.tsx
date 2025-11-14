@@ -1,129 +1,81 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { HeroSectionProps } from '@/lib/types';
 import { Button } from '@/components/ui/button';
-import { ChevronDown } from 'lucide-react';
-import { gsap } from 'gsap';
-import { shouldReduceMotion } from '@/components/animations/gsap-animations';
+import TextMarquee from '../ui/text-marque';
+import { HoverBorderGradient } from '../ui/hover-border-gradient';
 
-export function HeroSection({
-  title,
-  subtitle,
-  ctaText,
-  ctaLink,
-  backgroundImage,
-}: HeroSectionProps) {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (shouldReduceMotion()) return;
-
-    const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-    timeline
-      .from(titleRef.current, {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-      })
-      .from(
-        subtitleRef.current,
-        {
-          y: 30,
-          opacity: 0,
-          duration: 0.8,
-        },
-        '-=0.5'
-      )
-      .from(
-        ctaRef.current,
-        {
-          y: 20,
-          opacity: 0,
-          duration: 0.6,
-        },
-        '-=0.4'
-      );
-
-    // Scroll indicator animation
-    if (scrollIndicatorRef.current) {
-      gsap.to(scrollIndicatorRef.current, {
-        y: 10,
-        duration: 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-    }
-
-    return () => {
-      timeline.kill();
-    };
-  }, []);
-
-  const handleScrollDown = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: 'smooth',
-    });
-  };
-
+export default function HeroSection() {
   return (
-    <section
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-primary/5 via-background to-primary/10"
-      style={
-        backgroundImage
-          ? {
-              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${backgroundImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }
-          : undefined
-      }
-    >
-      <div className="container-custom relative z-10 py-20">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1
-            ref={titleRef}
-            className="mb-6 text-5xl font-bold leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl"
-          >
-            {title}
+    <div className="relative min-h-screen w-full overflow-hidden bg-black">
+      <div className="absolute inset-0 bg-gradient-radial from-blue-900/40 via-black to-black" />
+
+      {/* --------------------------------------------------------------- */}
+      {/* 1. Center the whole hero column (including marquee)           */}
+      {/* --------------------------------------------------------------- */}
+      <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 pt-20">
+
+        {/* --------------------------------------------------------------- */}
+        {/* 2. Main content block – flex-col + gap replaces mb-* margins   */}
+        {/* --------------------------------------------------------------- */}
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 text-center">
+          {/* ---- Badge --------------------------------------------------- */}
+          <div>
+            <span className="rounded-full border border-white/20 bg-white/5 py-0.5 px-2 text-xl font-semibold text-white">
+              Your Trusted Technology Partner
+            </span>
+          </div>
+
+          {/* ---- Headline ------------------------------------------------ */}
+          <h1 className="text-5xl font-bold leading-tight text-white md:text-6xl lg:text-6xl italic font-serif">
+            Innovation You Can Trust. Results You Can Measure.
           </h1>
-          <p
-            ref={subtitleRef}
-            className="mb-8 text-lg text-muted-foreground md:text-xl lg:text-2xl"
-          >
-            {subtitle}
-          </p>
-          <div ref={ctaRef}>
-            <Button asChild size="lg" className="text-lg px-8 py-6 hover:scale-105 transition-transform">
-              <Link href={ctaLink}>{ctaText}</Link>
+
+          {/* ---- Buttons ------------------------------------------------- */}
+          <div className="flex flex-col items-center gap-4 sm:flex-row">
+            <Button
+              size="lg"
+              className="min-w-[180px] rounded-full bg-white px-8 py-6 text-base font-semibold uppercase tracking-wider text-black hover:bg-gray-100"
+            >
+              Products
             </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="min-w-[180px] rounded-full border-2 border-blue-500/50 bg-transparent px-8 py-6 text-base font-semibold uppercase tracking-wider text-white hover:border-blue-400 hover:bg-blue-500/10"
+            >
+              About
+            </Button>
+     
           </div>
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <div
-        ref={scrollIndicatorRef}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer"
-        onClick={handleScrollDown}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleScrollDown();
-          }
-        }}
-        aria-label="Scroll down"
-      >
-        <ChevronDown className="h-8 w-8 text-muted-foreground hover:text-primary transition-colors" />
+        {/* --------------------------------------------------------------- */}
+        {/* 3. Marquee – keep the same spacing you already had            */}
+        {/* --------------------------------------------------------------- */}
+        <div className=" mt-5 w-full max-w-6xl">
+          <p className=" text-center text-sm uppercase tracking-widest text-gray-400">
+            Trusted by top brands and 100,000+ creatives worldwide.
+          </p>
+
+          <TextMarquee marquee1={[...brands]} marquee2={[...brands]} />
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
+
+/* --------------------------------------------------------------------- */
+const brands = [
+  'ritualogy',
+  'Alibaba',
+  'SONY',
+  'Dolby',
+  'flormar',
+  'nvidia',
+  'tubi',
+  'Cineplex',
+  'salesforce',
+  'runway',
+  'Costco',
+  'odoo',
+];

@@ -125,7 +125,7 @@ export default function RootLayout({
         <SmoothScrollInit />
         <ScrollTriggerConfig />
         <Header />
-        <main className="min-h-screen pt-16 md:pt-20">
+        <main className="min-h-screen">
           <PageTransition>
             {children}
           </PageTransition>
