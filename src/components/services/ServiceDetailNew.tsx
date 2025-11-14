@@ -97,20 +97,11 @@ export default function ServiceDetailNew({ service }: ServiceDetailNewProps) {
                           }}
                         />
                       )}
-                      {/* Gradient Overlay */}
-                      {/* <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-primary-600/20 to-primary/30 group-hover:from-primary/50 group-hover:via-primary-600/40 group-hover:to-primary/50 transition-all duration-500" /> */}
-                      {/* Hover Icon */}
-                      {/* <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                          <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                            <Check className="w-10 h-10 text-white" />
-                          </div>
-                        </div>
-                      </div> */}
+
                     </div>
                   ) : (
                     // Content cards (2, 4, 5) - Show title and description
-                    <div className="relative z-10 h-full flex flex-col justify-center p-8 hover:bg-[#171717] hover:text-white transition duration-200">
+                    <div className="relative z-10 h-full flex flex-col justify-center p-8 hover:bg-[#171717] hover:text-white transition duration-00">
                       <div className="space-y-3">
                         <h3 className="text-xl lg:text-2xl font-bold   transition-colors duration-300">
                           {feature}
