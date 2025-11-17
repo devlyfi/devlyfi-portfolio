@@ -57,7 +57,7 @@ export default function ServicesPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-primary/5 to-transparent py-20">
+      <section className="bg-linear-to-b from-primary/5 to-transparent py-20">
         <div className="container-custom">
           <AnimatedSection animation="fadeInUp">
             <div className="mx-auto max-w-3xl text-center">
@@ -88,7 +88,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-t from-primary/5 to-transparent py-20">
+      <section className="bg-linear-to-t from-primary/5 to-transparent py-20">
         <div className="container-custom">
           <AnimatedSection animation="fadeInUp">
             <div className="mx-auto max-w-3xl text-center">

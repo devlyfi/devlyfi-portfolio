@@ -1,19 +1,25 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { ServiceCardProps } from '@/lib/types';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { 
-  Code, 
-  Smartphone, 
-  Cloud, 
-  Palette, 
-  Brain, 
-  Briefcase, 
-  Link as LinkIcon, 
+import Link from "next/link";
+import { ServiceCardProps } from "@/lib/types";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
+import {
+  Code,
+  Smartphone,
+  Cloud,
+  Palette,
+  Brain,
+  Briefcase,
+  Link as LinkIcon,
   Settings,
-  LucideIcon
-} from 'lucide-react';
+  LucideIcon,
+} from "lucide-react";
 
 // Icon mapping for service icons
 const iconMap: Record<string, LucideIcon> = {
@@ -27,9 +33,12 @@ const iconMap: Record<string, LucideIcon> = {
   settings: Settings,
 };
 
-export function ServiceCard({ service, variant = 'preview' }: ServiceCardProps) {
+export function ServiceCard({
+  service,
+  variant = "preview",
+}: ServiceCardProps) {
   const Icon = iconMap[service.icon] || Code;
-  const isPreview = variant === 'preview';
+  const isPreview = variant === "preview";
 
   return (
     <Link href={`/services/${service.slug}`} className="block group">
@@ -45,13 +54,16 @@ export function ServiceCard({ service, variant = 'preview' }: ServiceCardProps) 
             {service.description}
           </CardDescription>
         </CardHeader>
-        
+
         {!isPreview && service.features && service.features.length > 0 && (
           <CardContent>
             <ul className="space-y-2">
               {service.features.slice(0, 3).map((feature, index) => (
-                <li key={index} className="flex items-start text-sm text-muted-foreground">
-                  <span className="mr-2 mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                <li
+                  key={index}
+                  className="flex items-start text-sm text-muted-foreground"
+                >
+                  <span className="mr-2 mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                   {feature}
                 </li>
               ))}

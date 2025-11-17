@@ -29,6 +29,9 @@ export interface Service {
   description: string;
   icon: string;
   features: string[];
+  cover:string;
+  color?:string;
+  bgColor?:string;
   process?: string[];
   featureImages?: string[]; // Images for bento grid cards at index 0 and 2
 }

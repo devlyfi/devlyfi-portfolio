@@ -1,8 +1,11 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import TextMarquee from '../ui/text-marque';
-import { HoverBorderGradient } from '../ui/hover-border-gradient';
+import { Button } from "@/components/ui/button";
+import TextMarquee from "../ui/text-marque";
+
+import { brands } from "@/lib/data/dummy";
+import ShinyBadge from "../ui/shiny-badge";
+import CustomButton from "../shared/CustomButton";
 
 export default function HeroSection() {
   return (
@@ -13,16 +16,13 @@ export default function HeroSection() {
       {/* 1. Center the whole hero column (including marquee)           */}
       {/* --------------------------------------------------------------- */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 pt-20">
-
         {/* --------------------------------------------------------------- */}
         {/* 2. Main content block – flex-col + gap replaces mb-* margins   */}
         {/* --------------------------------------------------------------- */}
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 text-center">
           {/* ---- Badge --------------------------------------------------- */}
           <div>
-            <span className="rounded-full border border-white/20 bg-white/5 py-0.5 px-2 text-xl font-semibold text-white">
-              Your Trusted Technology Partner
-            </span>
+            <ShinyBadge text="Your Trusted Technology Partner"></ShinyBadge>
           </div>
 
           {/* ---- Headline ------------------------------------------------ */}
@@ -32,12 +32,12 @@ export default function HeroSection() {
 
           {/* ---- Buttons ------------------------------------------------- */}
           <div className="flex flex-col items-center gap-4 sm:flex-row">
-            <Button
-              size="lg"
-              className="min-w-[180px] rounded-full bg-white px-8 py-6 text-base font-semibold uppercase tracking-wider text-black hover:bg-gray-100"
-            >
-              Products
-            </Button>
+            <CustomButton
+              text="Book  a call"
+              className="bg-transparent border-2 border-white"
+              hoverTextColor="#000"
+              textColor="#ffff"
+            ></CustomButton>
             <Button
               size="lg"
               variant="outline"
@@ -45,7 +45,6 @@ export default function HeroSection() {
             >
               About
             </Button>
-     
           </div>
         </div>
 
@@ -65,17 +64,3 @@ export default function HeroSection() {
 }
 
 /* --------------------------------------------------------------------- */
-const brands = [
-  'ritualogy',
-  'Alibaba',
-  'SONY',
-  'Dolby',
-  'flormar',
-  'nvidia',
-  'tubi',
-  'Cineplex',
-  'salesforce',
-  'runway',
-  'Costco',
-  'odoo',
-];

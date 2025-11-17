@@ -126,9 +126,9 @@ export default function RootLayout({
         <ScrollTriggerConfig />
         <Header />
         <main className="min-h-screen">
-          <PageTransition>
+          {/* <PageTransition> */}
             {children}
-          </PageTransition>
+          {/* </PageTransition> */}
         </main>
         <Footer />
       </body>

@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import { Service } from '@/lib/types';
-import { services } from '@/lib/data/dummy';
+import { brands, services } from '@/lib/data/dummy';
 import { CTASection } from '@/components/home/CTASection';
 import { ArrowRight, Check, CheckCircle, Target, Lightbulb, Code, Rocket, Users } from 'lucide-react';
+import TextMarquee from '../ui/text-marque';
 
 interface ServiceDetailNewProps {
   service: Service;
@@ -23,38 +24,47 @@ export default function ServiceDetailNew({ service }: ServiceDetailNewProps) {
   return (
     <div className="min-h-screen bg-white">
       {/* Banner */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-[#171717]">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
         <div className="absolute inset-0 bg-gradient-radial from-blue-900/20 via-black to-black" />
         <div className="banner-content relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block mb-6 px-4 py-2 rounded-full border border-blue-500/50 bg-blue-500/10">
-              <span className="text-blue-400 font-medium">Our Services</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            {/* <div className="inline-block mb-6 px-4 py-2 rounded-full border border-blue-500/50 bg-blue-500/10">
+              <span className="text-blue-500 font-medium">Our Services</span>
+            </div> */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 italic font-serif leading-tight">
               {service.title}
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+            <p className="text-lg font-outfit  text-white leading-relaxed">
               {service.description}
             </p>
+       <div className=" w-full max-w-6xl mt-15">
+          <p className=" text-center text-sm uppercase tracking-widest text-gray-400">
+           Tools & Technologies that We Use
+          </p>
+
+            <TextMarquee marquee1={[...tools]} marquee2={[...tools]} />
           </div>
+          </div>
+          
+
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-blue-500/50 to-transparent" />
       </section>
 
       {/* What We Offer - FULLY VISIBLE BENTO GRID */}
-      <section className="py-20 md:py-32 bg-white overflow-visible">
+      <section className="py-16 md:py-24 bg-white overflow-visible">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
               What We Offer
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg text-gray-600">
               Comprehensive solutions tailored to your needs
             </p>
           </div>
 
           {/* Bento Grid - 3x3 Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto auto-rows-[minmax(200px,auto)]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto auto-rows-[minmax(160px,auto)]">
             {service.features?.map((feature, index) => {
               // Card 1: 2 rows x 2 columns (top-left) - IMAGE ONLY
               // Card 2: 1 row x 1 column (top-right) - CONTENT
@@ -78,8 +88,8 @@ export default function ServiceDetailNew({ service }: ServiceDetailNewProps) {
               return (
                 <div
                   key={index}
-                  className={`offering-item group relative rounded-2xl border-2 border-gray-200  transition-all duration-500 cursor-pointer bg-white  overflow-hidden ${gridClasses}`}
-                  style={{ minHeight: '200px' }}
+                  className={`offering-item group relative rounded-xl border-2 border-gray-200 transition-all duration-500 cursor-pointer bg-white overflow-hidden ${gridClasses}`}
+                  style={{ minHeight: '160px' }}
                 >
                   {/* Background layers with hover effect */}
                   {/* <div className="absolute inset-0 bg-white transition-all duration-500" />
@@ -101,12 +111,12 @@ export default function ServiceDetailNew({ service }: ServiceDetailNewProps) {
                     </div>
                   ) : (
                     // Content cards (2, 4, 5) - Show title and description
-                    <div className="relative z-10 h-full flex flex-col justify-center p-8 hover:bg-[#171717] hover:text-white transition duration-00">
-                      <div className="space-y-3">
-                        <h3 className="text-xl lg:text-2xl font-bold   transition-colors duration-300">
+                    <div className="relative z-10 h-full flex flex-col justify-center p-5 hover:bg-[#171717] hover:text-white transition duration-300">
+                      <div className="space-y-2">
+                        <h3 className="text-base lg:text-lg font-bold transition-colors duration-300">
                           {feature}
                         </h3>
-                        <p className="text-sm lg:text-base    leading-relaxed transition-colors duration-300">
+                        <p className="text-xs lg:text-sm leading-relaxed transition-colors duration-300">
                           {index === 1 
                             ? 'Innovative solutions tailored to meet your specific business requirements and objectives.'
                             : index === 3
@@ -155,19 +165,19 @@ export default function ServiceDetailNew({ service }: ServiceDetailNewProps) {
               return (
                 <div
                   key={index}
-                  className="process-step group relative overflow-hidden bg-gradient-to-br from-[#171717] to-blue-900/10 border border-gray-700/50 hover:border-primary/50 rounded-2xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/10"
+                  className="process-step group relative overflow-hidden bg-linear-to-br from-[#171717] to-blue-900/10 border border-gray-700/50 hover:border-primary/50 rounded-2xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/10"
                   style={{ minHeight: '400px', height: 'auto' }}
                 >
                   {/* Card Content */}
                   <div className="relative p-6 h-full flex flex-col">
                     {/* Step Number Badge */}
-                    <div className="absolute -top-3 -left-3 bg-gradient-to-r from-blue-400 to-blue-500 text-black font-bold text-lg w-12 h-12 rounded-full flex items-center justify-center shadow-lg z-20 group-hover:scale-110 transition-transform duration-300">
+                    <div className="absolute -top-3 -left-3 bg-linear-to-r from-blue-400 to-blue-500 text-black font-bold text-lg w-12 h-12 rounded-full flex items-center justify-center shadow-lg z-20 group-hover:scale-110 transition-transform duration-300">
                       {index + 1}
                     </div>
 
                     {/* Floating Icon - No background when not hovered */}
                     <div className="absolute -bottom-2 -right-2.5 z-10">
-                      <div className="p-3  group-hover:scale-110 transition-transform duration-300  bg-gradient-to-r from-blue-400 to-blue-500 rounded-full">
+                      <div className="p-3  group-hover:scale-110 transition-transform duration-300  bg-linear-to-r from-blue-400 to-blue-500 rounded-full">
                         <IconComponent className="w-6 h-6  " />
                       </div>
                     </div>
@@ -182,7 +192,7 @@ export default function ServiceDetailNew({ service }: ServiceDetailNewProps) {
                       </p>
 
                       {/* Expanded details that appear on hover - slides up from bottom - ONLY SHOWS DETAILS */}
-                      <div className="opacity-0 group-hover:opacity-100 absolute inset-0 bg-gradient-to-br from-primary/95 to-primary-600/95 rounded-2xl p-6 flex flex-col justify-center text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                      <div className="opacity-0 group-hover:opacity-100 absolute inset-0 bg-linear-to-br from-primary/95 to-primary-600/95 rounded-2xl p-6 flex flex-col justify-center text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                         <div className="space-y-4">
                           <div className="flex items-center space-x-2 mb-3">
                             <IconComponent className="w-6 h-6 text-white" />
@@ -206,7 +216,7 @@ export default function ServiceDetailNew({ service }: ServiceDetailNewProps) {
       </section>
 
       {/* Tools */}
-      <section className="py-20 md:py-32 bg-white">
+      {/* <section className="py-20 md:py-32 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -227,7 +237,7 @@ export default function ServiceDetailNew({ service }: ServiceDetailNewProps) {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Related Services */}
       <section className="py-20 md:py-32 bg-gray-50">

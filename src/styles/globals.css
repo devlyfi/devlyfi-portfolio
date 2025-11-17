@@ -467,3 +467,19 @@
 .animate-scroll-right:hover {
   animation-play-state: paused;
 }
+
+
+
+.magnetic-btn {
+  position: relative;
+  border: 2px solid white;
+  color: white;
+  background: transparent;
+  transition: transform 0.15s ease-out, border-color 0.3s ease;
+  transform: translate(var(--x, 0), var(--y, 0));
+}
+
+.magnetic-btn:hover {
+  border-color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
