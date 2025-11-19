@@ -539,7 +539,8 @@ export const works: Work[] = [
     category: "Web Development",
     description:
       "A fully-featured e-commerce platform with advanced product filtering, real-time inventory management, and seamless checkout experience.",
-    thumbnail: "/images/works/ecommerce-thumb.jpg",
+    thumbnail:
+      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnewdopegood.2c4b50f7.jpg&w=1080&q=75",
     images: [
       "/images/works/ecommerce-1.jpg",
       "/images/works/ecommerce-2.jpg",
@@ -573,7 +574,8 @@ export const works: Work[] = [
     category: "Mobile Development",
     description:
       "A comprehensive fitness tracking mobile app with AI-powered workout recommendations and social features.",
-    thumbnail: "/images/works/fitness-thumb.jpg",
+    thumbnail:
+      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fam-arc.e31e094e.jpg&w=1080&q=75",
     images: [
       "/images/works/fitness-1.jpg",
       "/images/works/fitness-2.jpg",
@@ -606,7 +608,8 @@ export const works: Work[] = [
     category: "Healthcare",
     description:
       "A secure healthcare portal for managing patient records, appointments, and telemedicine consultations.",
-    thumbnail: "/images/works/healthcare-thumb.jpg",
+    thumbnail:
+      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdopop2.377994a1.jpg&w=1080&q=75",
     images: [
       "/images/works/healthcare-1.jpg",
       "/images/works/healthcare-2.jpg",

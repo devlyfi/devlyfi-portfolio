@@ -11,6 +11,7 @@ import {
   Target,
 } from "lucide-react";
 import gsap from "gsap";
+import ShinyBadge from "../ui/shiny-badge";
 
 export default function WhatDefinesUs() {
   const values = [
@@ -19,42 +20,42 @@ export default function WhatDefinesUs() {
       title: "Client-focused solutions.",
       description:
         "We listen to your needs and build custom software solutions tailored specifically to your business goals.",
-      hoverColor: "#3b82f6",
+      hoverColor: "#000000", // Use full hex for consistency
     },
     {
       icon: Lightbulb,
       title: "Innovation-driven approach.",
       description:
         "Our team leverages cutting-edge technologies to create innovative solutions that give you a competitive edge.",
-      hoverColor: "#8b5cf6",
+      hoverColor: "#000000",
     },
     {
       icon: Rocket,
       title: "Fast, agile delivery.",
       description:
         "We move quickly without compromising quality, delivering solutions that help you launch faster and scale better.",
-      hoverColor: "#4f46e5",
+      hoverColor: "#000000",
     },
     {
       icon: Code,
       title: "Technical excellence.",
       description:
         "Built by experienced developers who write clean, maintainable code that stands the test of time.",
-      hoverColor: "#06b6d4",
+      hoverColor: "#000000",
     },
     {
       icon: RefreshCw,
       title: "Continuous support.",
       description:
         "We don't just deliver and disappear. We provide ongoing support and iterate based on your feedback.",
-      hoverColor: "#14b8a6",
+      hoverColor: "#171717",
     },
     {
       icon: Trophy,
       title: "Measurable results.",
       description:
         "We focus on outcomes that matter—increased efficiency, better user experience, and real business growth.",
-      hoverColor: "#10b981",
+      hoverColor: "#171717",
     },
   ];
 
@@ -68,45 +69,60 @@ export default function WhatDefinesUs() {
       const titleEl = titleRefs.current[index];
       const descEl = descRefs.current[index];
       const card = overlay?.parentElement;
+
       if (!overlay || !titleEl || !descEl || !card) return;
 
-      const handleMouseEnter = () => {
-        gsap.set(overlay, { backgroundColor: values[index].hoverColor });
+      const iconEl = card.querySelector("svg");
 
-        // Overlay animation slower and smoother
-        gsap.fromTo(
+      let enterAnim: gsap.core.Tween;
+      let leaveAnim: gsap.core.Tween;
+
+      const handleMouseEnter = () => {
+        // Kill any running leave animation
+        leaveAnim?.kill();
+
+        // Set text and icon to white instantly
+        gsap.set([titleEl, descEl, iconEl], { color: "#ffffff" });
+
+        // Start enter animation
+        enterAnim = gsap.fromTo(
           overlay,
-          { clipPath: "circle(0% at 50% 0%)" },
+          {
+            clipPath: "circle(0% at 50% 0%)",
+            backgroundColor: "#171717", // Ensure black background from start
+          },
           {
             clipPath: "circle(150% at 50% 0%)",
             duration: 2,
             ease: "power3.out",
+            backgroundColor: "#171717", // Explicitly set to black
           }
         );
-
-        // Text color changes immediately and smoothly
-        gsap.to([titleEl, descEl], {
-          color: "#ffffff",
-          // duration: 0.5,
-          ease: "power1.out",
-        });
       };
 
       const handleMouseLeave = () => {
-        gsap.fromTo(
+        // Kill any running enter animation
+        enterAnim?.kill();
+
+        // Start leave animation immediately
+        leaveAnim = gsap.fromTo(
           overlay,
-          { clipPath: "circle(150% at 50% 0%)" },
+          {
+            clipPath: "circle(150% at 50% 0%)",
+            backgroundColor: "#000000", // Ensure black background during animation
+          },
           {
             clipPath: "circle(0% at 50% 100%)",
-            duration: 2,
+            duration: 1.0,
             ease: "power2.in",
+            onStart: () => {
+              // Keep text white during the animation
+              gsap.set([titleEl, descEl, iconEl], { color: "#ffffff" });
+            },
             onComplete: () => {
-              gsap.set(overlay, { backgroundColor: "transparent" });
-              gsap.to([titleEl, descEl], {
-                color: "",
-                // duration: 0.5,
-                ease: "power1.inOut",
-              });
+              // REMOVED: gsap.set(overlay, { backgroundColor: "transparent" });
+              // Revert text colors only after animation completes
+              gsap.set([titleEl, descEl, iconEl], { color: "" });
             },
           }
         );
@@ -126,13 +142,13 @@ export default function WhatDefinesUs() {
     <section className="relative bg-white py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 mb-6">
-            <Target className="w-5 h-5 text-blue-600" />
-            <span className="text-sm font-medium text-gray-700">
-              Why Choose Devlyfi
-            </span>
+          <div className="mb-10">
+            <ShinyBadge
+              text="Why Choose Devlyfi"
+              className="p-4! text-lg! uppercase"
+            ></ShinyBadge>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 max-w-3xl">
+          <h2 className="text-4xl md:text-5xl  font-thin! text-gray-900 max-w-3xl">
             Custom software solutions built around your unique business needs.
           </h2>
         </div>
@@ -149,20 +165,21 @@ export default function WhatDefinesUs() {
                 <span
                   ref={(el) => (overlayRefs.current[index] = el)}
                   className="absolute inset-0 rounded-2xl pointer-events-none"
-                  style={{ clipPath: "circle(0% at 50% 0%)" }}
+                  style={{
+                    clipPath: "circle(0% at 50% 0%)",
+                    backgroundColor: "#000000", // Set initial black background
+                  }}
                 />
                 {/* Content */}
                 <div className="relative z-10">
                   <div className="flex items-start gap-4">
                     <div className="shrink-0">
-                      <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center transition-all duration-300">
-                        <Icon className="w-6 h-6 text-gray-700 transition-colors duration-300" />
-                      </div>
+                      <Icon className="w-6 h-6  transition-colors duration-300" />
                     </div>
                     <div className="flex-1">
                       <h3
                         ref={(el) => (titleRefs.current[index] = el)}
-                        className="text-lg font-semibold text-gray-900 mb-2 transition-colors duration-300"
+                        className="text-xl font-thin text-gray-900 mb-2 transition-colors duration-300"
                       >
                         {value.title}
                       </h3>

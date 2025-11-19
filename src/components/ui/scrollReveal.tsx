@@ -5,6 +5,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/lib/data/dummy";
 import Image from "next/image";
+import CustomButton from "../shared/CustomButton";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -119,11 +121,32 @@ export default function ScrollReveal() {
                     key={index}
                     className={`left-item item-${
                       index + 1
-                    } min-h-screen flex items-center justify-start text-left
-                       text-2xl md:text-3xl lg:text-4xl font-semibold
+                    } min-h-screen flex items-center justify-start 
                        px-4 md:px-6 lg:px-8`}
                   >
-                    {section.title}
+                    <div>
+                      <h3
+                        className="font-thin text-left
+                       text-2xl md:text-3xl lg:text-5xl font-serif"
+                      >
+                        {section.title}
+                      </h3>
+                      <p className="my-4 text-md text-gray-800">
+                        {section.description}
+                      </p>
+                      <Link
+                        href={`/services/${section.title
+                          .replace(/\s+/g, "-")
+                          .toLowerCase()}`}
+                      >
+                        <CustomButton
+                          className={`border-2 border-black mt-5`}
+                          textColor="black"
+                          text="View More"
+                          hoverColor="black"
+                        ></CustomButton>
+                      </Link>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -144,7 +167,7 @@ export default function ScrollReveal() {
                       }}
                       className="absolute inset-0 flex items-center justify-center
                 text-base md:text-lg lg:text-xl font-medium text-black
-                rounded-2xl md:rounded-3xl lg:rounded-4xl overflow-hidden"
+                 rounded-4xl overflow-hidden"
                       style={{ backgroundColor: item.color }}
                     >
                       <Image

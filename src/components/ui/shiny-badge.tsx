@@ -5,6 +5,7 @@ import React from "react";
 export default function ShinyBadge({
   text = "New text",
   shineColor = "#8484ff",
+  className = "",
 }) {
   return (
     <div className="inline-block bg-transparent">
@@ -56,7 +57,7 @@ export default function ShinyBadge({
         }
       `}</style>
 
-      <span className="shiny-badge">
+      <span className={`shiny-badge ${className}`}>
         <span>{text}</span>
       </span>
     </div>

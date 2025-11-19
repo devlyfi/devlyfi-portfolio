@@ -1,37 +1,18 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-import { services, works } from "@/lib/data/dummy";
+import { works } from "@/lib/data/dummy";
 import HeroSection from "@/components/home/HeroSection";
 import WhatDefinesUs from "@/components/home/WhatDefinesUs";
 
 import ScrollReveal from "@/components/ui/scrollReveal";
+import RecentWorks from "@/components/home/RecentWorks";
 
 // Lazy load below-the-fold components
 const OurExperience = dynamic(
   () =>
     import("@/components/home/OurExperience").then((mod) => ({
       default: mod.OurExperience,
-    })),
-  {
-    loading: () => <div className="h-96 animate-pulse bg-muted" />,
-  }
-);
-
-const ServicesPreview = dynamic(
-  () =>
-    import("@/components/home/ServicesPreview").then((mod) => ({
-      default: mod.ServicesPreview,
-    })),
-  {
-    loading: () => <div className="h-96 animate-pulse bg-muted" />,
-  }
-);
-
-const WorksPreview = dynamic(
-  () =>
-    import("@/components/home/WorksPreview").then((mod) => ({
-      default: mod.WorksPreview,
     })),
   {
     loading: () => <div className="h-96 animate-pulse bg-muted" />,
@@ -102,15 +83,16 @@ export default function Home() {
       <HeroSection />
 
       <ScrollReveal></ScrollReveal>
+      {/* <AnimationTestPage></AnimationTestPage> */}
+
       {/* <ScrollStack></ScrollStack> */}
       {/* <ScrollingSection></ScrollingSection> */}
       <WhatDefinesUs />
 
       <OurExperience />
-
-      <ServicesPreview services={services} maxDisplay={3} />
-
-      <WorksPreview works={works} maxDisplay={6} />
+      <div className="overflow-hidden">
+        <RecentWorks />
+      </div>
 
       <CTASection />
     </main>
