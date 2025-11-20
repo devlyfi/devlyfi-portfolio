@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
 import Image from "next/image";
 import { works } from "@/lib/data/dummy";
-import AnimatedText from "./AnimatedText";
 import CustomButton from "../shared/CustomButton";
 
 export default function RecentWorkCards() {
@@ -75,7 +74,7 @@ export default function RecentWorkCards() {
             y: 0,
             x: 0,
             opacity: 1,
-            duration: 1.5,
+            duration: 1,
             ease: "power2.out",
           },
           0.6 // Start 0.6 seconds after timeline begins

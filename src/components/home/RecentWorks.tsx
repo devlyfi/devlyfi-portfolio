@@ -34,25 +34,25 @@ export default function RecentWorks() {
       });
 
       // Work text animation
-      ScrollTrigger.create({
-        trigger: ".work",
-        start: "top 70%",
-        end: "bottom 40%",
-        scrub: 1.2,
-        // markers: true,
-        invalidateOnRefresh: true,
-        animation: gsap.from(".work", {
-          x: -120,
-          opacity: 0,
-          duration: 2,
-          stagger: 0.1,
-        }),
-      });
+      // ScrollTrigger.create({
+      //   trigger: ".work",
+      //   start: "top 70%",
+      //   end: "bottom 40%",
+      //   scrub: 1.2,
+      //   // markers: true,
+      //   invalidateOnRefresh: true,
+      //   animation: gsap.from(".work", {
+      //     x: -120,
+      //     opacity: 0,
+      //     duration: 2,
+      //     stagger: 0.1,
+      //   }),
+      // });
 
       // Subtext animation
       ScrollTrigger.create({
         trigger: ".recent-work-subText",
-        start: "top 60%",
+        start: "top bottom",
         end: "bottom 30%",
         scrub: 1.2,
         invalidateOnRefresh: true,
@@ -69,6 +69,7 @@ export default function RecentWorks() {
         trigger: ".recent-works",
         start: "top 80%",
         end: "bottom center",
+        // markers: true,
         scrub: 1,
         onUpdate: (self) => {
           const progress = self.progress;
