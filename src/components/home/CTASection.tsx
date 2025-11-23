@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import AnimatedSection from "@/components/animations/AnimatedSection";
 import { ArrowRight, Check, Phone } from "lucide-react";
+import ShinyBadge from "../ui/shiny-badge";
+import AnimatedButton from "../shared/AnimatedButton";
 
 export function CTASection() {
   const [formData, setFormData] = useState({
@@ -38,9 +40,10 @@ export function CTASection() {
               {/* Left Column */}
               <div className="text-white">
                 <div className="inline-block mb-8">
-                  <span className="px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/5 text-blue-400 text-sm font-medium">
-                    Free Strategy Session Worth $799
-                  </span>
+                  <ShinyBadge
+                    text="Free Strategy Session Worth $799"
+                    className="px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/5 text-blue-400 text-sm font-medium"
+                  ></ShinyBadge>
                 </div>
 
                 <h2 className="text-4xl  font-semibold mb-4 leading-tight">
@@ -215,13 +218,14 @@ export function CTASection() {
                   </div>
 
                   {/* Submit Button */}
-                  <button
+                  <AnimatedButton></AnimatedButton>
+                  {/* <button
                     type="submit"
                     className="w-full md:w-auto px-8 py-4 bg-primary hover:bg-primary-600 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 group shadow-primary hover:shadow-primary-lg"
                   >
                     Let&apos;s Connect
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </button> */}
                 </form>
               </div>
             </div>

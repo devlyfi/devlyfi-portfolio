@@ -32,7 +32,7 @@ export default function ShinyBadge({
           color: #ffffff;
 
           background:
-            linear-gradient(#000000, #000000) padding-box,
+            linear-gradient(#121315, #121315) padding-box,
             conic-gradient(
               from var(--gradient-angle),
               transparent 0%,

@@ -8,7 +8,6 @@ import {
   Code,
   RefreshCw,
   Trophy,
-  Target,
 } from "lucide-react";
 import gsap from "gsap";
 import ShinyBadge from "../ui/shiny-badge";
@@ -48,14 +47,14 @@ export default function WhatDefinesUs() {
       title: "Continuous support.",
       description:
         "We don't just deliver and disappear. We provide ongoing support and iterate based on your feedback.",
-      hoverColor: "#171717",
+      hoverColor: "#121315",
     },
     {
       icon: Trophy,
       title: "Measurable results.",
       description:
         "We focus on outcomes that matter—increased efficiency, better user experience, and real business growth.",
-      hoverColor: "#171717",
+      hoverColor: "#121315",
     },
   ];
 
@@ -89,13 +88,13 @@ export default function WhatDefinesUs() {
           overlay,
           {
             clipPath: "circle(0% at 50% 0%)",
-            backgroundColor: "#171717", // Ensure black background from start
+            backgroundColor: "#121315", // Ensure black background from start
           },
           {
             clipPath: "circle(150% at 50% 0%)",
             duration: 2,
             ease: "power3.out",
-            backgroundColor: "#171717", // Explicitly set to black
+            backgroundColor: "#121315", // Explicitly set to black
           }
         );
       };

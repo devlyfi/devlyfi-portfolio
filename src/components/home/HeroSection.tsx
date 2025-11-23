@@ -9,13 +9,13 @@ export default function HeroSection() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
       {/* -------- Spline Background -------- */}
-      <div className="spline-container  bg-[#171717] absolute top-0 left-0 w-full h-full -z-20">
+      <div className="spline-container  bg-[#121315] absolute top-0 left-0 w-full h-full -z-20">
         <iframe
           // src="https://my.spline.design/glowingplanetparticles-HmCVKutonlFn3Oqqe6DI9nWi/"
           src="https://my.spline.design/glowingplanetparticles-nhVHji30IRoa5HBGe8yeDiTs"
           frameBorder="0"
           width="100%"
-          className="scale-140"
+          className="scale-142"
           height="100%"
           id="aura-spline"
         ></iframe>

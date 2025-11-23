@@ -1185,3 +1185,99 @@ export const brands = [
   "Costco",
   "odoo",
 ];
+
+export const workingProcess = [
+  {
+    id: 1,
+    title: "Requirement Gathering",
+    subtitle:
+      "Understanding client goals, business challenges, and user needs to define a clear product vision.",
+    problem:
+      "Clients often have scattered ideas and unclear priorities, leading to confusion and scope creep later.",
+    approach:
+      "We conduct stakeholder interviews, user research, and discovery workshops to extract the core requirements. Our team then documents clear user stories, technical needs, and success metrics to ensure mutual clarity from day one.",
+  },
+  {
+    id: 2,
+    title: "Planning & Strategy",
+    subtitle:
+      "Translating ideas into an actionable roadmap and defining milestones for smooth project execution.",
+    problem:
+      "Projects frequently fail due to lack of clear planning, timeline estimation, or undefined deliverables.",
+    approach:
+      "We create a detailed project plan with milestones, dependencies, and sprint breakdowns. Tools like Jira and Notion help us maintain transparency and track progress effectively.",
+  },
+  {
+    id: 3,
+    title: "UI/UX Design",
+    subtitle:
+      "Designing user-centered interfaces that balance aesthetics, accessibility, and functionality.",
+    problem:
+      "Designs often look appealing but fail to solve user problems or align with brand identity.",
+    approach:
+      "We use design thinking principles to craft wireframes, prototypes, and user flows. Every screen is tested for usability and consistency with the brand tone before moving into development.",
+  },
+  {
+    id: 4,
+    title: "Development",
+    subtitle:
+      "Transforming design into a functional, scalable, and maintainable digital product.",
+    problem:
+      "Poor code structure or inconsistent collaboration between backend and frontend can lead to inefficiencies.",
+    approach:
+      "Our developers follow modular, scalable architectures using modern frameworks like Next.js, React Native, and Node.js. Regular code reviews and CI/CD pipelines ensure stability and speed.",
+  },
+  {
+    id: 5,
+    title: "Testing & Deployment",
+    subtitle:
+      "Ensuring a bug-free, optimized experience before your product goes live.",
+    problem:
+      "Skipping proper testing leads to unexpected bugs, poor performance, and user frustration post-launch.",
+    approach:
+      "We perform multi-layer testing—unit, integration, and user acceptance testing—before deploying on secure, optimized servers. Automated pipelines ensure fast, reliable delivery.",
+  },
+  {
+    id: 6,
+    title: "Maintenance & Support",
+    subtitle:
+      "Continuous improvement through monitoring, updates, and long-term technical support.",
+    problem:
+      "Neglecting post-launch maintenance causes performance degradation and security vulnerabilities over time.",
+    approach:
+      "We provide ongoing monitoring, security patches, feature enhancements, and performance optimization. Our support team ensures your product evolves smoothly with changing business needs.",
+  },
+];
+
+export const generalFAQ = [
+  {
+    id: "1",
+    question: "What services do you provide?",
+    answer:
+      "We offer web development, mobile app development, UI/UX design, branding, and custom software solutions tailored to business needs.",
+  },
+  {
+    id: "2",
+    question: "How long does it take to complete a project?",
+    answer:
+      "Timelines depend on scope. Simple websites take 2–4 weeks, and larger applications can take 8–16 weeks. A detailed timeline is shared after the project discovery phase.",
+  },
+  {
+    id: "3",
+    question: "Do you provide maintenance and support?",
+    answer:
+      "Yes, we offer ongoing maintenance, security monitoring, performance optimization, and feature enhancements after the project is delivered.",
+  },
+  {
+    id: "4",
+    question: "What technologies do you use?",
+    answer:
+      "We work with React, Next.js, Node.js, Python, TypeScript, React Native, Flutter, MongoDB, PostgreSQL, cloud platforms, and more.",
+  },
+  {
+    id: "5",
+    question: "Can you integrate with our existing team?",
+    answer:
+      "Absolutely. We can collaborate with in-house teams, follow your workflow, and provide dedicated developers or supplementary technical support.",
+  },
+];

@@ -1,12 +1,13 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-import { works } from "@/lib/data/dummy";
+import { generalFAQ, works } from "@/lib/data/dummy";
 import HeroSection from "@/components/home/HeroSection";
 import WhatDefinesUs from "@/components/home/WhatDefinesUs";
 
 import ScrollReveal from "@/components/ui/scrollReveal";
 import RecentWorks from "@/components/home/RecentWorks";
+import FAQ from "@/components/shared/Faq";
 
 // Lazy load below-the-fold components
 const OurExperience = dynamic(
@@ -94,6 +95,9 @@ export default function Home() {
         <RecentWorks />
       </div>
 
+      <div className="min-h-screen">
+        <FAQ items={generalFAQ} theme="light"></FAQ>
+      </div>
       <CTASection />
     </main>
   );

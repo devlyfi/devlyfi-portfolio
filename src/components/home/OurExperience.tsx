@@ -61,7 +61,7 @@ export function OurExperience() {
       }, duration / steps);
 
       return () => clearInterval(timer);
-    }, [isVisible, value]);
+    }, [value]);
 
     return (
       <span>
@@ -74,7 +74,7 @@ export function OurExperience() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-black py-20 md:py-32 overflow-hidden"
+      className="relative bg-[#121315] py-20 md:py-32 overflow-hidden"
     >
       {/* Background gradient matching hero */}
       <div className="absolute inset-0 bg-gradient-radial from-blue-900/40 via-black to-black" />

@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { WorkDetailProps } from '@/lib/types';
-import { works } from '@/lib/data/dummy';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ProjectCard } from '@/components/shared/ProjectCard';
-import { AnimatedSection } from '@/components/animations/AnimatedSection';
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { WorkDetailProps } from "@/lib/types";
+import { works } from "@/lib/data/dummy";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ProjectCard } from "@/components/shared/ProjectCard";
+import { AnimatedSection } from "@/components/animations/AnimatedSection";
 import {
   ArrowRight,
   Calendar,
@@ -16,7 +16,7 @@ import {
   ChevronLeft,
   ChevronRight,
   CheckCircle2,
-} from 'lucide-react';
+} from "lucide-react";
 
 export default function WorkDetail({ work }: WorkDetailProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -62,9 +62,9 @@ export default function WorkDetail({ work }: WorkDetailProps) {
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
             />
-            
+
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-black/30" />
 
             {/* Navigation Arrows */}
             {work.images.length > 1 && (
@@ -95,8 +95,8 @@ export default function WorkDetail({ work }: WorkDetailProps) {
                     onClick={() => setCurrentImageIndex(index)}
                     className={`h-2 rounded-full transition-all ${
                       index === currentImageIndex
-                        ? 'w-8 bg-white'
-                        : 'w-2 bg-white/50 hover:bg-white/75'
+                        ? "w-8 bg-white"
+                        : "w-2 bg-white/50 hover:bg-white/75"
                     }`}
                     aria-label={`Go to image ${index + 1}`}
                   />
@@ -140,15 +140,17 @@ export default function WorkDetail({ work }: WorkDetailProps) {
                     <div className="space-y-4">
                       {work.client && (
                         <div className="flex items-start gap-3">
-                          <User className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                          <User className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                           <div>
-                            <p className="text-sm text-muted-foreground">Client</p>
+                            <p className="text-sm text-muted-foreground">
+                              Client
+                            </p>
                             <p className="font-medium">{work.client}</p>
                           </div>
                         </div>
                       )}
                       <div className="flex items-start gap-3">
-                        <Calendar className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                        <Calendar className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                         <div>
                           <p className="text-sm text-muted-foreground">Year</p>
                           <p className="font-medium">{work.year}</p>
@@ -223,10 +225,13 @@ export default function WorkDetail({ work }: WorkDetailProps) {
                 <h2 className="mb-8 text-3xl font-bold">Results & Impact</h2>
                 <div className="grid gap-6 md:grid-cols-2">
                   {work.results.map((result, index) => (
-                    <Card key={index} className="transition-all hover:shadow-lg">
+                    <Card
+                      key={index}
+                      className="transition-all hover:shadow-lg"
+                    >
                       <CardContent className="pt-6">
                         <div className="flex items-start gap-4">
-                          <div className="flex-shrink-0">
+                          <div className="shrink-0">
                             <CheckCircle2 className="h-6 w-6 text-primary" />
                           </div>
                           <p className="text-base font-medium">{result}</p>
@@ -280,15 +285,16 @@ export default function WorkDetail({ work }: WorkDetailProps) {
 
       {/* CTA Section */}
       <AnimatedSection animation="fadeInUp" delay={0.6}>
-        <section className="bg-gradient-to-br from-primary to-primary/80 py-16 text-white md:py-20">
+        <section className="bg-linear-to-br from-primary to-primary/80 py-16 text-white md:py-20">
           <div className="container-custom">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="mb-6 text-3xl font-bold md:text-4xl">
                 Have a Project in Mind?
               </h2>
               <p className="mb-8 text-lg text-white/90">
-                Let's work together to bring your vision to life. Contact us today to
-                discuss your project and see how we can help you achieve your goals.
+                Let&apos;s work together to bring your vision to life. Contact
+                us today to discuss your project and see how we can help you
+                achieve your goals.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <Link href="/contact">

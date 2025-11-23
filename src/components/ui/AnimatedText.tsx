@@ -268,9 +268,9 @@ export default function AnimatedText({
 
   return (
     <div className={` ${className}`}>
-      <h3 ref={textRef} className={` ${textClassName || ""}`}>
+      <h2 ref={textRef} className={` ${textClassName || ""}`}>
         {text}
-      </h3>
+      </h2>
     </div>
   );
 }

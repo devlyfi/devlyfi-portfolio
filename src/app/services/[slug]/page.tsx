@@ -1,8 +1,7 @@
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { ourCoreValues, services } from '@/lib/data/dummy';
-import ServiceDetailNew from '@/components/services/ServiceDetailNew';
-import ScrollingSection from '@/components/ui/scrolling-section';
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { services } from "@/lib/data/dummy";
+import ServiceDetailNew from "@/components/services/ServiceDetailNew";
 
 // Generate static params for all service slugs
 export async function generateStaticParams() {
@@ -22,22 +21,26 @@ export async function generateMetadata({
 
   if (!service) {
     return {
-      title: 'Service Not Found',
+      title: "Service Not Found",
     };
   }
 
   return {
     title: `${service.title} | Devlyfi Services`,
     description: service.description,
-    keywords: [service.title, 'software development', ...service.features.slice(0, 3)],
+    keywords: [
+      service.title,
+      "software development",
+      ...service.features.slice(0, 3),
+    ],
     openGraph: {
       title: `${service.title} | Devlyfi Services`,
       description: service.description,
-      type: 'website',
+      type: "website",
       url: `/services/${service.slug}`,
       images: [
         {
-          url: '/og-image.jpg',
+          url: "/og-image.jpg",
           width: 1200,
           height: 630,
           alt: service.title,
@@ -45,11 +48,11 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: `${service.title} | Devlyfi Services`,
       description: service.description,
-      images: ['/og-image.jpg'],
-      creator: '@devlyfi',
+      images: ["/og-image.jpg"],
+      creator: "@devlyfi",
     },
     robots: {
       index: true,
@@ -57,15 +60,19 @@ export async function generateMetadata({
       googleBot: {
         index: true,
         follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
       },
     },
   };
 }
 
-export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ServicePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const service = services.find((s) => s.slug === slug);
 
@@ -74,27 +81,27 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://devlyfi.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://devlyfi.com";
 
   // BreadcrumbList structured data schema
   const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
     itemListElement: [
       {
-        '@type': 'ListItem',
+        "@type": "ListItem",
         position: 1,
-        name: 'Home',
+        name: "Home",
         item: baseUrl,
       },
       {
-        '@type': 'ListItem',
+        "@type": "ListItem",
         position: 2,
-        name: 'Services',
+        name: "Services",
         item: `${baseUrl}/services`,
       },
       {
-        '@type': 'ListItem',
+        "@type": "ListItem",
         position: 3,
         name: service.title,
         item: `${baseUrl}/services/${service.slug}`,
@@ -104,17 +111,17 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
   // Service structured data schema
   const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
+    "@context": "https://schema.org",
+    "@type": "Service",
     name: service.title,
     description: service.description,
     provider: {
-      '@type': 'Organization',
-      name: 'Devlyfi',
+      "@type": "Organization",
+      name: "Devlyfi",
       url: baseUrl,
     },
     serviceType: service.title,
-    areaServed: 'Worldwide',
+    areaServed: "Worldwide",
   };
 
   return (
@@ -128,7 +135,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <ServiceDetailNew service={service} />
-     
     </>
   );
 }

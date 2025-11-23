@@ -205,14 +205,14 @@ export default function RecentWorks() {
   return (
     <div
       ref={containerRef}
-      className="recent-works-responsive-margin w-full md:w-4/5 mx-auto relative px-4 sm:px-6 lg:px-8 my-20 md:my-10 "
+      className="recent-works-responsive-margin w-full md:w-4/5 mx-auto relative px-4 sm:px-6 lg:px-8 "
       style={{
         clear: "both",
         position: "relative",
         zIndex: 10,
       }}
     >
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end h-auto lg:h-96 relative gap-8 lg:gap-0">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end my-14 md:my-24 lg:my-32 relative gap-8 lg:gap-0">
         <div className="w-full lg:w-auto">
           {/* <div className="font-bold recent-works">
             <p className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-9xl uppercase  recent-text leading-none">
@@ -238,9 +238,9 @@ export default function RecentWorks() {
         <div className="w-full lg:w-auto flex justify-center lg:justify-end lg:items-end lg:h-full">
           <CustomButton
             text="Explore Work"
-            className="font-custom border-2 border-[#171717] p-3 sm:p-4 rounded-full uppercase text-sm sm:text-base lg:text-lg transition-colors duration-300 whitespace-nowrap lg:self-end"
+            className="font-custom border-2 border-[#121315] p-3 sm:p-4 rounded-full uppercase text-sm sm:text-base lg:text-lg transition-colors duration-300 whitespace-nowrap lg:self-end"
             textColor="black"
-            hoverColor="#171717"
+            hoverColor="#121315"
           ></CustomButton>
         </div>
       </div>

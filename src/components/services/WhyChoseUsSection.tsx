@@ -1,5 +1,5 @@
 // components/sections/WhyChooseUsSection.tsx
-import { Check, ArrowRight } from "lucide-react";
+
 import CustomButton from "../shared/CustomButton";
 import Image from "next/image";
 import ShinyBadge from "../ui/shiny-badge";
@@ -14,8 +14,8 @@ export default function WhyChooseUsSection() {
   ];
 
   return (
-    <section className="py-20 md:py-28 lg:py-32 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <section className="my-14 md:my-24 lg:my-32 bg-white">
+      <div className="container mx-auto px-4  max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center">
           {/* Left: Image - Hidden on <lg, visible only on large screens */}
           <div className="hidden lg:flex lg:justify-end">
@@ -44,7 +44,7 @@ export default function WhyChooseUsSection() {
             </div>
 
             {/* Heading */}
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-thin text-gray-900 leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-thin  mb-6   leading-tight">
               We Don’t Just Design Websites; We Design Success
             </h2>
 
@@ -64,7 +64,7 @@ export default function WhyChooseUsSection() {
                   className="flex items-start space-x-4 group hover:translate-x-1 transition-all duration-300"
                 >
                   <p className="text-gray-700 text-base lg:text-lg leading-relaxed pt-1 group-hover:text-gray-900 transition-colors">
-                    <span className="font-semibold font-normal text-gray-900">
+                    <span className="font-semibold  text-gray-900">
                       {index + 1}.{" "}
                     </span>
                     {benefit}
@@ -78,9 +78,9 @@ export default function WhyChooseUsSection() {
               <CustomButton
                 text="Start Project"
                 textColor="black"
-                hoverColor="#171717"
+                hoverColor="#121315"
                 // icon={<ArrowRight className="ml-2 w-5 h-5" />}
-                className=" text-white font-medium px-8 py-4 rounded-full border-2 border-[#171717] transition-all duration-300"
+                className=" text-white font-medium px-8 py-4 rounded-full border-2 border-[#121315] transition-all duration-300"
               />
             </div>
           </div>
