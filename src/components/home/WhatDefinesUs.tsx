@@ -135,7 +135,7 @@ export default function WhatDefinesUs() {
         card.removeEventListener("mouseleave", handleMouseLeave);
       };
     });
-  }, []);
+  }, [values]);
 
   return (
     <section className="relative bg-white py-20 md:py-32">
@@ -162,7 +162,9 @@ export default function WhatDefinesUs() {
               >
                 {/* Circular overlay */}
                 <span
-                  ref={(el) => (overlayRefs.current[index] = el)}
+                  ref={(el) => {
+                    overlayRefs.current[index] = el;
+                  }}
                   className="absolute inset-0 rounded-2xl pointer-events-none"
                   style={{
                     clipPath: "circle(0% at 50% 0%)",
@@ -177,13 +179,17 @@ export default function WhatDefinesUs() {
                     </div>
                     <div className="flex-1">
                       <h3
-                        ref={(el) => (titleRefs.current[index] = el)}
+                        ref={(el) => {
+                          titleRefs.current[index] = el;
+                        }}
                         className="text-xl font-thin text-gray-900 mb-2 transition-colors duration-300"
                       >
                         {value.title}
                       </h3>
                       <p
-                        ref={(el) => (descRefs.current[index] = el)}
+                        ref={(el) => {
+                          descRefs.current[index] = el;
+                        }}
                         className="text-sm text-gray-600 leading-relaxed transition-colors duration-300"
                       >
                         {value.description}

@@ -2,9 +2,7 @@
  * Lazy loading utilities for optimizing component loading
  */
 
-import dynamic from 'next/dynamic';
-import { LoadingSpinner } from '@/components/shared/LoadingSpinner';
-import { SkeletonCard } from '@/components/shared/SkeletonCard';
+import dynamic from "next/dynamic";
 
 /**
  * Create a lazy-loaded component with a loading fallback
@@ -25,7 +23,7 @@ export function createLazyComponent<T extends React.ComponentType<any>>(
  * Use these for below-the-fold content
  */
 export const LazyAnimatedSection = dynamic(
-  () => import('@/components/animations/AnimatedSection'),
+  () => import("@/components/animations/AnimatedSection"),
   {
     ssr: false,
   }
@@ -35,21 +33,30 @@ export const LazyAnimatedSection = dynamic(
  * Lazy-loaded card components with skeleton fallbacks
  */
 export const LazyServiceCard = dynamic(
-  () => import('@/components/shared/ServiceCard').then((mod) => ({ default: mod.ServiceCard })),
+  () =>
+    import("@/components/shared/ServiceCard").then((mod) => ({
+      default: mod.ServiceCard,
+    })),
   {
     ssr: true,
   }
 );
 
 export const LazyProjectCard = dynamic(
-  () => import('@/components/shared/ProjectCard').then((mod) => ({ default: mod.ProjectCard })),
+  () =>
+    import("@/components/shared/ProjectCard").then((mod) => ({
+      default: mod.ProjectCard,
+    })),
   {
     ssr: true,
   }
 );
 
 export const LazyBlogCard = dynamic(
-  () => import('@/components/shared/BlogCard').then((mod) => ({ default: mod.BlogCard })),
+  () =>
+    import("@/components/shared/BlogCard").then((mod) => ({
+      default: mod.BlogCard,
+    })),
   {
     ssr: true,
   }
@@ -59,21 +66,21 @@ export const LazyBlogCard = dynamic(
  * Lazy-loaded detail components
  */
 export const LazyServiceDetail = dynamic(
-  () => import('@/components/services/ServiceDetail'),
+  () => import("@/components/services/ServiceDetailNew"),
   {
     ssr: true,
   }
 );
 
 export const LazyWorkDetail = dynamic(
-  () => import('@/components/works/WorkDetail'),
+  () => import("@/components/works/WorkDetail"),
   {
     ssr: true,
   }
 );
 
 export const LazyBlogDetail = dynamic(
-  () => import('@/components/blog/BlogDetail'),
+  () => import("@/components/blog/BlogDetail"),
   {
     ssr: true,
   }
@@ -83,7 +90,7 @@ export const LazyBlogDetail = dynamic(
  * Lazy-loaded form components
  */
 export const LazyContactForm = dynamic(
-  () => import('@/components/shared/ContactForm'),
+  () => import("@/components/shared/ContactForm"),
   {
     ssr: false, // Forms don't need SSR
   }
@@ -112,7 +119,7 @@ export function useIntersectionObserver(
       },
       {
         threshold: 0.1,
-        rootMargin: '50px',
+        rootMargin: "50px",
         ...options,
       }
     );
@@ -128,4 +135,4 @@ export function useIntersectionObserver(
 }
 
 // Re-export React for the hook
-import React from 'react';
+import React from "react";

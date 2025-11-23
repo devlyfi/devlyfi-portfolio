@@ -8,14 +8,14 @@ import { works } from "@/lib/data/dummy";
 import CustomButton from "../shared/CustomButton";
 
 export default function RecentWorkCards() {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
 
       works.forEach((work, index) => {
-        const cardElement = containerRef.current?.querySelector(
+        const cardElement = containerRef?.current?.querySelector(
           `.work-item-${index}`
         );
         if (!cardElement) return;
