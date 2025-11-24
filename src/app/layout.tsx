@@ -8,6 +8,7 @@ import LoadingBar from "@/components/animations/LoadingBar";
 import SmoothScrollInit from "@/components/animations/SmoothScrollInit";
 import ScrollTriggerConfig from "@/components/animations/ScrollTriggerConfig";
 import { companyInfo } from "@/lib/data/dummy";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -132,6 +133,7 @@ export default function RootLayout({
           {/* <PageTransition> */}
           {children}
           {/* </PageTransition> */}
+          <Analytics />
         </main>
         <Footer />
       </body>
