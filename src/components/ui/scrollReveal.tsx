@@ -7,6 +7,7 @@ import { services } from "@/lib/data/dummy";
 import Image from "next/image";
 import CustomButton from "../shared/CustomButton";
 import Link from "next/link";
+import AnimatedText from "./AnimatedText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -125,15 +126,36 @@ export default function ScrollReveal() {
                        px-4 md:px-6 lg:px-8`}
                   >
                     <div>
-                      <h3
+                      {/* <h2
                         className="font-thin text-left
-                       text-2xl md:text-3xl lg:text-5xl font-serif"
+                       text-2xl md:text-3xl lg:text-5xl "
                       >
-                        {section.title}
-                      </h3>
-                      <p className="my-4 text-md text-gray-800">
+                        {section.title} */}
+                      {/* </h2> */}
+                      <AnimatedText
+                        bidirectional
+                        animationType="scale"
+                        type="words"
+                        textClassName="font-light! text-left!
+                       text-2xl! md:text-3xl! lg:text-5xl!"
+                        text={section.title}
+                        stagger={0.2}
+                        triggerStart="top 80%"
+                      ></AnimatedText>
+                      <AnimatedText
+                        bidirectional
+                        animationType="fade"
+                        type="words"
+                        className="my-4 "
+                        textClassName="text-lg! font-medium text-gray-800!"
+                        text={section.description}
+                        stagger={0.1}
+                        triggerStart="top 90%"
+                        triggerEnd="top 60%"
+                      ></AnimatedText>
+                      {/* <p className="my-4 text-md text-gray-800">
                         {section.description}
-                      </p>
+                      </p> */}
                       <Link
                         href={`/services/${section.title
                           .replace(/\s+/g, "-")

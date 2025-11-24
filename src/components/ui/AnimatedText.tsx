@@ -197,6 +197,7 @@ export default function AnimatedText({
       ScrollTrigger.create({
         animation: entranceAnim,
         trigger: element,
+        // markers: true,
         start: triggerStart,
         end: triggerEnd,
         ...(animationType === "scrollBlurUp"

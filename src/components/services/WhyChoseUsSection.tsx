@@ -3,6 +3,7 @@
 import CustomButton from "../shared/CustomButton";
 import Image from "next/image";
 import ShinyBadge from "../ui/shiny-badge";
+import TextAnimate from "../ui/TextAnimate";
 
 export default function WhyChooseUsSection() {
   const benefits = [
@@ -44,12 +45,13 @@ export default function WhyChooseUsSection() {
             </div>
 
             {/* Heading */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-thin  mb-6   leading-tight">
+            {/* <h2 className="text-4xl md:text-5xl lg:text-6xl font-thin  mb-6   leading-tight">
               We Don’t Just Design Websites; We Design Success
-            </h2>
+            </h2> */}
+            <TextAnimate text="We Don’t Just Design Websites; We Design Success"></TextAnimate>
 
             {/* Description */}
-            <p className="text-sm text-gray-600 leading-relaxed ">
+            <p className="text-base text-gray-600 leading-relaxed ">
               A well-designed website is non-negotiable for business success. At
               Design Monks, we offer professional website design services that
               make your brand unforgettable. Our team focuses on building
@@ -74,7 +76,7 @@ export default function WhyChooseUsSection() {
             </div>
 
             {/* CTA Button */}
-            <div className="pt-6">
+            <div className="pt-6 flex justify-center items-center">
               <CustomButton
                 text="Start Project"
                 textColor="black"

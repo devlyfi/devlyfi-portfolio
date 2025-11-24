@@ -193,7 +193,7 @@ export default function OurProcess() {
       {/* Intro Texts */}
       <div>
         <div className="scroll-text flex items-start md:w-[70%] mb-10">
-          <h2 className="text-4xl! md:text-5xl! lg:text-6xl! text-white  font-thin!  mb-6   leading-tight  font-custom">
+          <h2 className=" text-white  font-thin!  mb-6   leading-tight  font-custom">
             We&apos;re here to make tech businesses roar in the digital jungle,
             crafting
           </h2>
@@ -214,34 +214,36 @@ export default function OurProcess() {
         {workingProcess?.map((item, index) => (
           <div
             key={index}
-            className="process-card relative flex flex-col md:flex-row justify-between  rounded-3xl p-6 sm:p-8 md:p-12 overflow-hidden min-h-[60vh] mb-10 bg-[#17181B] "
+            className="process-card relative flex flex-col md:flex-row justify-between rounded-3xl p-6 sm:p-10 md:p-14 overflow-hidden min-h-[60vh] mb-12 bg-[#17181B] border-x-2 border-gray-600"
           >
             {/* Left section */}
-            <div className="card-title w-full md:w-1/3 flex flex-col justify-start">
-              <h2 className="text-4xl! md:text-5xl! text-white   font-thin!  mb-6   leading-tight">
+            <div className="card-title w-full md:w-1/3 flex flex-col justify-start  mr-5">
+              <h2 className=" text-white font-light leading-tight">
                 {item.title}
               </h2>
-              <p className="card-subtitle mt-4 text-base sm:text-lg text-gray-400 font-custom">
+
+              <p className="card-subtitle mt-3 text-base sm:text-lg text-gray-300 font-custom leading-relaxed">
                 {item.subtitle}
               </p>
             </div>
 
             {/* Right section */}
-            <div className="w-full flex flex-col justify-center mt-6 md:mt-0 text-end font-custom">
-              <div className="space-y-6 md:space-y-20">
-                <p className="card-problem text-base text-white sm:text-lg md:text-2xl font-medium ">
+            <div className="w-full md:w-2/3 flex flex-col justify-center mt-8 md:mt-0 text-left font-custom">
+              <div className="space-y-8 md:space-y-12">
+                <p className="card-problem text-lg sm:text-xl md:text-2xl text-white font-light leading-relaxed">
                   {item.problem}
                 </p>
-                <p className="card-approach text-base sm:text-lg md:text-xl text-gray-300">
+
+                <p className="card-approach text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
                   {item.approach}
                 </p>
               </div>
             </div>
 
             {/* Circular Text */}
-            <div className="circular-text absolute -bottom-20 right-5 w-[80px] sm:w-[100px] md:w-[120px] hidden md:block">
+            <div className="circular-text absolute -bottom-16 right-6 w-[90px] sm:w-[110px] md:w-[130px] hidden md:block opacity-50">
               <CircularText
-                className="font-semibold! text-white"
+                className="font-semibold text-white"
                 text={item.title}
               />
             </div>

@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import gsap from "gsap";
-import AnimatedText from "../ui/AnimatedText";
 import ShinyBadge from "../ui/shiny-badge";
 
 export interface FAQItem {
@@ -109,14 +108,14 @@ const FAQ: React.FC<FAQProps> = ({
   const isDark = theme === "dark";
 
   const bgColor = isDark ? "bg-[#121315]" : "bg-white";
-  const subtitleColor = isDark ? "text-white/60" : "text-black/60";
+  // const subtitleColor = isDark ? "text-white/60" : "text-black/60";
   const titleColor = isDark ? "text-white" : "text-black";
 
   return (
     <section
       className={`w-full py-16 sm:py-20 lg:py-24 ${bgColor} ${className}`}
     >
-      <div className="max-w-6xl mx-auto font-custom">
+      <div className="w-full px-4 md:max-w-6xl mx-auto font-custom">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-20 md:mb-24">
           <div className="flex justify-center">
