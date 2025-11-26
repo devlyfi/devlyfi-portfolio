@@ -21,7 +21,7 @@ function ServicesBanner({ service }: { service: Service }) {
           {/* <div className="inline-block mb-6 px-4 py-2 rounded-full border border-blue-500/50 bg-blue-500/10">
               <span className="text-blue-500 font-medium">Our Services</span>
             </div> */}
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-thin text-white mb-6   leading-tight">
+          <h2 className="md:text-6xl lg:text-6xl font-thin text-white mb-6   leading-tight">
             {service.title}
           </h2>
           <p className="text-lg text-gray-400   leading-relaxed">

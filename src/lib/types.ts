@@ -29,9 +29,9 @@ export interface Service {
   description: string;
   icon: string;
   features: string[];
-  cover:string;
-  color?:string;
-  bgColor?:string;
+  cover: string;
+  color?: string;
+  bgColor?: string;
   process?: string[];
   featureImages?: string[]; // Images for bento grid cards at index 0 and 2
 }
@@ -129,10 +129,6 @@ export interface HeaderProps {
   transparent?: boolean;
 }
 
-export interface FooterProps {
-  // No props needed, uses data from dummy.ts
-}
-
 export interface HeroSectionProps {
   title: string;
   subtitle: string;
@@ -153,17 +149,17 @@ export interface WorksPreviewProps {
 
 export interface ServiceCardProps {
   service: Service;
-  variant?: 'preview' | 'full';
+  variant?: "preview" | "full";
 }
 
 export interface ProjectCardProps {
   project: Work;
-  variant?: 'grid' | 'featured';
+  variant?: "grid" | "featured";
 }
 
 export interface BlogCardProps {
   post: BlogPost;
-  variant?: 'grid' | 'list';
+  variant?: "grid" | "list";
 }
 
 export interface ContactFormProps {
@@ -173,7 +169,7 @@ export interface ContactFormProps {
 
 export interface AnimatedSectionProps {
   children: React.ReactNode;
-  animation?: 'fadeIn' | 'slideUp' | 'slideLeft' | 'slideRight' | 'scale';
+  animation?: "fadeIn" | "slideUp" | "slideLeft" | "slideRight" | "scale";
   delay?: number;
   threshold?: number;
 }

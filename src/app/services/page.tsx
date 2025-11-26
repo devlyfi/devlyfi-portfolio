@@ -1,44 +1,44 @@
-import { Metadata } from 'next';
-import { ServiceCard } from '@/components/shared/ServiceCard';
-import { AnimatedSection } from '@/components/animations/AnimatedSection';
-import { services } from '@/lib/data/dummy';
+import { Metadata } from "next";
+import { ServiceCard } from "@/components/shared/ServiceCard";
+import { AnimatedSection } from "@/components/animations/AnimatedSection";
+import { services } from "@/lib/data/dummy";
 
 export const metadata: Metadata = {
-  title: 'Our Services',
+  title: "Our Services",
   description:
-    'Explore our comprehensive range of software development services including web development, mobile apps, cloud solutions, UI/UX design, AI & ML, and more. Transform your business with cutting-edge technology solutions.',
+    "Explore our comprehensive range of software development services including web development, mobile apps, cloud solutions, UI/UX design, AI & ML, and more. Transform your business with cutting-edge technology solutions.",
   keywords: [
-    'software development services',
-    'web development',
-    'mobile app development',
-    'cloud solutions',
-    'UI/UX design',
-    'AI integration',
-    'blockchain development',
-    'DevOps services',
+    "software development services",
+    "web development",
+    "mobile app development",
+    "cloud solutions",
+    "UI/UX design",
+    "AI integration",
+    "blockchain development",
+    "DevOps services",
   ],
   openGraph: {
-    title: 'Our Services | Devlyfi',
+    title: "Our Services | Devlyfi",
     description:
-      'Explore our comprehensive range of software development services. From web and mobile development to AI integration and cloud solutions.',
-    type: 'website',
-    url: '/services',
+      "Explore our comprehensive range of software development services. From web and mobile development to AI integration and cloud solutions.",
+    type: "website",
+    url: "/services",
     images: [
       {
-        url: '/og-image.jpg',
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: 'Devlyfi Services',
+        alt: "Devlyfi Services",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Our Services | Devlyfi',
+    card: "summary_large_image",
+    title: "Our Services | Devlyfi",
     description:
-      'Explore our comprehensive range of software development services. From web and mobile development to AI integration and cloud solutions.',
-    images: ['/og-image.jpg'],
-    creator: '@devlyfi',
+      "Explore our comprehensive range of software development services. From web and mobile development to AI integration and cloud solutions.",
+    images: ["/og-image.jpg"],
+    creator: "@devlyfi",
   },
   robots: {
     index: true,
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
@@ -61,13 +61,13 @@ export default function ServicesPage() {
         <div className="container-custom">
           <AnimatedSection animation="fadeInUp">
             <div className="mx-auto max-w-3xl text-center">
-              <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              <h2 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
                 Our Services
-              </h1>
+              </h2>
               <p className="text-lg text-muted-foreground sm:text-xl">
-                We offer a comprehensive range of software development services to help your
-                business thrive in the digital age. From concept to deployment, we deliver
-                excellence at every step.
+                We offer a comprehensive range of software development services
+                to help your business thrive in the digital age. From concept to
+                deployment, we deliver excellence at every step.
               </p>
             </div>
           </AnimatedSection>
@@ -80,7 +80,11 @@ export default function ServicesPage() {
           <AnimatedSection stagger staggerDelay={0.1}>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service) => (
-                <ServiceCard key={service.id} service={service} variant="preview" />
+                <ServiceCard
+                  key={service.id}
+                  service={service}
+                  variant="preview"
+                />
               ))}
             </div>
           </AnimatedSection>
@@ -96,8 +100,8 @@ export default function ServicesPage() {
                 Ready to Start Your Project?
               </h2>
               <p className="mb-8 text-lg text-muted-foreground">
-                Let's discuss how we can help bring your vision to life with our expert
-                development services.
+                Let's discuss how we can help bring your vision to life with our
+                expert development services.
               </p>
               <a
                 href="/contact"

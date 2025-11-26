@@ -1,7 +1,7 @@
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { works } from '@/lib/data/dummy';
-import WorkDetail from '@/components/works/WorkDetail';
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { works } from "@/lib/data/dummy";
+import WorkDetails from "@/components/works/WorkDetail";
 
 // Generate static params for all work slugs
 export async function generateStaticParams() {
@@ -21,7 +21,7 @@ export async function generateMetadata({
 
   if (!work) {
     return {
-      title: 'Project Not Found',
+      title: "Project Not Found",
     };
   }
 
@@ -32,7 +32,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${work.title} | Devlyfi Works`,
       description: work.description,
-      type: 'website',
+      type: "website",
       images: [
         {
           url: work.thumbnail,
@@ -43,7 +43,7 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: `${work.title} | Devlyfi Works`,
       description: work.description,
       images: [work.thumbnail],
@@ -51,7 +51,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function WorkPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function WorkPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const work = works.find((w) => w.slug === slug);
 
@@ -60,27 +64,27 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
     notFound();
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://devlyfi.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://devlyfi.com";
 
   // BreadcrumbList structured data schema
   const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
     itemListElement: [
       {
-        '@type': 'ListItem',
+        "@type": "ListItem",
         position: 1,
-        name: 'Home',
+        name: "Home",
         item: baseUrl,
       },
       {
-        '@type': 'ListItem',
+        "@type": "ListItem",
         position: 2,
-        name: 'Works',
+        name: "Works",
         item: `${baseUrl}/works`,
       },
       {
-        '@type': 'ListItem',
+        "@type": "ListItem",
         position: 3,
         name: work.title,
         item: `${baseUrl}/works/${work.slug}`,
@@ -90,19 +94,19 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
 
   // CreativeWork structured data schema
   const workSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'CreativeWork',
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
     name: work.title,
     description: work.description,
     image: `${baseUrl}${work.thumbnail}`,
     creator: {
-      '@type': 'Organization',
-      name: 'Devlyfi',
+      "@type": "Organization",
+      name: "Devlyfi",
       url: baseUrl,
     },
     dateCreated: `${work.year}-01-01`,
     genre: work.category,
-    keywords: work.technologies.join(', '),
+    keywords: work.technologies.join(", "),
   };
 
   return (
@@ -115,7 +119,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(workSchema) }}
       />
-      <WorkDetail work={work} />
+      <WorkDetails work={work} />
     </>
   );
 }

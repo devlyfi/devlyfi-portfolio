@@ -542,9 +542,9 @@ export const works: Work[] = [
     thumbnail:
       "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnewdopegood.2c4b50f7.jpg&w=1080&q=75",
     images: [
-      "/images/works/ecommerce-1.jpg",
-      "/images/works/ecommerce-2.jpg",
-      "/images/works/ecommerce-3.jpg",
+      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnewdopegood.2c4b50f7.jpg&w=1080&q=75",
+      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdopegood.60ec4fdf.jpg&w=1080&q=75",
+      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdopop2.377994a1.jpg&w=1080&q=75",
     ],
     technologies: [
       "Next.js",

@@ -2,10 +2,12 @@
 
 import { Work } from "@/lib/types";
 import Image from "next/image";
-import CustomButton from "../shared/CustomButton";
+
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
+import CustomButton2 from "../shared/CustomButton2";
 
 // Register ScrollTrigger plugin
 if (typeof window !== "undefined") {
@@ -27,46 +29,73 @@ const FullWidthWorkItem = ({ work, index }: { work: Work; index: number }) => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Set initial states
-      gsap.set([imageRef.current, textRef.current], { opacity: 0, y: 60 });
+      // Set initial states for entrance animation
+      const startX = isImageOnLeft ? -window.innerWidth : window.innerWidth;
+      gsap.set(containerRef.current, { x: startX, opacity: 0 });
+
+      // Set initial states for image and text
+      gsap.set(imageRef.current, { opacity: 0 });
+      gsap.set(textRef.current, { opacity: 0 });
+
+      // Set initial states for detailed animations
       gsap.set(titleRef.current, { opacity: 0, x: isImageOnLeft ? 40 : -40 });
       gsap.set(yearRef.current, { opacity: 0, scale: 0.5 });
       gsap.set(categoryRef.current, { opacity: 0, y: 20 });
       gsap.set(techRefs.current, { opacity: 0, scale: 0.8 });
       gsap.set(buttonRef.current, { opacity: 0, y: 20 });
 
-      // Create timeline with scroll trigger
-      const tl = gsap.timeline({
+      // Create master timeline with scroll trigger
+      const masterTl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 80%",
+          start: "top 85%",
           end: "bottom 20%",
           toggleActions: "play none none reverse",
         },
       });
 
-      // Animate image and text containers
-      tl.to([imageRef.current, textRef.current], {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        stagger: 0.1,
-      });
+      // Phase 1: Container slide + image fade in simultaneously
+      masterTl
+        .to(containerRef.current, {
+          x: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power3.out",
+        })
+        .to(
+          imageRef.current,
+          {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out",
+          },
+          "-=0.8"
+        ); // Start image fade slightly before container animation completes
 
-      // Animate title and year
-      tl.to(
+      // Phase 2: Text content animations with delay
+      masterTl.to(
+        textRef.current,
+        {
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        "-=0.2"
+      );
+
+      // Phase 3: Detailed text animations
+      masterTl.to(
         titleRef.current,
         {
           opacity: 1,
           x: 0,
-          duration: 1,
+          duration: 0.8,
           ease: "power3.out",
         },
-        "-=0.8"
+        "-=0.6"
       );
 
-      tl.to(
+      masterTl.to(
         yearRef.current,
         {
           opacity: 1,
@@ -77,37 +106,40 @@ const FullWidthWorkItem = ({ work, index }: { work: Work; index: number }) => {
         "-=0.5"
       );
 
-      // Animate category
-      tl.to(
+      masterTl.to(
         categoryRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-        },
-        "-=0.6"
-      );
-
-      // Animate technology tags with stagger
-      tl.to(techRefs.current, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.5,
-        ease: "back.out(1.7)",
-        stagger: 0.08,
-      });
-
-      // Animate button
-      tl.to(
-        buttonRef.current,
         {
           opacity: 1,
           y: 0,
           duration: 0.6,
           ease: "power2.out",
         },
+        "-=0.4"
+      );
+
+      // Animate technology tags with stagger
+      masterTl.to(
+        techRefs.current,
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          ease: "back.out(1.7)",
+          stagger: 0.06,
+        },
         "-=0.3"
+      );
+
+      // Animate button
+      masterTl.to(
+        buttonRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power2.out",
+        },
+        "-=0.2"
       );
 
       // Image hover animation
@@ -221,24 +253,36 @@ const FullWidthWorkItem = ({ work, index }: { work: Work; index: number }) => {
               {work.category}
             </h3>
 
-            <div className="my-10 hidden xl:flex flex-wrap justify-center lg:justify-end gap-3">
-              {work.technologies.map((tech, idx) => (
-                <span
-                  key={idx}
-                  ref={(el) => addTechRef(el, idx)}
-                  className="border-2 rounded-full px-3 py-1 border-[#121315] text-sm cursor-default"
-                >
-                  {tech}
-                </span>
-              ))}
+            <div className="my-10 hidden xl:flex flex-wrap justify-center lg:justify-start gap-3">
+              <div className="mb-8">
+                {/* <h4 className="text-xl font-light mb-4">Technologies</h4> */}
+                <div className="flex flex-wrap gap-3">
+                  {work.technologies.map((tech, index) => (
+                    <span
+                      key={index}
+                      ref={(el) => addTechRef(el, index)}
+                      className="border border-gray-300 rounded-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
 
             <div ref={buttonRef} className="my-5">
-              <CustomButton
-                text="View Details"
-                textColor="black"
-                hoverColor="#121315"
-                className="border-2 border-[#121315]"
+              {/* <CustomButton
+                  text="View Details"
+                  textColor="black"
+                  hoverColor="#121315"
+                  className="border-2 border-[#121315]"
+                /> */}
+              <CustomButton2
+                text="View Project"
+                borderColor="#121315"
+                textColor="#121315"
+                rippleColor="#121315"
+                href={`works/${work.slug}`}
               />
             </div>
           </div>
@@ -265,24 +309,32 @@ const FullWidthWorkItem = ({ work, index }: { work: Work; index: number }) => {
             </h3>
 
             <div className="my-10 hidden xl:flex flex-wrap justify-center lg:justify-start gap-3">
-              {work.technologies.map((tech, idx) => (
-                <span
-                  key={idx}
-                  ref={(el) => addTechRef(el, idx)}
-                  className="border-2 rounded-full px-3 py-1 border-[#121315] text-sm cursor-default"
-                >
-                  {tech}
-                </span>
-              ))}
+              <div className="mb-8">
+                {/* <h4 className="text-xl font-light mb-4">Technologies</h4> */}
+                <div className="flex flex-wrap gap-3">
+                  {work.technologies.map((tech, index) => (
+                    <span
+                      key={index}
+                      ref={(el) => addTechRef(el, index)}
+                      className="border border-gray-300 rounded-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
 
             <div ref={buttonRef} className="my-5">
-              <CustomButton
-                text="View Details"
-                textColor="black"
-                hoverColor="#121315"
-                className="border-2 border-[#121315]"
-              />
+              <Link href={`works/${work.slug}`}>
+                <CustomButton2
+                  text="View Project"
+                  borderColor="#121315"
+                  textColor="#121315"
+                  rippleColor="#121315"
+                  href={`works/${work.slug}`}
+                />
+              </Link>
             </div>
           </div>
 
@@ -324,80 +376,85 @@ const PairedWorkItem = ({
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Set initial states
-      gsap.set([imageRef.current, textRef.current], { opacity: 0, y: 60 });
+      // Set initial states for entrance animation
+      const startX = reverse ? window.innerWidth : -window.innerWidth;
+      gsap.set(containerRef.current, { x: startX, opacity: 0 });
+
+      // Set initial states for image and text
+      gsap.set(imageRef.current, { opacity: 0 });
+      gsap.set(textRef.current, { opacity: 0 });
+
+      // Set initial states for detailed animations
       gsap.set(titleRef.current, { opacity: 0, x: reverse ? 40 : -40 });
       gsap.set(yearRef.current, { opacity: 0, scale: 0.5 });
       gsap.set(categoryRef.current, { opacity: 0, y: 20 });
       gsap.set(techRefs.current, { opacity: 0, scale: 0.8 });
       gsap.set(buttonRef.current, { opacity: 0, y: 20 });
 
-      // Create timeline with scroll trigger
-      const tl = gsap.timeline({
+      // Create master timeline with scroll trigger
+      const masterTl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 80%",
+          start: "top 85%",
           end: "bottom 20%",
           toggleActions: "play none none reverse",
         },
       });
 
-      // Animate image and text containers
-      tl.to([imageRef.current, textRef.current], {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.1,
-      });
+      // Phase 1: Container slide + image fade in simultaneously
+      masterTl
+        .to(containerRef.current, {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+        })
+        .to(
+          imageRef.current,
+          {
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+          },
+          "-=0.6"
+        ); // Start image fade slightly before container animation completes
 
-      // Animate title and year
-      tl.to(
+      // Phase 2: Text content animations with delay
+      masterTl.to(
+        textRef.current,
+        {
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.2"
+      );
+
+      // Phase 3: Detailed text animations
+      masterTl.to(
         titleRef.current,
         {
           opacity: 1,
           x: 0,
-          duration: 0.8,
+          duration: 0.6,
           ease: "power3.out",
-        },
-        "-=0.6"
-      );
-
-      tl.to(
-        yearRef.current,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          ease: "back.out(1.7)",
         },
         "-=0.4"
       );
 
-      // Animate category
-      tl.to(
-        categoryRef.current,
+      masterTl.to(
+        yearRef.current,
         {
           opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
+          scale: 1,
+          duration: 0.4,
+          ease: "back.out(1.7)",
         },
-        "-=0.5"
+        "-=0.3"
       );
 
-      // Animate technology tags with stagger
-      tl.to(techRefs.current, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.4,
-        ease: "back.out(1.7)",
-        stagger: 0.06,
-      });
-
-      // Animate button
-      tl.to(
-        buttonRef.current,
+      masterTl.to(
+        categoryRef.current,
         {
           opacity: 1,
           y: 0,
@@ -405,6 +462,31 @@ const PairedWorkItem = ({
           ease: "power2.out",
         },
         "-=0.2"
+      );
+
+      // Animate technology tags with stagger
+      masterTl.to(
+        techRefs.current,
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.3,
+          ease: "back.out(1.7)",
+          stagger: 0.05,
+        },
+        "-=0.2"
+      );
+
+      // Animate button
+      masterTl.to(
+        buttonRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out",
+        },
+        "-=0.1"
       );
 
       // Image hover animation
@@ -516,25 +598,33 @@ const PairedWorkItem = ({
           {work.category}
         </h3>
 
-        <div className="my-8 hidden xl:flex flex-wrap justify-center lg:justify-start gap-3">
-          {work.technologies.map((tech, idx) => (
-            <span
-              key={idx}
-              ref={(el) => addTechRef(el, idx)}
-              className="border-2 rounded-full px-3 py-1 border-[#121315] text-sm cursor-default"
-            >
-              {tech}
-            </span>
-          ))}
+        <div className="my-10 hidden xl:flex flex-wrap justify-center lg:justify-start gap-3">
+          <div className="mb-8">
+            {/* <h4 className="text-xl font-light mb-4">Technologies</h4> */}
+            <div className="flex flex-wrap gap-3">
+              {work.technologies.map((tech, index) => (
+                <span
+                  key={index}
+                  ref={(el) => addTechRef(el, index)}
+                  className="border border-gray-300 rounded-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div ref={buttonRef} className="my-5">
-          <CustomButton
-            text="View Details"
-            textColor="black"
-            hoverColor="#121315"
-            className="border-2 border-[#121315]"
-          />
+          <Link href={`works/${work.slug}`}>
+            <CustomButton2
+              text="View Project"
+              borderColor="#121315"
+              textColor="#121315"
+              rippleColor="#121315"
+              href={`works/${work.slug}`}
+            />
+          </Link>
         </div>
       </div>
     </div>
@@ -569,7 +659,7 @@ export default function WorkGrid({ works }: WorkGridProps) {
   }, []);
 
   return (
-    <div ref={containerRef} className="space-y-32 p-4">
+    <div ref={containerRef} className="space-y-32 p-4 overflow-hidden">
       {works.map((work, index) => {
         const isEvenIndex = index % 2 === 0;
 
