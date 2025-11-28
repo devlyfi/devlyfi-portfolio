@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { ChevronDown, ArrowRight } from "lucide-react";
-import AnimatedButton from "../shared/AnimatedButton";
+// import AnimatedButton from "../shared/AnimatedButton";
 import { gsap } from "gsap";
 
 // Separate component for dropdown navigation item card
@@ -374,9 +374,9 @@ const Navigation = () => {
         </div>
 
         {/* Free Consultation Button - hidden on medium and small screens */}
-        <div className="hidden lg:block">
+        {/* <div className="hidden lg:block">
           <AnimatedButton />
-        </div>
+        </div> */}
 
         {/* Mobile Menu Button - shown on medium and small screens */}
         <button
@@ -463,9 +463,9 @@ const Navigation = () => {
           })}
 
           {/* Mobile Free Consultation Button */}
-          <div className="my-5 w-1/2 mx-auto">
+          {/* <div className="my-5 w-1/2 mx-auto">
             <AnimatedButton></AnimatedButton>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>

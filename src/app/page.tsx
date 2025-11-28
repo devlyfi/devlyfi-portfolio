@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-import { generalFAQ, works } from "@/lib/data/dummy";
+import { generalFAQ } from "@/lib/data/dummy";
 import HeroSection from "@/components/home/HeroSection";
 import WhatDefinesUs from "@/components/home/WhatDefinesUs";
 

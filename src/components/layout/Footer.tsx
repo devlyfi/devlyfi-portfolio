@@ -46,7 +46,7 @@ function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <div className="relative min-h-[90vh] w-full bg-black overflow-hidden">
+    <div className="relative min-h-[90vh] w-full bg-color overflow-hidden">
       {/* Spline background */}
       <div className="absolute inset-0 w-full h-full z-10 opacity-50">
         <iframe
