@@ -34,7 +34,7 @@ const FAQSingleItem: React.FC<{
   const textColor = isDark ? "text-white" : "text-black";
   const textSecondary = isDark ? "text-white/70" : "text-black/70";
   //   const borderColor = isDark ? "border-white/10" : "border-black/10";
-  const hoverBg = isDark ? "hover:bg-white/5" : "hover:bg-black/5";
+  const hoverBg = isDark ? "hover:bg-secondary" : "hover:bg-primary/5";
 
   useEffect(() => {
     if (contentRef.current && iconRef.current) {

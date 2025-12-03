@@ -74,10 +74,35 @@ export function OurExperience() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#121315] py-20 md:py-32 overflow-hidden"
+      className="relative py-20 md:py-32 overflow-hidden bg-primary"
+     
     >
-      {/* Background gradient matching hero */}
-      <div className="absolute inset-0 bg-gradient-radial from-blue-900/40 via-black to-black" />
+      {/* Subtle grid pattern overlay */}
+      {/* <div 
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.3) 2px, transparent 0),
+            radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.3) 2px, transparent 0)
+          `,
+          backgroundSize: "40px 40px, 80px 80px",
+          backgroundPosition: "0 0, 20px 20px"
+        }}
+      ></div> */}
+
+      {/* Alternative grid pattern (dotted grid) */}
+      <div 
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(255, 255, 255, 0.2) 2px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 2px, transparent 1px)
+          `,
+          backgroundSize: "100px 100px"
+        }}
+      ></div>
+
+      
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -85,11 +110,12 @@ export function OurExperience() {
           <div className="mb-10">
             <ShinyBadge
               text="Our Experience"
-              className="p-4! text-lg! uppercase "
+              className="p-4! text-lg! uppercase bg-[#ffff]! "
+              shineColor="#CAE16E"
             ></ShinyBadge>
           </div>
 
-          <h2 className=" text-white max-w-3xl mx-auto text-4xl md:text-5xl  font-thin! ">
+          <h2 className="text-white max-w-3xl mx-auto text-4xl md:text-5xl font-thin!">
             Proven Track Record of Excellence
           </h2>
         </div>
@@ -101,17 +127,17 @@ export function OurExperience() {
             return (
               <div
                 key={index}
-                className="group relative p-8 rounded-2xl border  border-white/10  backdrop-blur-sm transition-all duration-300 text-center"
+                className="group relative p-8 rounded-2xl border border-white/20 backdrop-blur-sm transition-all duration-300 text-center hover:border-white/30 hover:bg-white/5"
               >
                 <div className="flex justify-center mb-4">
-                  <div className="w-12 h-12 rounded-xl   flex items-center justify-center transition-all duration-300">
-                    <Icon className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
+                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center transition-all duration-300 group-hover:bg-white/20">
+                    <Icon className="w-6 h-6 text-white" />
                   </div>
                 </div>
-                <div className="text-5xl md:text-6xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-3">
                   <CountingNumber value={stat.value} suffix={stat.suffix} />
                 </div>
-                <div className="text-sm md:text-base text-gray-300 font-medium">
+                <div className="text-sm md:text-base text-gray-200 font-medium">
                   {stat.label}
                 </div>
               </div>
@@ -124,7 +150,7 @@ export function OurExperience() {
           <h3 className="text-3xl md:text-4xl font-thin text-white mb-3">
             Tech Stack
           </h3>
-          <p className="text-base md:text-md text-gray-400 max-w-2xl mx-auto">
+          <p className="text-base md:text-md text-gray-200 max-w-2xl mx-auto">
             Leveraging cutting-edge technologies to build exceptional digital
             experiences
           </p>

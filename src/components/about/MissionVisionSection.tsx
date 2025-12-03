@@ -1,45 +1,96 @@
-'use client';
+import React from 'react'
+import ShinyBadge from '../ui/shiny-badge';
+import TextAnimate from '../ui/TextAnimate';
+import Image from 'next/image';
+import { ChessQueenIcon } from 'lucide-react';
 
-import { Target, Eye } from 'lucide-react';
-import { AnimatedSection } from '@/components/animations/AnimatedSection';
-
-interface MissionVisionSectionProps {
-  mission: string;
-  vision: string;
-}
-
-export function MissionVisionSection({ mission, vision }: MissionVisionSectionProps) {
+function MissionVisionSection({ mission, vision }: { mission: string; vision: string }) {
   return (
-    <section className="py-16 md:py-24">
-      <div className="container-custom">
-        <div className="grid gap-8 md:grid-cols-2 md:gap-12">
-          {/* Mission */}
-          <AnimatedSection animation="fadeInLeft" delay={0.2}>
-            <div className="rounded-2xl border bg-card p-8 shadow-sm transition-all duration-300 hover:shadow-lg md:p-10">
-              <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <Target className="h-7 w-7" />
-              </div>
-              <h2 className="mb-4 text-2xl font-bold md:text-3xl">Our Mission</h2>
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                {mission}
-              </p>
-            </div>
-          </AnimatedSection>
+    <div className="max-w-7xl mx-auto py-20 md:py-32 space-y-32 px-4">
+      
+      {/* Header */}
+      <div>
+        <div className="mb-10 flex justify-center">
+          <ShinyBadge
+            text="Mission & Vision"
+            className="p-4! text-lg! uppercase text-primary!"
+            iconClassName="w-6! h-6! text-primary! "
+            icon={<ChessQueenIcon />}
+          />
+        </div>
+        <TextAnimate
+          text="Custom software solutions built around your unique business needs."
+          className="text-primary text-center md:text-6xl! max-w-3xl mx-auto"
+        />
+      </div>
 
-          {/* Vision */}
-          <AnimatedSection animation="fadeInRight" delay={0.2}>
-            <div className="rounded-2xl border bg-card p-8 shadow-sm transition-all duration-300 hover:shadow-lg md:p-10">
-              <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <Eye className="h-7 w-7" />
-              </div>
-              <h2 className="mb-4 text-2xl font-bold md:text-3xl">Our Vision</h2>
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                {vision}
-              </p>
-            </div>
-          </AnimatedSection>
+      {/* Mission Section */}
+      <div className="flex flex-col justify-between items-center bg-primary/5 p-6 rounded-4xl gap-12 md:gap-20">
+        
+        {/* Text */}
+        <div className="w-full  space-y-4">
+          <h2 className="text-primary  ">Mission</h2>
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed">{mission}</p>
+        </div>
+
+        {/* Images */}
+        <div className="w-full grid grid-cols-2 gap-4">
+          <div className="flex justify-end">
+            <Image
+              src="https://cdn.prod.website-files.com/67188059a65126f4c0d6213e/683ec9ebc0242f0cbf30c127_musemind-teamwork-collaboration.avif"
+              alt="Mission Image"
+              width={2000}
+              height={2000}
+              className="rounded-3xl object-cover h-[220px] sm:h-[260px] md:h-[300px] w-full"
+            />
+          </div>
+
+          <div className="flex justify-start mt-6 sm:mt-8 md:mt-12">
+            <Image
+              src="https://cdn.prod.website-files.com/67188059a65126f4c0d6213e/683ec9ebc0242f0cbf30c127_musemind-teamwork-collaboration.avif"
+              alt="Mission Image"
+              width={2000}
+              height={2000}
+              className="rounded-3xl object-cover h-[220px] sm:h-[260px] md:h-[300px] w-full"
+            />
+          </div>
         </div>
       </div>
-    </section>
-  );
+
+      {/* Vision Section */}
+      <div className="flex flex-col justify-between items-center bg-primary/5 p-6 rounded-4xl gap-12 md:gap-20">
+        
+        {/* Text */}
+        <div className="w-full  space-y-4">
+          <h2 className="text-primary  ">Vision</h2>
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed">{vision}</p>
+        </div>
+
+        {/* Images */}
+        <div className="w-full grid grid-cols-2 gap-4">
+          <div className="flex justify-end mt-6 sm:mt-8 md:mt-12">
+            <Image
+              src="https://cdn.prod.website-files.com/67188059a65126f4c0d6213e/683ec9ebc0242f0cbf30c127_musemind-teamwork-collaboration.avif"
+              alt="Vision Image"
+              width={2000}
+              height={2000}
+              className="rounded-3xl object-cover h-[220px] sm:h-[260px] md:h-[300px] w-full"
+            />
+          </div>
+
+          <div className="flex justify-start ">
+            <Image
+              src="https://cdn.prod.website-files.com/67188059a65126f4c0d6213e/683ec9ebc0242f0cbf30c127_musemind-teamwork-collaboration.avif"
+              alt="Vision Image"
+              width={2000}
+              height={2000}
+              className="rounded-3xl object-cover h-[220px] sm:h-[260px] md:h-[300px] w-full"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
+
+export default MissionVisionSection

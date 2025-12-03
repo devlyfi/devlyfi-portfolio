@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
@@ -10,175 +10,152 @@ import CustomButton from "../shared/CustomButton";
 export default function RecentWorkCards() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      gsap.registerPlugin(ScrollTrigger);
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
-      works.forEach((work, index) => {
-        const cardElement = containerRef?.current?.querySelector(
-          `.work-item-${index}`
-        );
-        if (!cardElement) return;
+    works.forEach((_, index) => {
+      const card = containerRef.current?.querySelector(`.work-item-${index}`);
+      // const image = containerRef.current?.querySelector(`.work-item-image-${index}`);
+      // const text = containerRef.current?.querySelector(`.work-item-text-${index}`);
 
-        const isEven = index % 2 === 0;
+      if (!card ) return;
 
-        // Calculate dynamic trigger points based on card position and viewport
-        const triggerStart = `top ${window.innerHeight * 0.9}`; // Start when 80% of viewport is left
-        const triggerEnd = `top ${-window.innerHeight * 0.55}`; // End when card is 60% out of viewport
+      const isEven = index % 2 === 0;
 
-        // Master animation for the entire card with sequential elements
-        const cardTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: cardElement,
-            start: triggerStart,
-            end: triggerEnd,
-            // markers: true,
-            scrub: 1.2,
-            // toggleActions: "play none none reverse", // Optional: reverse on scroll up
-          },
-        });
-
-        // Image animation: direction based on index
-        // Even indices (0, 2, 4...): come from right (original layout)
-        // Odd indices (1, 3, 5...): come from left (reversed layout)
-        cardTl.fromTo(
-          `.work-item-image-${index}`,
-          {
-            x: isEven ? 400 : -400,
-            rotate: isEven ? 30 : -30,
-            opacity: 0,
-            scale: 0.85,
-          },
-          {
-            x: 0,
-            rotate: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 2,
-            ease: "power3.out", // Bouncy easing for more natural feel
-          },
-          0 // Start immediately
-        );
-
-        // Text animation: direction based on index
-        // Even indices: come from left (text is on left)
-        // Odd indices: come from right (text is on right)
-        cardTl.fromTo(
-          `.work-item-text-${index}`,
-          {
-            y: 120,
-            opacity: 0,
-            x: isEven ? -30 : 30,
-          },
-          {
-            y: 0,
-            x: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power2.out",
-          },
-          0.6 // Start 0.6 seconds after timeline begins
-        );
-
-        // Optional: Add a subtle scale animation when card is in center of viewport
-        ScrollTrigger.create({
-          trigger: cardElement,
-          start: "top 50%",
-          end: "bottom 50%",
-          onEnter: () => {
-            gsap.to(cardElement, {
-              scale: 1.02,
-              duration: 0.5,
-              ease: "power2.out",
-            });
-          },
-          onLeave: () => {
-            gsap.to(cardElement, { scale: 1, duration: 0.3 });
-          },
-          onEnterBack: () => {
-            gsap.to(cardElement, {
-              scale: 1.02,
-              duration: 0.5,
-              ease: "power2.out",
-            });
-          },
-          onLeaveBack: () => {
-            gsap.to(cardElement, { scale: 1, duration: 0.3 });
-          },
-        });
+      // Dynamic trigger calculation based on viewport
+      // const triggerStart = `top ${window.innerHeight * 0.85}`;
+      // const triggerEnd = `top ${-window.innerHeight * 0.4}`;
+     const triggerStart = `top ${window.innerHeight * 0.8}`;
+      const triggerEnd = `top ${-window.innerHeight * 0.4}`;
+      // Main parallax/scrub animation
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: card,
+          start: triggerStart,
+          end: triggerEnd,
+          scrub: 1.2,
+          // toggleActions: "play none none reverse",
+        },
       });
 
-      // Refresh ScrollTrigger on resize to recalculate positions
-      window.addEventListener("resize", () => {
-        ScrollTrigger.refresh();
+      // Image: fly in from side with rotation
+      tl.fromTo(
+        `.work-item-image-${index}`,
+        {
+          x: isEven ? 400 : -400,
+          rotate: isEven ? 30 : -30,
+          opacity: 0,
+          scale: 0.85,
+        },
+        {
+          x: 0,
+          rotate: 0,
+          opacity: 1,
+          scale: 1,
+          ease: "back.out(1.2)",
+          duration: 2,
+        },
+        0
+      );
+
+      // Text: slide up + slight horizontal offset
+      tl.fromTo(
+        `.work-item-text-${index}`,
+        {
+          y: 120,
+          x: isEven ? -30 : 30,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          x: 0,
+          opacity: 1,
+          ease: "power2.out",
+          duration: 1.5,
+        },
+        0.6
+      );
+
+      // Subtle scale when in viewport center - adjusted for mobile
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 50%",
+        end: "bottom 50%",
+        onEnter: () => gsap.to(card, { scale: 1.02, duration: 0.6, ease: "power2.out" }),
+        onLeave: () => gsap.to(card, { scale: 1, duration: 0.4 }),
+        onEnterBack: () => gsap.to(card, { scale: 1.02, duration: 0.6, ease: "power2.out" }),
+        onLeaveBack: () => gsap.to(card, { scale: 1, duration: 0.4 }),
       });
-    },
-    { scope: containerRef }
-  );
+    });
+
+    
+    
+    window.addEventListener("resize", () => {
+      ScrollTrigger.refresh();
+    });
+   
+  }, { scope: containerRef });
+
+  // Handle initial render on mobile
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, []);
 
   return (
     <div
       ref={containerRef}
-      className="w-full my-20 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 h-full space-y-24 font-custom"
+      className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16"
     >
       {works.slice(0, 3).map((work, index) => {
         const isEven = index % 2 === 0;
+
         return (
           <div
             key={work.id}
-            className={`work-item-${index} flex  flex-col md:flex-row justify-between items-start md:items-center py-16 md:py-24 gap-10 md:gap-16 relative`}
-            style={{ minHeight: "70vh" }}
+            className={`work-item-${index} flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8 md:gap-16 py-8 sm:py-12 md:py-24 relative`}
+            style={{ minHeight: "clamp(50vh, 70vh, 80vh)" }}
           >
             {/* Text Content */}
             <div
               className={`work-item-text-${index} w-full md:w-2/5 shrink-0 z-10 ${
                 isEven
-                  ? "order-2 md:order-1"
-                  : "order-2 md:order-2 md:text-right"
-              }`}
+                  ? "md:order-1 text-left"
+                  : "md:order-2 md:text-right md:ml-auto"
+              } order-2 mt-6 md:mt-0`}
             >
-              <h3 className="text-2xl md:text-3xl lg:text-5xl  font-custom  leading-tight font-thin">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-custom leading-tight font-thin">
                 {work.title}
               </h3>
-              {/* <AnimatedText
-                textClassName="font-thin text-left
-                       text-2xl md:text-3xl lg:text-5xl font-serif"
-                text={work.title}
-                type="chars"
-                delay={0}
-              /> */}
-              <p className="my-4 text-md text-gray-800">{work.description}</p>
 
-              <CustomButton
-                textColor="black"
-                className="border border-black"
-                hoverColor="black"
-                text="View Details"
-              ></CustomButton>
-              {/* <AnimatedText
-                className=""
-                text={work.description}
-                textClassName=" 
-                text-base leading-relaxed font-thin 
-                "
-                type="chars"
-                delay={0}
-              /> */}
+              <p className="mt-4 sm:mt-6 mb-6 sm:mb-8 text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
+                {work.description}
+              </p>
+
+              <div className={`flex ${isEven ? "justify-start" : "md:justify-end"}`}>
+                <CustomButton
+                  textColor="black"
+                  className="border border-black w-full sm:w-auto"
+                  hoverColor="black"
+                  text="View Details"
+                />
+              </div>
             </div>
 
             {/* Image */}
             <div
-              className={`work-item-image-${index} w-full md:w-3/5 h-[35vh] sm:h-[45vh] md:h-[65vh] lg:h-[75vh] bg-linear-to-br from-gray-200 to-gray-300 rounded-3xl shrink-0  overflow-hidden   ${
-                isEven ? "order-1 md:order-2" : "order-1 md:order-1"
-              }`}
+              className={`work-item-image-${index} w-full md:w-3/5 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl ${
+                isEven ? "md:order-2" : "md:order-1"
+              } order-1`}
             >
-              <div className="w-full h-full flex items-center justify-center  font-medium text-xl ">
+              <div className="relative w-full h-[40vh] xs:h-[45vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] xl:h-[75vh]">
                 <Image
                   src={work.thumbnail}
                   alt={work.title}
-                  height="4000"
-                  width="4000"
-                  className="w-full! h-full! object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 67vw, 55vw"
+                  quality={90}
+                  priority={index === 0}
                 />
               </div>
             </div>

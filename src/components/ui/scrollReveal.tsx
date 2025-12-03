@@ -8,6 +8,7 @@ import Image from "next/image";
 import CustomButton from "../shared/CustomButton";
 import Link from "next/link";
 import AnimatedText from "./AnimatedText";
+import AnimatedButton from "./AnimatedButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -116,14 +117,14 @@ export default function ScrollReveal() {
           <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
             <div className="flex">
               {/* LEFT SIDE – 1/3 width, text left-aligned */}
-              <div className="left w-full md:w-1/3">
+              <div className="left w-full md:w-1/2">
                 {services.map((section, index) => (
                   <div
                     key={index}
                     className={`left-item item-${
                       index + 1
                     } min-h-screen flex items-center justify-start 
-                       px-4 md:px-6 lg:px-8`}
+                       px-4 md:px-0 `}
                   >
                     <div>
                       {/* <h2
@@ -161,12 +162,19 @@ export default function ScrollReveal() {
                           .replace(/\s+/g, "-")
                           .toLowerCase()}`}
                       >
-                        <CustomButton
+                        {/* <CustomButton
                           className={`border-2 border-black mt-5`}
                           textColor="black"
                           text="View More"
                           hoverColor="black"
-                        ></CustomButton>
+                        ></CustomButton> */}
+                        <AnimatedButton
+                          text="View More"
+                          className={`w-1/3 md:w-1/4 flex justify-center   border-2 border-gray-500 bg-inherit!`}
+                          textClass={`text-gray-700!`}
+                          // hoverColor="black"
+                          
+                        ></AnimatedButton>
                       </Link>
                     </div>
                   </div>
@@ -176,7 +184,7 @@ export default function ScrollReveal() {
               {/* RIGHT SIDE – takes the remaining 2/3 */}
               <div
                 className="right-container
-            w-full md:w-2/3
+            w-full md:w-1/2
             h-screen flex items-center justify-center
            "
               >
@@ -187,9 +195,9 @@ export default function ScrollReveal() {
                       ref={(el) => {
                         if (el) rightCardsRef.current[index] = el;
                       }}
-                      className="absolute inset-0 flex items-center justify-center
+                      className="absolute inset-1/4 flex items-center justify-center
                 text-base md:text-lg lg:text-xl font-medium text-black
-                 rounded-4xl overflow-hidden"
+                 rounded-4xl overflow-hidden w-[75%] h-[60%] mx-auto"
                       style={{ backgroundColor: item.color }}
                     >
                       <Image

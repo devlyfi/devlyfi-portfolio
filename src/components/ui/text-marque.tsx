@@ -6,7 +6,7 @@ interface TextMarqueeProps {
   marquee2: string[];
 }
 
-const TextMarquee: React.FC<TextMarqueeProps> = ({ marquee1, marquee2 }) => {
+const TextMarquee: React.FC<TextMarqueeProps & { className?: string }> = ({ className, marquee1, marquee2 }) => {
   // Inject keyframes once
   useEffect(() => {
     const styleSheet = document.createElement('style');
@@ -51,7 +51,7 @@ const TextMarquee: React.FC<TextMarqueeProps> = ({ marquee1, marquee2 }) => {
           {[...items, ...items].map((text, index) => (
             <div
               key={index}
-              className="shrink-0 flex justify-center items-center  text-white font-medium text-lg italic font-serif px-4"
+              className={`shrink-0 flex justify-center items-center  text-white font-medium text-lg italic font-serif px-4 ${className}`}
               style={{
                 width: 'var(--item-width)',
                 height: '60px',

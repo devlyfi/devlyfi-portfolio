@@ -120,7 +120,7 @@ export default function WorkDetails({ work }: { work: Work }) {
         trigger: videoSection.current,
         start: 'top bottom',
         end: 'bottom 60%',
-        markers: true,
+        // markers: true,
         scrub: 1.5,
         invalidateOnRefresh: true,
         onUpdate: (self) => {

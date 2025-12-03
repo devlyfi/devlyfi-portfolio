@@ -1,12 +1,22 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
+
+interface ShinyBadgeProps {
+  text?: string;
+  shineColor?: string;
+  className?: string;
+  icon?: React.ReactElement<{ className?: string }>; // icon can receive className
+  iconClassName?: string; // optional class for the icon
+}
 
 export default function ShinyBadge({
   text = "New text",
   shineColor = "#8484ff",
   className = "",
-}) {
+  icon,
+  iconClassName = "",
+}: ShinyBadgeProps) {
   return (
     <div className="inline-block bg-transparent">
       <style>{`
@@ -22,6 +32,10 @@ export default function ShinyBadge({
           --gradient-angle: 0deg;
           --gradient-shine: ${shineColor};
 
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+
           position: relative;
           overflow: hidden;
           border-radius: 9999px;
@@ -29,10 +43,10 @@ export default function ShinyBadge({
           font-size: 0.75rem;
           line-height: 1;
           font-weight: 500;
-          color: #ffffff;
+          color: #000000;
 
           background:
-            linear-gradient(#121315, #121315) padding-box,
+            linear-gradient(#ffff, #ffff) padding-box,
             conic-gradient(
               from var(--gradient-angle),
               transparent 0%,
@@ -44,7 +58,7 @@ export default function ShinyBadge({
             ) border-box;
 
           border: 2px solid transparent;
-          box-shadow: inset 0 0 0 1px #1a1818;
+          box-shadow: inset 0 0 0 1px #ffff;
 
           font-family: 'Inter', 'Helvetica Neue', sans-serif;
           animation: border-spin 3s linear infinite;
@@ -58,6 +72,10 @@ export default function ShinyBadge({
       `}</style>
 
       <span className={`shiny-badge ${className}`}>
+        {icon &&
+          React.cloneElement(icon, {
+            className: `inline-block mr-2 ${iconClassName}`.trim(),
+          })}
         <span>{text}</span>
       </span>
     </div>

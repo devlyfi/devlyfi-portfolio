@@ -149,7 +149,9 @@ export default function WhatDefinesUs() {
           {/* <h2 className="text-4xl md:text-5xl  font-thin! text-gray-900 max-w-3xl">
             Custom software solutions built around your unique business needs.
           </h2> */}
-          <TextAnimate text="Custom software solutions built around your unique business needs."></TextAnimate>
+          <div className="mt-3 sm:mt-4 lg:mt-5 bg-black ">
+            <TextAnimate className="" text="CCustom software solutions built around your unique business needs."></TextAnimate>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
