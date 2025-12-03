@@ -164,14 +164,14 @@ function ServiceCard({ service, index = 0 }: ServiceCardProps) {
             }
 
             // Subtle floating animation for the entire card
-            gsap.to(cardRef.current, {
-                y: -10,
-                duration: 2,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
-                delay: index * 0.2
-            })
+            // gsap.to(cardRef.current, {
+            //     y: -10,
+            //     duration: 2,
+            //     repeat: -1,
+            //     yoyo: true,
+            //     ease: "sine.inOut",
+            //     delay: index * 0.2
+            // })
 
         }, cardRef)
 
