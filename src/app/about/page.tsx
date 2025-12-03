@@ -9,6 +9,7 @@ import MissionVisionSection from '@/components/about/MissionVisionSection';
 import ValuesSection from '@/components/about/ValuesSection';
 import Teams from '@/components/about/Teams';
 import { HoverExpand_001 } from '@/components/shared/ExpandOnHover';
+import RecentWorks from '@/components/home/RecentWorks';
 
   const images = [
     {
@@ -113,7 +114,8 @@ export default function AboutPage() {
         title={aboutPageData.hero.title}
         subtitle={aboutPageData.hero.subtitle}
       />
-
+        <RecentWorks></RecentWorks>
+  
       {/* Mission & Vision Section */}
       <MissionVisionSection
         mission={aboutPageData.mission}

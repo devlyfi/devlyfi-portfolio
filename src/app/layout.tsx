@@ -128,9 +128,8 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${poppins.variable} antialiased`}>
         <WebVitals />
-        <LoadingBar />
-        <SmoothScrollInit />
-        <ScrollTriggerConfig />
+
+
         {/* <Header /> */}
         <NavBar></NavBar>
         <main className="min-h-screen">

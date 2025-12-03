@@ -94,10 +94,7 @@ export default function Home() {
       <Skiper16></Skiper16>
 
       <OurExperience />
-      <div className="">
-        <RecentWorks />
-      </div>
-
+      <RecentWorks></RecentWorks>
       <TestimonialCard></TestimonialCard>
       <div className="min-h-screen">
 

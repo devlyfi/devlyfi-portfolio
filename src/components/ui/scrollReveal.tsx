@@ -54,6 +54,7 @@ export default function ScrollReveal() {
         end: "bottom bottom",
         pin: ".right-container",
         markers: false,
+         invalidateOnRefresh: true,
       });
       scrollTriggersRef.current.push(pinTrigger);
 
@@ -121,18 +122,11 @@ export default function ScrollReveal() {
                 {services.map((section, index) => (
                   <div
                     key={index}
-                    className={`left-item item-${
-                      index + 1
-                    } min-h-screen flex items-center justify-start 
+                    className={`left-item item-${index + 1
+                      } min-h-screen flex items-center justify-start 
                        px-4 md:px-0 `}
                   >
                     <div>
-                      {/* <h2
-                        className="font-thin text-left
-                       text-2xl md:text-3xl lg:text-5xl "
-                      >
-                        {section.title} */}
-                      {/* </h2> */}
                       <AnimatedText
                         bidirectional
                         animationType="scale"
@@ -170,10 +164,10 @@ export default function ScrollReveal() {
                         ></CustomButton> */}
                         <AnimatedButton
                           text="View More"
-                          className={`w-1/3 md:w-1/4 flex justify-center   border-2 border-gray-500 bg-inherit!`}
+                          className={`w-1/3 md:w-1/4 flex justify-center   border-2 border-gray-00 bg-inherit!`}
                           textClass={`text-gray-700!`}
-                          // hoverColor="black"
-                          
+                        // hoverColor="black"
+
                         ></AnimatedButton>
                       </Link>
                     </div>
@@ -215,24 +209,46 @@ export default function ScrollReveal() {
           </div>
         ) : (
           /* Mobile Layout - No animation, sequential display */
-          <div className="flex flex-col">
+          <div className="flex flex-col space-y-12 py-10">
             {services.map((section, index) => (
               <div
                 key={index}
-                className="w-full"
-                style={{ backgroundColor: section.color }} // <<< shared background
+                className="w-full rounded-3xl overflow-hidden shadow-lg"
+                style={{ backgroundColor: section.color }}
               >
-                {/* Left section */}
-                <div className="min-h-screen flex items-center justify-center text-2xl font-semibold px-4">
-                  {section.title}
+                {/* Image Section */}
+                <div className="w-full h-[45vh] rounded-b-3xl overflow-hidden">
+                  <Image
+                    src={section.cover}
+                    className="w-full h-full object-cover"
+                    height={5000}
+                    width={5000}
+                    alt={section.title}
+                  />
                 </div>
 
-                {/* Right section card */}
-                <div
-                  className="min-h-[50vh] flex items-center justify-center text-lg font-medium text-black rounded-2xl mx-4 my-8 p-6"
-                  style={{ backgroundColor: services[index].color }} // <<< card color
-                >
-                  {services[index].title}
+                {/* Content Section */}
+                <div className="p-6">
+                  <h2 className="font-light text-3xl mb-4">
+                    {section.title}
+                  </h2>
+
+                  <p className="my-4 text-md text-gray-900 leading-relaxed">
+                    {section.description}
+                  </p>
+
+                  <div className="w-full flex justify-center items-center">
+                    <Link
+                      href={`/services/${section.title.replace(/\s+/g, "-").toLowerCase()}`}
+                      className="flex justify-center w-full"
+                    >
+                      <AnimatedButton
+                        text="View More"
+                        className="w-1/2 flex justify-center md:w-1/4 border-2 border-gray-600 bg-inherit!"
+                        textClass="text-gray-700!"
+                      />
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
