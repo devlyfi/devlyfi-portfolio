@@ -1,8 +1,63 @@
 import type { Metadata } from 'next';
 import { aboutPageData } from '@/lib/data/dummy';
-import { MissionVisionSection } from '@/components/about/MissionVisionSection';
-import { ValuesSection } from '@/components/about/ValuesSection';
-import { MilestonesSection } from '@/components/about/MilestonesSection';
+
+
+
+import AboutUsHero from '@/components/about/AboutUsHero';
+
+import MissionVisionSection from '@/components/about/MissionVisionSection';
+import ValuesSection from '@/components/about/ValuesSection';
+import Teams from '@/components/about/Teams';
+import { HoverExpand_001 } from '@/components/shared/ExpandOnHover';
+import RecentWorks from '@/components/home/RecentWorks';
+
+  const images = [
+    {
+      src: "/images/x.com/13.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+      code: "# 23",
+    },
+    {
+      src: "/images/x.com/32.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+      code: "# 23",
+    },
+    {
+      src: "/images/x.com/20.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+      code: "# 23",
+    },
+    {
+      src: "/images/x.com/21.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+      code: "# 23",
+    },
+    {
+      src: "/images/x.com/19.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+      code: "# 23",
+    },
+    {
+      src: "/images/x.com/1.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+      code: "# 23",
+    },
+    {
+      src: "/images/x.com/2.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+      code: "# 23",
+    },
+    {
+      src: "/images/x.com/3.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+      code: "# 23",
+    },
+    {
+      src: "/images/x.com/4.jpeg",
+      alt: "Illustrations by my fav AarzooAly",
+      code: "# 23",
+    },
+  ];
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -53,32 +108,24 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/5 via-primary/10 to-background py-20 md:py-32">
-        <div className="container-custom">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-              About <span className="text-primary">Devlyfi</span>
-            </h1>
-            <p className="text-lg text-muted-foreground md:text-xl">
-              Transforming ideas into digital reality through innovation, expertise, and dedication
-            </p>
-          </div>
-        </div>
-      </section>
-
+    <main className="min-h-screen overflow-hidden">
+      {/* Hero Banner */}
+      <AboutUsHero
+        title={aboutPageData.hero.title}
+        subtitle={aboutPageData.hero.subtitle}
+      />
+        <RecentWorks></RecentWorks>
+  
       {/* Mission & Vision Section */}
       <MissionVisionSection
         mission={aboutPageData.mission}
         vision={aboutPageData.vision}
       />
-
+      {/* <HoverExpand_001 images={images}></HoverExpand_001> */}
       {/* Values Section */}
-      <ValuesSection values={aboutPageData.values} />
+      <ValuesSection  />
 
-      {/* Milestones Section */}
-      <MilestonesSection milestones={aboutPageData.milestones} />
+      <Teams  />
     </main>
   );
 }

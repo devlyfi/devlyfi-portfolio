@@ -52,6 +52,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "framerusercontent.com",
+      },
+      {
+        protocol: "https",
         hostname: "www.facebook.com",
       },
       {

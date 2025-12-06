@@ -1,13 +1,19 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-import { generalFAQ, works } from "@/lib/data/dummy";
+import { generalFAQ } from "@/lib/data/dummy";
 import HeroSection from "@/components/home/HeroSection";
-import WhatDefinesUs from "@/components/home/WhatDefinesUs";
+
 
 import ScrollReveal from "@/components/ui/scrollReveal";
 import RecentWorks from "@/components/home/RecentWorks";
 import FAQ from "@/components/shared/Faq";
+import AdditionInfo from "@/components/home/AdditionInfo";
+
+
+import TestimonialCard from "@/components/shared/Review";
+import { Skiper16 } from "@/components/shared/Stack";
+
 
 // Lazy load below-the-fold components
 const OurExperience = dynamic(
@@ -82,23 +88,20 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
-
       <ScrollReveal></ScrollReveal>
-      {/* <AnimationTestPage></AnimationTestPage> */}
 
-      {/* <ScrollStack></ScrollStack> */}
-      {/* <ScrollingSection></ScrollingSection> */}
-      <WhatDefinesUs />
+      <AdditionInfo></AdditionInfo>
+      <Skiper16></Skiper16>
 
       <OurExperience />
-      <div className="overflow-hidden">
-        <RecentWorks />
-      </div>
-
+      <RecentWorks></RecentWorks>
+      <TestimonialCard></TestimonialCard>
       <div className="min-h-screen">
+
         <FAQ items={generalFAQ} theme="light"></FAQ>
       </div>
       <CTASection />
+      {/* <MiniCTA></MiniCTA> */}
     </main>
   );
 }

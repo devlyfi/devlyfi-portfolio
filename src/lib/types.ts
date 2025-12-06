@@ -95,7 +95,33 @@ export interface HomePageData {
   };
 }
 
+// Team Member Interface
+export interface TeamMember {
+  name: string;
+  role: string;
+  image: string;
+  bio?: string;
+  social?: {
+    linkedin?: string;
+    twitter?: string;
+    github?: string;
+  };
+}
+
+// FAQ Item Interface
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+// About Page Data Interface
 export interface AboutPageData {
+  hero: {
+    title: string;
+    subtitle: string;
+  };
+  images: string[];
   mission: string;
   vision: string;
   values: Array<{
@@ -103,17 +129,41 @@ export interface AboutPageData {
     description: string;
     icon: string;
   }>;
-  team?: Array<{
-    name: string;
-    role: string;
-    bio: string;
-    image: string;
-  }>;
+  team: {
+    founder: TeamMember;
+    members: TeamMember[];
+  };
   milestones: Array<{
     year: number;
     title: string;
     description: string;
   }>;
+  faq: FAQItem[];
+}
+
+// Contact Page Data Interface
+export interface ContactPageData {
+  hero: {
+    title: string;
+    subtitle: string;
+  };
+  contactInfo: {
+    email: string;
+    phone: string;
+    address: string;
+  };
+  profileCard: {
+    name: string;
+    role: string;
+    image: string;
+    phone: string;
+    bookingLink?: string;
+  };
+  businessHours: {
+    weekdays: string;
+    weekend: string;
+  };
+  faq: FAQItem[];
 }
 
 export interface ContactFormData {

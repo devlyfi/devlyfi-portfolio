@@ -9,6 +9,9 @@ import SmoothScrollInit from "@/components/animations/SmoothScrollInit";
 import ScrollTriggerConfig from "@/components/animations/ScrollTriggerConfig";
 import { companyInfo } from "@/lib/data/dummy";
 import { Analytics } from "@vercel/analytics/next";
+import NavBar from "@/components/layout/NavBar";
+import PageTransition from "@/components/animations/PageTransition";
+
 
 const inter = Inter({
   variable: "--font-inter",
@@ -125,17 +128,21 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${poppins.variable} antialiased`}>
         <WebVitals />
-        <LoadingBar />
-        <SmoothScrollInit />
-        <ScrollTriggerConfig />
-        <Header />
+
+
+        {/* <Header /> */}
+        <NavBar></NavBar>
         <main className="min-h-screen">
           {/* <PageTransition> */}
-          {children}
+
+            {children}
+
+
           {/* </PageTransition> */}
           <Analytics />
         </main>
         <Footer />
+        {/* <BoldStartFooter /> */}
       </body>
     </html>
   );

@@ -53,9 +53,9 @@ export const metadata: Metadata = {
 export default function WorksPage() {
   return (
     <div className="min-h-screen">
-      <section className="bg-color h-[50vh] flex justify-center items-center">
+      <section className=" h-[50vh] flex justify-center items-center">
         <div className="">
-          <h2 className="text-white">Designs That Speak Results that Matter</h2>
+          <h2 className="">Designs That Speak Results that Matter</h2>
         </div>
       </section>
       <section className=" my-20">
