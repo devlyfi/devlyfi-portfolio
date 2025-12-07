@@ -92,7 +92,7 @@ export default function NavBar() {
 
   return (
     <div className="my-10 fixed top-0 left-0 right-0 z-50 ">
-      <nav className="max-w-7xl mx-auto flex justify-between items-center h-12 px-4 sm:px-6 lg:px-8">
+      <nav className="max-w-7xl mx-auto flex justify-between items-center h-12 px-4 sm:px-6 lg:px-0">
         {/* Logo */}
         <div className="text-xl font-bold">LOGO</div>
 

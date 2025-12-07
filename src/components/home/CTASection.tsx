@@ -31,7 +31,7 @@ export function CTASection() {
 
   return (
     <section className="relative py-20">
-      <div className="relative overflow-hidden bg-[#2F6BE4] mx-4 rounded-[40px] text-white shadow-2xl my-20 py-20 lg:max-w-7xl lg:mx-auto">
+      <div className="relative overflow-hidden bg-primary mx-4 rounded-[40px] text-white shadow-2xl my-20 py-20 lg:max-w-7xl lg:mx-auto">
         {/* Background subtle glow */}
         <div className="absolute inset-0 bg-white opacity-5"></div>
 
@@ -53,24 +53,24 @@ export function CTASection() {
 
                 <h2 className="text-4xl md:text-5xl font-semibold mb-4 leading-tight">
                   Transform Your Business with Custom Software
-                  <span className="italic font-serif ml-3">At No Cost!</span>
+                  <span className="italic font-serif ml-3 underline">At No Cost!</span>
                 </h2>
 
                 <div className="space-y-2 mb-8">
                   <div className="flex items-start gap-2">
-                    <Check className="w-6 h-6 text-blue-400 shrink-0 mt-1" />
+                    <Check className="w-6 h-6 text-white shrink-0 mt-1" />
                     <p className="text-gray-100">
                       Get a response within 24 hours from our expert team
                     </p>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Check className="w-6 h-6 text-blue-400 shrink-0 mt-1" />
+                    <Check className="w-6 h-6 text-white shrink-0 mt-1" />
                     <p className="text-gray-100">
                       We&apos;ll sign an NDA to protect your ideas and data
                     </p>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Check className="w-6 h-6 text-blue-400 shrink-0 mt-1" />
+                    <Check className="w-6 h-6 text-white shrink-0 mt-1" />
                     <p className="text-gray-100">
                       Work with experienced developers and product specialists
                     </p>
@@ -79,7 +79,7 @@ export function CTASection() {
 
                 {/* Profile Card */}
                 <div className="bg-transparent rounded-2xl p-4 max-w-sm ">
-                  <div className="mb-4">
+                  {/* <div className="mb-4">
                     <Image
                       src="https://scontent.fdac177-1.fna.fbcdn.net/v/t39.30808-6/571022156_2653897451638466_2939668280435083115_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=dlJ_5c4xgtsQ7kNvwHVjhvP&_nc_oc=AdmbvCqQjhq8rtI2lWsUuTmILXD4yNR5U4s9nVQ5PAzd_Kp5RJdmts0eoArxxJbM5Js&_nc_zt=23&_nc_ht=scontent.fdac177-1.fna&_nc_gid=L9HvsZDhphvsQhwd6JazCw&oh=00_Afj1MkXtQqcTWV3gN5T8Kl07DkpINffcIEgRfMAYRpmdfQ&oe=691C6DEA"
                       alt="Rasheduzzaman"
@@ -91,7 +91,7 @@ export function CTASection() {
                   <h3 className="text-2xl font-bold text-white mb-1">
                     Rasheduzzaman
                   </h3>
-                  <p className="text-gray-200 mb-4">CEO & Co-founder</p>
+                  <p className="text-gray-200 mb-4">CEO & Co-founder</p> */}
 
                   <div className="flex items-center gap-2 mb-3">
                     <Phone className="w-5 h-5 text-blue-400" />
@@ -102,7 +102,7 @@ export function CTASection() {
 
                   <a
                     href="#"
-                    className="text-blue-400 font-semibold hover:text-blue-300 transition-colors inline-flex items-center gap-1"
+                    className=" font-semibold  inline-flex items-center gap-1 hover:translate-x-1 transition-transform  duration-300" 
                   >
                     Book a Call Directly
                     <ArrowRight className="w-4 h-4" />
@@ -233,8 +233,8 @@ export function CTASection() {
                   </button> */}
                   <div className="flex justify-center">
                     <AnimatedButton
-                    text="Get Your Free Strategy Session"
-                    className="flex justify-center items-center bg-transparent border-2 font-bold rounded-full "
+                    text="Submit"
+                    className="flex justify-center items-center bg-transparent border-2 font-bold  rounded-4xl! px-6"
                     textClass="text-white "
                   />  
                   </div>

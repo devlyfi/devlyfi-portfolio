@@ -597,6 +597,74 @@ export const works: Work[] = [
       'Featured in App Store "Apps We Love"',
     ],
   },
+  {
+    id: "3",
+    slug: "fitness-tracking-app",
+    title: "AI-Powered Fitness Tracking App",
+    category: "Mobile Development",
+    description:
+      "A comprehensive fitness tracking mobile app with AI-powered workout recommendations and social features.",
+    thumbnail:
+      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fam-arc.e31e094e.jpg&w=1080&q=75",
+    images: [
+      "/images/works/fitness-1.jpg",
+      "/images/works/fitness-2.jpg",
+      "/images/works/fitness-3.jpg",
+    ],
+    technologies: [
+      "React Native",
+      "TensorFlow",
+      "Firebase",
+      "Node.js",
+      "MongoDB",
+    ],
+    client: "FitLife",
+    year: 2023,
+    challenge:
+      "Creating an engaging fitness app that provides personalized workout plans and keeps users motivated through social features and gamification.",
+    solution:
+      "We developed a cross-platform mobile app with AI-powered workout recommendations, real-time progress tracking, and social challenges to keep users engaged.",
+    results: [
+      "100,000+ downloads in first 3 months",
+      "4.8-star rating on app stores",
+      "70% user retention after 30 days",
+      'Featured in App Store "Apps We Love"',
+    ],
+  },
+  {
+    id: "4",
+    slug: "fitness-tracking-app",
+    title: "AI-Powered Fitness Tracking App",
+    category: "Mobile Development",
+    description:
+      "A comprehensive fitness tracking mobile app with AI-powered workout recommendations and social features.",
+    thumbnail:
+      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fam-arc.e31e094e.jpg&w=1080&q=75",
+    images: [
+      "/images/works/fitness-1.jpg",
+      "/images/works/fitness-2.jpg",
+      "/images/works/fitness-3.jpg",
+    ],
+    technologies: [
+      "React Native",
+      "TensorFlow",
+      "Firebase",
+      "Node.js",
+      "MongoDB",
+    ],
+    client: "FitLife",
+    year: 2023,
+    challenge:
+      "Creating an engaging fitness app that provides personalized workout plans and keeps users motivated through social features and gamification.",
+    solution:
+      "We developed a cross-platform mobile app with AI-powered workout recommendations, real-time progress tracking, and social challenges to keep users engaged.",
+    results: [
+      "100,000+ downloads in first 3 months",
+      "4.8-star rating on app stores",
+      "70% user retention after 30 days",
+      'Featured in App Store "Apps We Love"',
+    ],
+  },
 ];
 
 // Blog Posts Data

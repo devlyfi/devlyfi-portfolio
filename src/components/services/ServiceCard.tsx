@@ -142,26 +142,26 @@ function ServiceCard({ service, index = 0 }: ServiceCardProps) {
             }
 
             // Hover animation for image
-            if (imageRef.current) {
-                const image = imageRef.current.querySelector('img')
-                if (image) {
-                    image.addEventListener('mouseenter', () => {
-                        gsap.to(image, {
-                            scale: 1.05,
-                            duration: 0.6,
-                            ease: "power2.out"
-                        })
-                    })
+            // if (imageRef.current) {
+            //     const image = imageRef.current.querySelector('img')
+            //     if (image) {
+            //         image.addEventListener('mouseenter', () => {
+            //             gsap.to(image, {
+            //                 scale: 1.05,
+            //                 duration: 0.6,
+            //                 ease: "power2.out"
+            //             })
+            //         })
                     
-                    image.addEventListener('mouseleave', () => {
-                        gsap.to(image, {
-                            scale: 1,
-                            duration: 0.6,
-                            ease: "power2.out"
-                        })
-                    })
-                }
-            }
+            //         image.addEventListener('mouseleave', () => {
+            //             gsap.to(image, {
+            //                 scale: 1,
+            //                 duration: 0.6,
+            //                 ease: "power2.out"
+            //             })
+            //         })
+            //     }
+            // }
 
             // Subtle floating animation for the entire card
             // gsap.to(cardRef.current, {
@@ -187,7 +187,7 @@ function ServiceCard({ service, index = 0 }: ServiceCardProps) {
             {/* Text section */}
             <div 
                 ref={textRef}
-                className='md:max-w-3xl mx-auto text-center space-y-6 md:flex md:flex-col md:justify-center'
+                className='md:max-w-96  mx-auto text-center space-y-6 md:flex md:flex-col md:justify-center'
             >
                 <h2 className='sm:text-2xl md:text-4xl! opacity-0 transform'>{service.title}</h2>
                 <p className='text-base text-gray-600 opacity-0 transform'>{service.description}</p>
@@ -213,7 +213,7 @@ function ServiceCard({ service, index = 0 }: ServiceCardProps) {
                     alt={service.title}
                     width={2000}
                     height={2000}
-                    className='rounded-4xl w-full hover-scale transition-transform duration-300'
+                    className='rounded-4xl w-full '
                 />
             </div>
 

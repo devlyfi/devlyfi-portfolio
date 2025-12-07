@@ -155,7 +155,7 @@ function AdditionInfo() {
   return (
     <div className='min-h-screen container mx-auto'>
       <div className='flex justify-center items-center my-20 md:my-40'>
-        <h2 className='text-black text-xl md:text-2xl lg:text-3xl'>....and more additional <span className='font-serif italic text-primary'>Services</span></h2>
+        <h2 className=''>....and more additional <span className='font-serif italic text-primary'>Services</span></h2>
       </div>
 
       <div

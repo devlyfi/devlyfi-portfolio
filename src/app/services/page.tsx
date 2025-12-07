@@ -6,6 +6,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ShinyBadge from '@/components/ui/shiny-badge'
 import ServiceCard from '@/components/services/ServiceCard'
+import CommonHero from '@/components/shared/CommonHero'
 
 
 // Register GSAP plugins
@@ -353,24 +354,9 @@ function Services() {
 
   return (
      <div ref={containerRef} className='min-h-screen px-4'>
-      <section ref={headerRef} className='min-h-[40vh] flex justify-center items-center my-20'>
-        <div className='flex flex-col items-center'>
-          <div ref={badgeRef}>
-            <ShinyBadge
-              text='Services'
-              className='p-4! text-lg! uppercase my-16'
-            />
-          </div>
-          <div className='md:max-w-3xl mx-auto text-center space-y-6'>
-            <h2 ref={titleRef} className='sm:text-3xl! md:text-5xl!'>
-              What we offer — clear direction, thoughtful design.
-            </h2>
-            <p ref={descriptionRef} className='text-base text-gray-600'>
-              From brand identity to digital interfaces, Osei helps creative businesses build clarity and presence. Each service is tailored, strategic, and designed to grow with you.
-            </p>
-          </div>
-        </div>
-      </section>
+
+
+      <CommonHero title={"What we offer — clear direction, thoughtful design."} subtitle={"From brand identity to digital interfaces, Osei helps creative businesses build clarity and presence. Each service is tailored, strategic, and designed to grow with you."}></CommonHero>
 
       <div ref={serviceCardsRef}>
         {services.map((service, index) => (

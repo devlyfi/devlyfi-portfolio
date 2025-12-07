@@ -86,7 +86,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main>
+    <main className="">
       <HeroSection />
       <ScrollReveal></ScrollReveal>
 
@@ -96,10 +96,10 @@ export default function Home() {
       <OurExperience />
       <RecentWorks></RecentWorks>
       <TestimonialCard></TestimonialCard>
-      <div className="min-h-screen">
+      {/* <div className="min-h-screen"> */}
 
         <FAQ items={generalFAQ} theme="light"></FAQ>
-      </div>
+      {/* </div> */}
       <CTASection />
       {/* <MiniCTA></MiniCTA> */}
     </main>

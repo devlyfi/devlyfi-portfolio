@@ -113,11 +113,11 @@ const FAQ: React.FC<FAQProps> = ({
 
   return (
     <section
-      className={`w-full py-16 sm:py-20 lg:py-24 ${bgColor} ${className}`}
+      className={`w-full  ${bgColor} ${className}`}
     >
       <div className="w-full px-4 md:max-w-6xl mx-auto font-custom">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-20 md:mb-24">
+        <div className="text-center mb-12 sm:mb-20 md:mb-24 max-w-96 md:max-w-3xl mx-auto">
           <div className="flex justify-center">
             <div className="text-center lg:text-left my-14 md:my-20 ">
               <ShinyBadge
@@ -130,7 +130,7 @@ const FAQ: React.FC<FAQProps> = ({
           </div>
 
           <h2
-            className={`text-4xl! md:text-5xl! lg:text-6xl!  font-thin!     leading-tight ${titleColor} font-custom`}
+            className={`leading-tight ${titleColor} font-custom`}
           >
             {subtitle}
           </h2>

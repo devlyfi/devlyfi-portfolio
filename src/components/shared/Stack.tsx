@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import ReactLenis from "lenis/react";
 import React, { useRef } from "react";
 import ShinyBadge from "../ui/shiny-badge";
 import TextAnimate from "../ui/TextAnimate";
@@ -105,12 +104,12 @@ const Skiper16 = () => {
     });
 
     return (
-        <ReactLenis root>
+     
             <main
                 ref={container}
                 className="relative flex w-full flex-col items-center px-4 md:max-w-7xl md:mx-auto justify-center pb-[50vh]  "
             >
-                <div className="absolute left-1/2 top-[10%] grid -translate-x-1/2 content-start justify-items-center gap-6 text-center">
+                <div className="absolute left-1/2 top-[12%] md:top-[15%] grid -translate-x-1/2 content-start justify-items-center gap-6 text-center">
                     <span className="after:from-background after:to-foreground relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-gradient-to-b after:content-['']">
                         scroll down to see card stack
                     </span>
@@ -143,7 +142,7 @@ const Skiper16 = () => {
                     );
                 })}
             </main>
-        </ReactLenis>
+        
     );
 };
 
