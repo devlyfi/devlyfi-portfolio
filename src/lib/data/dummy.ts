@@ -343,11 +343,12 @@ export const services: Service[] = [
       "Responsive web design",
     ],
     featureImages: [
-      "/images/services/web-dev-hero.jpg",
-      "/images/services/web-dev-feature.jpg",
+      "/images/services/web2.jpg",
+      "/images/services/web.jpg",
     ],
     cover:
-      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fvim.5c77518f.jpg&w=1080&q=75",
+      "/images/services/web-development.jpg",
+    video: "/videos/services/web.mp4",
     process: [
       "Discovery Phase: Understanding your vision and goals | We conduct in-depth analysis of your business objectives, target audience, market positioning, and technical requirements.",
       "Design Architecture: Planning the blueprint | Our team creates detailed wireframes, interactive mockups, and clickable prototypes to visualize the complete user experience.",
@@ -356,8 +357,8 @@ export const services: Service[] = [
       "Production Launch: Going live seamlessly | We deploy your application to production with zero downtime using blue-green deployment strategies.",
       "Ongoing Support: Continuous improvement | Post-launch maintenance includes 24/7 monitoring, regular security updates, and performance optimization.",
     ],
-    color: "#F9D1E6",
-    bgColor: "rgba(250, 225, 238, 1)",
+    color: "#BCBEF7",
+    bgColor: "#BCBEF7",
   },
   {
     id: "2",
@@ -376,10 +377,11 @@ export const services: Service[] = [
       "In-app purchases and monetization",
     ],
     cover:
-      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnewdopegood.2c4b50f7.jpg&w=1080&q=75",
+      "/images/services/appdev.jpg",
+      video: "/videos/services/mobile.mp4",
     featureImages: [
-      "/images/services/mobile-hero.jpg",
-      "/images/services/mobile-feature.jpg",
+      "/images/services/mobile.jpg",
+      "/images/services/mobile.jpg",
     ],
     process: [
       "Market Research: Understanding your audience | We conduct comprehensive market analysis, competitor research, and user persona development.",
@@ -389,11 +391,83 @@ export const services: Service[] = [
       "Store Launch: Maximizing visibility | Complete app store optimization including compelling descriptions and screenshots.",
       "Continuous Evolution: Growing with users | Post-launch monitoring, crash analytics, and regular feature updates.",
     ],
-    color: "#CDD1FF",
-    bgColor: "rgba(224, 240, 255, 1)",
+    color: "#FCE8F4",
+    bgColor: "#FCE8F4",
   },
+
   {
     id: "3",
+    slug: "ui-ux-design",
+    title: "UI/UX Design",
+    description:
+      "Design beautiful, intuitive interfaces that users love and that drive conversions.",
+    icon: "palette",
+    features: [
+      "User research and personas",
+      "Wireframing and prototyping",
+      "Visual design and branding",
+      "Interaction design",
+      "Usability testing",
+      "Design systems and style guides",
+      "Accessibility and inclusive design",
+    ],
+    featureImages: [
+      "/images/services/ui.jpg",
+      "/images/services/ux-ux.jpg",
+    ],
+    cover:
+      "/images/services/uiuxhigh.png",
+    video: "/videos/services/ui.mp4",
+    process: [
+      "User Research: Understanding real needs | Deep dive into user behavior, pain points, and expectations.",
+      "Information Architecture: Structuring content logically | Creating intuitive information architecture and site maps.",
+      "Wireframe Creation: Establishing the foundation | Developing low-fidelity sketches and detailed wireframes.",
+      "Visual Design: Bringing beauty to function | Crafting high-fidelity mockups with your brand identity.",
+      "Interactive Prototype: Testing the experience | Building fully interactive prototypes that simulate the final product.",
+      "Usability Testing: Validating with users | Conducting moderated user testing sessions to gather feedback.",
+    ],
+    color: "#B0C2F4",
+    bgColor: "#B0C2F4",
+  },
+
+  {
+    id: "4",
+    slug: "ai-solutions",
+    title: "AI Solutions",
+    description:
+      "Leverage cutting-edge artificial intelligence to automate workflows, enhance user experiences, and unlock next-level business intelligence.",
+    icon: "cpu",
+    features: [
+      "Custom AI model development",
+      "AI-powered automation & workflow optimization",
+      "Natural Language Processing (NLP)",
+      "Generative AI (text, image, and audio)",
+      "Computer vision and image recognition",
+      "AI chatbots and virtual assistants",
+      "Predictive analytics and data modeling",
+      "AI integration with existing systems",
+    ],
+    featureImages: [
+      "/images/services/ai.jpg",
+      "/images/services/ai2.jpg",
+    ],
+    cover:
+      "/images/services/ainew.jpg",
+    video: "/videos/services/ai.mp4",
+    process: [
+      "Discovery: Understanding your goals | Identifying opportunities where AI can bring measurable impact.",
+      "Data Strategy: Preparing high-quality datasets | Structuring, cleaning, and optimizing data for model training.",
+      "Model Selection: Choosing the right AI approach | Selecting or fine-tuning models for NLP, vision, or predictive tasks.",
+      "AI Development: Building smart systems | Developing custom AI models tailored to your business needs.",
+      "Integration & Automation: Making AI work for you | Seamlessly integrating AI features into your apps and workflows.",
+      "Evaluation & Optimization: Ensuring peak performance | Continuous testing, refinement, and improvement.",
+    ],
+    color: "#C3C7F7",
+    bgColor: "#C3C7F7",
+  }
+  ,
+  {
+    id: "5",
     slug: "cloud-solutions",
     title: "Cloud Solutions",
     description:
@@ -409,10 +483,11 @@ export const services: Service[] = [
       "Multi-cloud and hybrid solutions",
     ],
     cover:
-      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fam-arc.e31e094e.jpg&w=1080&q=75",
+      "/images/services/cloudservice.jpg",
+    video: "/videos/services/cloud.mp4",
     featureImages: [
-      "/images/services/cloud-hero.jpg",
-      "/images/services/cloud-feature.jpg",
+      "/images/services/cloud.jpg",
+      "/images/services/cloud.jpg",
     ],
     process: [
       "Infrastructure Assessment: Evaluating current state | We thoroughly evaluate your existing infrastructure and identify optimization opportunities.",
@@ -422,108 +497,116 @@ export const services: Service[] = [
       "Performance Optimization: Maximizing efficiency | Fine-tuning cloud resources and implementing auto-scaling policies.",
       "Ongoing Management: Maintaining excellence | Continuous monitoring, proactive security updates, and cost optimization.",
     ],
-    color: "#FFE4D2",
-    bgColor: "rgba(255, 237, 224, 1)",
+    color: "#D6D7F4",
+    bgColor: "#D6D7F4",
   },
   {
-    id: "4",
-    slug: "ui-ux-design",
-    title: "UI/UX Design",
+    id: "7",
+    slug: "wordpress-development",
+    title: "WordPress Development",
     description:
-      "Design beautiful, intuitive interfaces that users love and that drive conversions.",
-    icon: "palette",
+      "Build fast, secure, and fully customized WordPress websites tailored to your business needs.",
+    icon: "wordpress",
     features: [
-      "User research and personas",
-      "Wireframing and prototyping",
-      "Visual design and branding",
-      "Interaction design",
-      "Usability testing",
-      "Design systems and style guides",
-      "Accessibility and inclusive design",
+      "Custom WordPress theme development",
+      "Plugin development and integration",
+      "WooCommerce setup and customization",
+      "Performance optimization (speed & caching)",
+      "SEO-friendly site architecture",
+      "Security hardening and malware protection",
+      "Responsive and mobile-first design",
+      "Website maintenance and updates"
     ],
     featureImages: [
-      "/images/services/uiux-hero.jpg",
-      "/images/services/uiux-feature.jpg",
+      "/images/services/wordpress.jpg",
+      "/images/services/wordpress2.jpg"
     ],
-    cover:
-      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdopop2.377994a1.jpg&w=1080&q=75",
+    cover: "/images/services/content-management-system.jpg",
+    video: "/videos/services/wp.mp4",
     process: [
-      "User Research: Understanding real needs | Deep dive into user behavior, pain points, and expectations.",
-      "Information Architecture: Structuring content logically | Creating intuitive information architecture and site maps.",
-      "Wireframe Creation: Establishing the foundation | Developing low-fidelity sketches and detailed wireframes.",
-      "Visual Design: Bringing beauty to function | Crafting high-fidelity mockups with your brand identity.",
-      "Interactive Prototype: Testing the experience | Building fully interactive prototypes that simulate the final product.",
-      "Usability Testing: Validating with users | Conducting moderated user testing sessions to gather feedback.",
+      "Discovery & Planning: Understanding your goals | Analyzing requirements, user needs, and site structure.",
+      "Design Phase: Crafting the UI | Creating pixel-perfect layouts aligned with your brand identity.",
+      "Theme Development: Building the foundation | Developing custom themes with clean, scalable code.",
+      "Plugin Integration: Adding functionality | Configuring or developing plugins for advanced features.",
+      "Optimization: Ensuring speed & stability | Improving performance, caching, and core web vitals.",
+      "Launch & Deployment: Going live smoothly | Final testing, migration, and deployment with zero downtime.",
+      "Maintenance: Long-term support | Regular updates, backups, and security monitoring."
     ],
-    color: "#CDD1FF",
-    bgColor: "rgba(211, 214, 240, 1)",
+    color: "#B5BAEE",
+    bgColor: "#B5BAEE",
   },
   {
-    id: "5",
-    slug: "ui-ux-design",
-    title: "UI/UX Design",
-    description:
-      "Design beautiful, intuitive interfaces that users love and that drive conversions.",
-    icon: "palette",
-    features: [
-      "User research and personas",
-      "Wireframing and prototyping",
-      "Visual design and branding",
-      "Interaction design",
-      "Usability testing",
-      "Design systems and style guides",
-      "Accessibility and inclusive design",
-    ],
-    featureImages: [
-      "/images/services/uiux-hero.jpg",
-      "/images/services/uiux-feature.jpg",
-    ],
-    cover:
-      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdopop2.377994a1.jpg&w=1080&q=75",
-    process: [
-      "User Research: Understanding real needs | Deep dive into user behavior, pain points, and expectations.",
-      "Information Architecture: Structuring content logically | Creating intuitive information architecture and site maps.",
-      "Wireframe Creation: Establishing the foundation | Developing low-fidelity sketches and detailed wireframes.",
-      "Visual Design: Bringing beauty to function | Crafting high-fidelity mockups with your brand identity.",
-      "Interactive Prototype: Testing the experience | Building fully interactive prototypes that simulate the final product.",
-      "Usability Testing: Validating with users | Conducting moderated user testing sessions to gather feedback.",
-    ],
-    color: "#CDD1FF",
-    bgColor: "rgba(211, 214, 240, 1)",
-  },
-  {
-    id: "6",
-    slug: "ui-ux-design",
-    title: "UI/UX Design",
-    description:
-      "Design beautiful, intuitive interfaces that users love and that drive conversions.",
-    icon: "palette",
-    features: [
-      "User research and personas",
-      "Wireframing and prototyping",
-      "Visual design and branding",
-      "Interaction design",
-      "Usability testing",
-      "Design systems and style guides",
-      "Accessibility and inclusive design",
-    ],
-    featureImages: [
-      "/images/services/uiux-hero.jpg",
-      "/images/services/uiux-feature.jpg",
-    ],
-    cover:
-      "https://deveb.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdopop2.377994a1.jpg&w=1080&q=75",
-    process: [
-      "User Research: Understanding real needs | Deep dive into user behavior, pain points, and expectations.",
-      "Information Architecture: Structuring content logically | Creating intuitive information architecture and site maps.",
-      "Wireframe Creation: Establishing the foundation | Developing low-fidelity sketches and detailed wireframes.",
-      "Visual Design: Bringing beauty to function | Crafting high-fidelity mockups with your brand identity.",
-      "Interactive Prototype: Testing the experience | Building fully interactive prototypes that simulate the final product.",
-      "Usability Testing: Validating with users | Conducting moderated user testing sessions to gather feedback.",
-    ],
-    color: "#CDD1FF",
-    bgColor: "rgba(211, 214, 240, 1)",
-  },
+  id: "8",
+  slug: "website-maintenance",
+  title: "Website Maintenance",
+  description:
+    "Keep your website running smoothly with ongoing updates, security monitoring, performance optimization, and technical support.",
+  icon: "settings",
+  features: [
+    "Regular core, theme, and plugin updates",
+    "24/7 uptime monitoring",
+    "Security scanning & malware protection",
+    "Daily/weekly automated backups",
+    "Performance checks & optimization",
+    "Bug fixes and technical support",
+    "Content updates and small design tweaks",
+    "Broken link checks & error resolution"
+  ],
+  featureImages: [
+    "/images/services/main.jpg",
+    "/images/services/main.jpg"
+  ],
+  cover: "/images/services/sm.jpg",
+  video: "/videos/services/maintenance.mp4",
+  process: [
+    "Initial Audit: Evaluating site health | Assessing performance, security, and update requirements.",
+    "Setup & Configuration: Preparing the system | Implementing monitoring tools, backup routines, and security layers.",
+    "Regular Updates: Staying up-to-date | Applying updates to core files, themes, and plugins without downtime.",
+    "Performance Optimization: Keeping things fast | Caching, image optimization, and database cleanup.",
+    "Security Monitoring: Protecting your website | Malware scanning, firewall tuning, and vulnerability checks.",
+    "Continuous Support: Immediate assistance | Quick fixes, debugging, and monthly maintenance reports.",
+    "Backup & Restore: Peace of mind | Scheduled backups and guaranteed restoration when needed."
+  ],
+  color: "#B5BAEE",
+  bgColor: "#B5BAEE"
+},{
+  id: "9",
+  slug: "project-management",
+  title: "Project Management",
+  description:
+    "Protect your time, budget, and peace of mind with expert project managers who understand both business and technical execution.",
+  icon: "clipboard-check",
+  features: [
+    "End-to-end project planning and execution",
+    "Technical oversight to prevent scams and miscommunication",
+    "Vendor and developer coordination",
+    "Full-time, part-time, or meeting-based engagement options",
+    "Milestone tracking and transparent reporting",
+    "Scope management and requirement documentation",
+    "Quality assurance and delivery verification",
+    "Budget monitoring and risk management"
+  ],
+  featureImages: [
+    "/images/services/pm.jpg",
+    "/images/services/pm2.jpg"
+  ],
+  cover: "/images/services/pmmm.jpg",
+  video: "/videos/services/pm.mp4",
+  process: [
+    "Discovery & Consultation: Understanding your goals | Identifying your project needs, challenges, and ideal workflow.",
+    "Scope Definition: Setting the foundation | Creating clear, scam-proof requirements so no one can mislead or overcharge you.",
+    "Strategy & Planning: Building the roadmap | Budgeting, timelines, milestones, and resource planning handled by experts.",
+    "Team Coordination: Managing developers & vendors | We communicate, verify work, solve problems, and prevent technical confusion.",
+    "Progress Monitoring: Staying on track | Daily/weekly updates, timeline control, and obstacles resolved before they become costly.",
+    "Quality Check: Validating delivery | Ensuring all technical tasks meet standards before you accept anything.",
+    "Launch & Handover: Stress-free completion | Final documentation, knowledge transfer, and post-launch support.",
+    "Flexible Engagement: Work on your terms | Hire us per meeting, per hour, event-based, or full-project management."
+  ],
+  color: "#B5BAEE",
+  bgColor: "#B5BAEE"
+}
+
+
 ];
 
 // Works/Projects Data

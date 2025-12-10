@@ -27,6 +27,7 @@ export interface Service {
   slug: string;
   title: string;
   description: string;
+  video?: string;
   icon: string;
   features: string[];
   cover: string;
