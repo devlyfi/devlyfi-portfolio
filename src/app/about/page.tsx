@@ -10,6 +10,9 @@ import ValuesSection from '@/components/about/ValuesSection';
 import Teams from '@/components/about/Teams';
 import { HoverExpand_001 } from '@/components/shared/ExpandOnHover';
 import RecentWorks from '@/components/home/RecentWorks';
+import CommonHero from '@/components/shared/CommonHero';
+import InfiniteImageScroll from '@/components/about/InfiniteImageScroll';
+import FAQ from '@/components/shared/Faq';
 
   const images = [
     {
@@ -109,13 +112,11 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className="min-h-screen overflow-hidden">
-      {/* Hero Banner */}
-      <AboutUsHero
-        title={aboutPageData.hero.title}
-        subtitle={aboutPageData.hero.subtitle}
-      />
-        <RecentWorks></RecentWorks>
-  
+
+      <CommonHero title={aboutPageData.hero.title} subtitle={aboutPageData.hero.subtitle}></CommonHero>
+      <div className=''>
+        <InfiniteImageScroll images={aboutPageData.images} />
+      </div>
       {/* Mission & Vision Section */}
       <MissionVisionSection
         mission={aboutPageData.mission}
@@ -126,6 +127,7 @@ export default function AboutPage() {
       <ValuesSection  />
 
       <Teams  />
+      <FAQ theme='light' items={aboutPageData.faq}></FAQ>
     </main>
   );
 }

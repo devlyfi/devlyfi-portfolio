@@ -1,696 +1,251 @@
-"use client";
+'use client'
 
-import { Work } from "@/lib/types";
-import Image from "next/image";
+import AnimatedButton from '@/components/ui/AnimatedButton'
+import Image from 'next/image'
+import Link from 'next/link'
+import React, { useRef, useEffect } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "next/link";
-import CustomButton2 from "../shared/CustomButton2";
-
-// Register ScrollTrigger plugin
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
+// Register GSAP plugins
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
 }
 
-// Reusable: Full-width alternating item
-const FullWidthWorkItem = ({ work, index }: { work: Work; index: number }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const yearRef = useRef<HTMLSpanElement>(null);
-  const categoryRef = useRef<HTMLHeadingElement>(null);
-  const techRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const buttonRef = useRef<HTMLDivElement>(null);
-
-  const isImageOnLeft = (index / 2) % 2 === 0;
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Set initial states for entrance animation
-      const startX = isImageOnLeft ? -window.innerWidth : window.innerWidth;
-      gsap.set(containerRef.current, { x: startX, opacity: 0 });
-
-      // Set initial states for image and text
-      gsap.set(imageRef.current, { opacity: 0 });
-      gsap.set(textRef.current, { opacity: 0 });
-
-      // Set initial states for detailed animations
-      gsap.set(titleRef.current, { opacity: 0, x: isImageOnLeft ? 40 : -40 });
-      gsap.set(yearRef.current, { opacity: 0, scale: 0.5 });
-      gsap.set(categoryRef.current, { opacity: 0, y: 20 });
-      gsap.set(techRefs.current, { opacity: 0, scale: 0.8 });
-      gsap.set(buttonRef.current, { opacity: 0, y: 20 });
-
-      // Create master timeline with scroll trigger
-      const masterTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 85%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Phase 1: Container slide + image fade in simultaneously
-      masterTl
-        .to(containerRef.current, {
-          x: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power3.out",
-        })
-        .to(
-          imageRef.current,
-          {
-            opacity: 1,
-            duration: 1,
-            ease: "power2.out",
-          },
-          "-=0.8"
-        ); // Start image fade slightly before container animation completes
-
-      // Phase 2: Text content animations with delay
-      masterTl.to(
-        textRef.current,
-        {
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-        },
-        "-=0.2"
-      );
-
-      // Phase 3: Detailed text animations
-      masterTl.to(
-        titleRef.current,
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          ease: "power3.out",
-        },
-        "-=0.6"
-      );
-
-      masterTl.to(
-        yearRef.current,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          ease: "back.out(1.7)",
-        },
-        "-=0.5"
-      );
-
-      masterTl.to(
-        categoryRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-        },
-        "-=0.4"
-      );
-
-      // Animate technology tags with stagger
-      masterTl.to(
-        techRefs.current,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.4,
-          ease: "back.out(1.7)",
-          stagger: 0.06,
-        },
-        "-=0.3"
-      );
-
-      // Animate button
-      masterTl.to(
-        buttonRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          ease: "power2.out",
-        },
-        "-=0.2"
-      );
-
-      // Image hover animation
-      if (imageRef.current) {
-        imageRef.current.addEventListener("mouseenter", () => {
-          gsap.to(imageRef.current, {
-            scale: 1.03,
-            duration: 0.4,
-            ease: "power2.out",
-          });
-        });
-
-        imageRef.current.addEventListener("mouseleave", () => {
-          gsap.to(imageRef.current, {
-            scale: 1,
-            duration: 0.4,
-            ease: "power2.out",
-          });
-        });
-      }
-
-      // Tech tag hover animations
-      techRefs.current.forEach((tech) => {
-        if (!tech) return;
-
-        tech.addEventListener("mouseenter", () => {
-          gsap.to(tech, {
-            y: -3,
-            backgroundColor: "#121315",
-            color: "white",
-            duration: 0.2,
-            ease: "power2.out",
-          });
-        });
-
-        tech.addEventListener("mouseleave", () => {
-          gsap.to(tech, {
-            y: 0,
-            backgroundColor: "transparent",
-            color: "inherit",
-            duration: 0.2,
-            ease: "power2.out",
-          });
-        });
-      });
-
-      // Button hover animation
-      if (buttonRef.current) {
-        buttonRef.current.addEventListener("mouseenter", () => {
-          gsap.to(buttonRef.current, {
-            scale: 1.05,
-            duration: 0.2,
-            ease: "power2.out",
-          });
-        });
-
-        buttonRef.current.addEventListener("mouseleave", () => {
-          gsap.to(buttonRef.current, {
-            scale: 1,
-            duration: 0.2,
-            ease: "power2.out",
-          });
-        });
-      }
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, [isImageOnLeft]);
-
-  const addTechRef = (el: HTMLSpanElement | null, index: number) => {
-    techRefs.current[index] = el;
-  };
-
-  return (
-    <div
-      ref={containerRef}
-      className="md:max-w-7xl rounded-4xl bg-zinc-50 mx-auto flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-16"
-    >
-      {isImageOnLeft ? (
-        <>
-          {/* Image Left */}
-          <div
-            ref={imageRef}
-            className="w-full lg:w-1/2 overflow-hidden rounded-4xl"
-          >
-            <Image
-              className="rounded-4xl w-full h-auto object-cover"
-              src={work.thumbnail}
-              height={2000}
-              width={2000}
-              alt={work.title}
-            />
-          </div>
-
-          {/* Text Right */}
-          <div
-            ref={textRef}
-            className="w-full lg:w-1/2 text-center lg:text-end px-6"
-          >
-            <h2 ref={titleRef} className="text-3xl md:text-4xl font-light">
-              {work.title}{" "}
-              <span
-                ref={yearRef}
-                className="text-gray-800 font-semibold text-lg align-text-top"
-              >
-                {work.year}
-              </span>
-            </h2>
-            <br />
-            <h3 ref={categoryRef} className="text-xl xl:text-2xl font-thin">
-              {work.category}
-            </h3>
-
-            <div className="my-10 hidden xl:flex flex-wrap justify-center lg:justify-start gap-3">
-              <div className="mb-8">
-                {/* <h4 className="text-xl font-light mb-4">Technologies</h4> */}
-                <div className="flex flex-wrap gap-3">
-                  {work.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      ref={(el) => addTechRef(el, index)}
-                      className="border border-gray-300 rounded-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div ref={buttonRef} className="my-5">
-              {/* <CustomButton
-                  text="View Details"
-                  textColor="black"
-                  hoverColor="#121315"
-                  className="border-2 border-[#121315]"
-                /> */}
-              <CustomButton2
-                text="View Project"
-                borderColor="#121315"
-                textColor="#121315"
-                rippleColor="#121315"
-                href={`works/${work.slug}`}
-              />
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-          {/* Text Left */}
-          <div
-            ref={textRef}
-            className="w-full lg:w-1/2 text-center lg:text-start px-6 order-2 lg:order-1"
-          >
-            <h2 ref={titleRef} className="text-3xl md:text-4xl font-light">
-              {work.title}{" "}
-              <span
-                ref={yearRef}
-                className="text-gray-800 font-semibold text-lg align-text-top"
-              >
-                {work.year}
-              </span>
-            </h2>
-            <br />
-            <h3 ref={categoryRef} className="text-xl xl:text-2xl font-thin">
-              {work.category}
-            </h3>
-
-            <div className="my-10 hidden xl:flex flex-wrap justify-center lg:justify-start gap-3">
-              <div className="mb-8">
-                {/* <h4 className="text-xl font-light mb-4">Technologies</h4> */}
-                <div className="flex flex-wrap gap-3">
-                  {work.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      ref={(el) => addTechRef(el, index)}
-                      className="border border-gray-300 rounded-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div ref={buttonRef} className="my-5">
-              <Link href={`works/${work.slug}`}>
-                <CustomButton2
-                  text="View Project"
-                  borderColor="#121315"
-                  textColor="#121315"
-                  rippleColor="#121315"
-                  href={`works/${work.slug}`}
-                />
-              </Link>
-            </div>
-          </div>
-
-          {/* Image Right */}
-          <div
-            ref={imageRef}
-            className="w-full lg:w-1/2 order-1 lg:order-2 overflow-hidden rounded-4xl"
-          >
-            <Image
-              className="rounded-4xl w-full h-auto object-cover"
-              src={work.thumbnail}
-              height={2000}
-              width={2000}
-              alt={work.title}
-            />
-          </div>
-        </>
-      )}
-    </div>
-  );
-};
-
-// Reusable: Single item in a paired row
-const PairedWorkItem = ({
-  work,
-  reverse = false,
-}: {
-  work: Work;
-  reverse?: boolean;
-}) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const yearRef = useRef<HTMLSpanElement>(null);
-  const categoryRef = useRef<HTMLHeadingElement>(null);
-  const techRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const buttonRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Set initial states for entrance animation
-      const startX = reverse ? window.innerWidth : -window.innerWidth;
-      gsap.set(containerRef.current, { x: startX, opacity: 0 });
-
-      // Set initial states for image and text
-      gsap.set(imageRef.current, { opacity: 0 });
-      gsap.set(textRef.current, { opacity: 0 });
-
-      // Set initial states for detailed animations
-      gsap.set(titleRef.current, { opacity: 0, x: reverse ? 40 : -40 });
-      gsap.set(yearRef.current, { opacity: 0, scale: 0.5 });
-      gsap.set(categoryRef.current, { opacity: 0, y: 20 });
-      gsap.set(techRefs.current, { opacity: 0, scale: 0.8 });
-      gsap.set(buttonRef.current, { opacity: 0, y: 20 });
-
-      // Create master timeline with scroll trigger
-      const masterTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 85%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Phase 1: Container slide + image fade in simultaneously
-      masterTl
-        .to(containerRef.current, {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-        })
-        .to(
-          imageRef.current,
-          {
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
-          },
-          "-=0.6"
-        ); // Start image fade slightly before container animation completes
-
-      // Phase 2: Text content animations with delay
-      masterTl.to(
-        textRef.current,
-        {
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
-        },
-        "-=0.2"
-      );
-
-      // Phase 3: Detailed text animations
-      masterTl.to(
-        titleRef.current,
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.6,
-          ease: "power3.out",
-        },
-        "-=0.4"
-      );
-
-      masterTl.to(
-        yearRef.current,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.4,
-          ease: "back.out(1.7)",
-        },
-        "-=0.3"
-      );
-
-      masterTl.to(
-        categoryRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          ease: "power2.out",
-        },
-        "-=0.2"
-      );
-
-      // Animate technology tags with stagger
-      masterTl.to(
-        techRefs.current,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.3,
-          ease: "back.out(1.7)",
-          stagger: 0.05,
-        },
-        "-=0.2"
-      );
-
-      // Animate button
-      masterTl.to(
-        buttonRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          ease: "power2.out",
-        },
-        "-=0.1"
-      );
-
-      // Image hover animation
-      if (imageRef.current) {
-        imageRef.current.addEventListener("mouseenter", () => {
-          gsap.to(imageRef.current, {
-            scale: 1.03,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        });
-
-        imageRef.current.addEventListener("mouseleave", () => {
-          gsap.to(imageRef.current, {
-            scale: 1,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        });
-      }
-
-      // Tech tag hover animations
-      techRefs.current.forEach((tech) => {
-        if (!tech) return;
-
-        tech.addEventListener("mouseenter", () => {
-          gsap.to(tech, {
-            y: -2,
-            backgroundColor: "#121315",
-            color: "white",
-            duration: 0.15,
-            ease: "power2.out",
-          });
-        });
-
-        tech.addEventListener("mouseleave", () => {
-          gsap.to(tech, {
-            y: 0,
-            backgroundColor: "transparent",
-            color: "inherit",
-            duration: 0.15,
-            ease: "power2.out",
-          });
-        });
-      });
-
-      // Button hover animation
-      if (buttonRef.current) {
-        buttonRef.current.addEventListener("mouseenter", () => {
-          gsap.to(buttonRef.current, {
-            scale: 1.05,
-            duration: 0.15,
-            ease: "power2.out",
-          });
-        });
-
-        buttonRef.current.addEventListener("mouseleave", () => {
-          gsap.to(buttonRef.current, {
-            scale: 1,
-            duration: 0.15,
-            ease: "power2.out",
-          });
-        });
-      }
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, [reverse]);
-
-  const addTechRef = (el: HTMLSpanElement | null, index: number) => {
-    techRefs.current[index] = el;
-  };
-
-  return (
-    <div
-      ref={containerRef}
-      className={`w-full rounded-4xl bg-zinc-50 flex flex-col ${
-        reverse ? "lg:flex-row-reverse" : "lg:flex-row"
-      } justify-between items-center gap-8`}
-    >
-      <div
-        ref={imageRef}
-        className="w-full lg:w-1/2 overflow-hidden rounded-4xl"
-      >
-        <Image
-          className="rounded-4xl w-full h-auto object-cover"
-          src={work.thumbnail}
-          height={2000}
-          width={2000}
-          alt={work.title}
-        />
-      </div>
-
-      <div
-        ref={textRef}
-        className="w-full lg:w-1/2 text-center lg:text-left p-6"
-      >
-        <h3 ref={titleRef} className="text-2xl md:text-3xl font-light">
-          {work.title}{" "}
-          <span
-            ref={yearRef}
-            className="text-gray-800 font-semibold text-lg align-text-top"
-          >
-            {work.year}
-          </span>
-        </h3>
-        <br />
-        <h3 ref={categoryRef} className="text-xl xl:text-2xl font-thin">
-          {work.category}
-        </h3>
-
-        <div className="my-10 hidden xl:flex flex-wrap justify-center lg:justify-start gap-3">
-          <div className="mb-8">
-            {/* <h4 className="text-xl font-light mb-4">Technologies</h4> */}
-            <div className="flex flex-wrap gap-3">
-              {work.technologies.map((tech, index) => (
-                <span
-                  key={index}
-                  ref={(el) => addTechRef(el, index)}
-                  className="border border-gray-300 rounded-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div ref={buttonRef} className="my-5">
-          <Link href={`works/${work.slug}`}>
-            <CustomButton2
-              text="View Project"
-              borderColor="#121315"
-              textColor="#121315"
-              rippleColor="#121315"
-              href={`works/${work.slug}`}
-            />
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-interface WorkGridProps {
-  works: Work[];
+interface ServiceFeature {
+    title: string
+    description: string
 }
 
-export default function WorkGrid({ works }: WorkGridProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+interface ServiceDetails {
+    heading: string
+    features: ServiceFeature[]
+}
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate the entire container entrance
-      gsap.from(containerRef.current, {
-        opacity: 0,
-        y: 40,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 90%",
-          end: "bottom 10%",
-          toggleActions: "play none none reverse",
-        },
-      });
-    }, containerRef);
+interface Service {
+    title: string
+    description: string
+    imageUrl: string
+    link: string
+    details: ServiceDetails
+}
 
-    return () => ctx.revert();
-  }, []);
+interface ServiceCardProps {
+    service: Service
+    index?: number
+}
 
-  return (
-    <div ref={containerRef} className="space-y-32 p-4 overflow-hidden">
-      {works.map((work, index) => {
-        const isEvenIndex = index % 2 === 0;
+function WorkGrid({ service, index = 0 }: ServiceCardProps) {
+    const cardRef = useRef<HTMLElement>(null)
+    const imageRef = useRef<HTMLDivElement>(null)
+    const textRef = useRef<HTMLDivElement>(null)
+    const detailsRef = useRef<HTMLDivElement>(null)
+    const featuresRef = useRef<HTMLDivElement[]>([])
 
-        if (isEvenIndex) {
-          // Full-width alternating row
-          return (
-            <FullWidthWorkItem
-              key={work.id || index}
-              work={work}
-              index={index}
-            />
-          );
+    // Add feature ref to array
+    const addToRefs = (el: HTMLDivElement) => {
+        if (el && !featuresRef.current.includes(el)) {
+            featuresRef.current.push(el)
         }
+    }
 
-        // Paired row: current (odd) + next (even) if exists
-        const nextWork = works[index + 1];
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            // Staggered fade-in for main content
+            gsap.fromTo(
+                textRef.current?.children || [],
+                {
+                    y: 30,
+                    opacity: 0
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: textRef.current,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            )
 
-        return (
-          <div
-            key={work.id || index}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-4 md:px-8"
-          >
-            <PairedWorkItem work={work} />
-            {nextWork ? (
-              <PairedWorkItem work={nextWork} reverse={true} />
-            ) : (
-              <div />
+            // Image reveal animation with scale
+            gsap.fromTo(
+                imageRef.current,
+                {
+                    scale: 0.85,
+                    opacity: 0,
+                    rotationY: index % 2 === 0 ? -5 : 5
+                },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    rotationY: 0,
+                    duration: 1.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: imageRef.current,
+                        start: "top 75%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            )
+
+            // Service details section animation
+            if (detailsRef.current) {
+                gsap.fromTo(
+                    detailsRef.current,
+                    {
+                        y: 40,
+                        opacity: 0
+                    },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 1,
+                        delay: 0.3,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: detailsRef.current,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                )
+
+                // Staggered animation for features
+                if (featuresRef.current.length > 0) {
+                    gsap.fromTo(
+                        featuresRef.current,
+                        {
+                            x: index % 2 === 0 ? -30 : 30,
+                            opacity: 0
+                        },
+                        {
+                            x: 0,
+                            opacity: 1,
+                            duration: 0.8,
+                            stagger: 0.15,
+                            delay: 0.5,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: detailsRef.current,
+                                start: "top 80%",
+                                toggleActions: "play none none reverse"
+                            }
+                        }
+                    )
+                }
+            }
+
+            // Hover animation for image
+            if (imageRef.current) {
+                const image = imageRef.current.querySelector('img')
+                if (image) {
+                    image.addEventListener('mouseenter', () => {
+                        gsap.to(image, {
+                            scale: 1.05,
+                            duration: 0.6,
+                            ease: "power2.out"
+                        })
+                    })
+                    
+                    image.addEventListener('mouseleave', () => {
+                        gsap.to(image, {
+                            scale: 1,
+                            duration: 0.6,
+                            ease: "power2.out"
+                        })
+                    })
+                }
+            }
+
+            // Subtle floating animation for the entire card
+            // gsap.to(cardRef.current, {
+            //     y: -10,
+            //     duration: 2,
+            //     repeat: -1,
+            //     yoyo: true,
+            //     ease: "sine.inOut",
+            //     delay: index * 0.2
+            // })
+
+        }, cardRef)
+
+        // Cleanup
+        return () => ctx.revert()
+    }, [index])
+
+    return (
+        <section 
+            ref={cardRef}
+            className='grid md:grid-cols-2 gap-8 my-10 md:max-w-7xl mx-auto overflow-hidden'
+        >
+            {/* Text section */}
+            <div 
+                ref={textRef}
+                className='md:max-w-3xl mx-auto text-center space-y-6 md:flex md:flex-col md:justify-center'
+            >
+                <h2 className='sm:text-2xl md:text-4xl! opacity-0 transform'>{service.title}</h2>
+                <p className='text-base text-gray-600 opacity-0 transform'>{service.description}</p>
+                <div className='flex justify-center items-center opacity-0 transform'>
+                    <Link href={service.link}>
+                        <AnimatedButton
+                            text="View Details"
+                            className="bg-transparent font-medium rounded-full"
+                            textClass='text-black! font-light! text-xl!'
+                            onClick={() => console.log("Button clicked!")}
+                        />
+                    </Link>
+                </div>
+            </div>
+
+            {/* Image section */}
+            <div 
+                ref={imageRef}
+                className='opacity-0 transform perspective-1000'
+            >
+                <Image
+                    src={service.imageUrl}
+                    alt={service.title}
+                    width={2000}
+                    height={2000}
+                    className='rounded-4xl w-full hover-scale transition-transform duration-300'
+                />
+            </div>
+
+            {/* Service details */}
+            {service.details && (
+                <div 
+                    ref={detailsRef}
+                    className='md:col-span-2 grid md:grid-cols-2 mt-8 gap-8 opacity-0'
+                >
+                    {/* Empty left column */}
+                    <div></div>
+
+                    {/* Right column with content */}
+                    <div className='space-y-6'>
+                        <h2 className='text-2xl md:text-4xl'>{service.details.heading}</h2>
+                        <div>
+                            {service.details.features.map((item, idx) => (
+                                <div 
+                                    key={idx} 
+                                    ref={addToRefs}
+                                    className='grid grid-cols-2 my-10 opacity-0 transform'
+                                >
+                                    <h3 className='text-xl font-light'>{item.title}</h3>
+                                    <p className='text-base text-gray-600'>{item.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             )}
-          </div>
-        );
-      })}
-    </div>
-  );
+        </section>
+    )
 }
+
+export default WorkGrid

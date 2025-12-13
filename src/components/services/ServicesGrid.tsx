@@ -3,13 +3,13 @@ import React from "react";
 
 function ServicesGrid({ service }: { service: Service }) {
   return (
-    <section className="my-14 md:my-24 lg:my-32 bg-white overflow-visible">
+    <section className=" bg-secondary overflow-visible py-14 md:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl  font-thin  mb-6   leading-tight">
+        <div className="text-center mb-12 max-w-2xl mx-auto md:max-w-3xl">
+          <h2 className=" mb-6  leading-tight">
             Your Ideas, Our Expertise, Impactful Results
           </h2>
-          <p className="text-center text-base uppercase tracking-widest text-gray-600">
+          <p className="text-md text-gray-700   leading-relaxed">
             Comprehensive solutions tailored to your needs
           </p>
         </div>

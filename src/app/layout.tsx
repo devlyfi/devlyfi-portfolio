@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "@/styles/globals.css";
-import Header from "@/components/layout/Header";
+
 import Footer from "@/components/layout/Footer";
 import WebVitals from "@/components/shared/WebVitals";
-import LoadingBar from "@/components/animations/LoadingBar";
-import SmoothScrollInit from "@/components/animations/SmoothScrollInit";
-import ScrollTriggerConfig from "@/components/animations/ScrollTriggerConfig";
+
 import { companyInfo } from "@/lib/data/dummy";
 import { Analytics } from "@vercel/analytics/next";
 import NavBar from "@/components/layout/NavBar";
-import PageTransition from "@/components/animations/PageTransition";
+import ReactLenis from "lenis/react";
 
 
 const inter = Inter({
@@ -129,7 +127,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${poppins.variable} antialiased`}>
         <WebVitals />
 
-
+             <ReactLenis root></ReactLenis>
         {/* <Header /> */}
         <NavBar></NavBar>
         <main className="min-h-screen">

@@ -52,7 +52,7 @@ export default function ValuesSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen  py-24 md:py-32 overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen   overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <img

@@ -1,159 +1,189 @@
-import { Metadata } from "next";
-import ContactFormWrapper from "@/components/shared/ContactFormWrapper";
-import AnimatedSection from "@/components/animations/AnimatedSection";
-import { companyInfo } from "@/lib/data/dummy";
-import { Mail, Phone, MapPin } from "lucide-react";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Contact Us",
-  description:
-    "Get in touch with Devlyfi. We're here to answer your questions and discuss your next project. Contact us for software development services, consultations, and partnerships.",
-  keywords: [
-    "contact devlyfi",
-    "get in touch",
-    "software development inquiry",
-    "project consultation",
-    "contact information",
-  ],
-  openGraph: {
-    title: "Contact Us | Devlyfi",
-    description:
-      "Get in touch with Devlyfi. We're here to answer your questions and discuss your next project.",
-    type: "website",
-    url: "/contact",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Contact Devlyfi",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact Us | Devlyfi",
-    description:
-      "Get in touch with Devlyfi. We're here to answer your questions and discuss your next project.",
-    images: ["/og-image.jpg"],
-    creator: "@devlyfi",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-};
+import { useEffect, useRef } from "react";
+import ContactFormWrapper from "@/components/shared/ContactFormWrapper";
+import CommonHero from "@/components/shared/CommonHero";
+import { companyInfo } from "@/lib/data/dummy";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function ContactPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contactCardsRef = useRef<HTMLDivElement[]>([]);
+  const formSectionRef = useRef<HTMLDivElement>(null);
+
+  // Add contact card to refs array
+  const addToRefs = (el: HTMLDivElement) => {
+    if (el && !contactCardsRef.current.includes(el)) {
+      contactCardsRef.current.push(el);
+    }
+  };
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Staggered animation for contact cards
+      if (contactCardsRef.current.length > 0) {
+        gsap.fromTo(
+          contactCardsRef.current,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: contactCardsRef.current[0],
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      // Form section animation
+      if (formSectionRef.current) {
+        gsap.fromTo(
+          formSectionRef.current,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: formSectionRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <main className="py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection animation="fadeInUp">
-          <div className="max-w-6xl mx-auto">
-            {/* Header */}
-            <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Get In Touch
-              </h1>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Have a project in mind or just want to say hello? We&apos;d love
-                to hear from you. Fill out the form below and we&apos;ll get
-                back to you as soon as possible.
-              </p>
-            </div>
+    <div ref={containerRef} className="min-h-screen">
+      {/* Hero Section */}
+      <CommonHero
+        title="Let's Build Something Amazing Together"
+        subtitle="Have a project in mind or just want to say hello? We'd love to hear from you. Reach out and let's start a conversation."
+      />
 
-            <div className="grid md:grid-cols-3 gap-12">
-              {/* Contact Information */}
-              <div className="md:col-span-1 space-y-8">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                    Contact Information
-                  </h2>
-
-                  <div className="space-y-6">
-                    {/* Email */}
-                    <div className="flex items-start gap-4">
-                      <div className="shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                        <Mail className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">
-                          Email
-                        </h3>
-                        <a
-                          href={`mailto:${companyInfo.email}`}
-                          className="text-gray-600 hover:text-primary transition-colors"
-                        >
-                          {companyInfo.email}
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Phone */}
-                    <div className="flex items-start gap-4">
-                      <div className="shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                        <Phone className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">
-                          Phone
-                        </h3>
-                        <a
-                          href={`tel:${companyInfo.phone}`}
-                          className="text-gray-600 hover:text-primary transition-colors"
-                        >
-                          {companyInfo.phone}
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Address */}
-                    <div className="flex items-start gap-4">
-                      <div className="shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                        <MapPin className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">
-                          Address
-                        </h3>
-                        <p className="text-gray-600">{companyInfo.address}</p>
-                      </div>
-                    </div>
-                  </div>
+      {/* Contact Information Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Email Card */}
+            {/* <div
+              ref={addToRefs}
+              className="bg-secondary rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="flex flex-col gap-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <Mail className="w-6 h-6 text-primary" />
                 </div>
-
-                {/* Business Hours */}
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3">
+                  <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
+                  <a
+                    href={`mailto:${companyInfo.email}`}
+                    className="text-gray-600 hover:text-primary transition-colors text-sm"
+                  >
+                    {companyInfo.email}
+                  </a>
+                </div>
+              </div>
+            </div> */}
+
+            {/* Phone Card */}
+            {/* <div
+              ref={addToRefs}
+              className="bg-secondary rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="flex flex-col gap-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <Phone className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
+                  <a
+                    href={`tel:${companyInfo.phone}`}
+                    className="text-gray-600 hover:text-primary transition-colors text-sm"
+                  >
+                    {companyInfo.phone}
+                  </a>
+                </div>
+              </div>
+            </div> */}
+
+            {/* Address Card */}
+            {/* <div
+              ref={addToRefs}
+              className="bg-secondary rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="flex flex-col gap-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <MapPin className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Address</h3>
+                  <p className="text-gray-600 text-sm">{companyInfo.address}</p>
+                </div>
+              </div>
+            </div> */}
+
+            {/* Business Hours Card */}
+            {/* <div
+              ref={addToRefs}
+              className="bg-secondary rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="flex flex-col gap-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <Clock className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">
                     Business Hours
                   </h3>
-                  <div className="space-y-2 text-gray-600">
-                    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                    <p>Saturday - Sunday: Closed</p>
+                  <div className="space-y-1 text-gray-600 text-sm">
+                    <p>Monday - Friday</p>
+                    <p className="font-medium">9:00 AM - 6:00 PM</p>
+                    <p className="text-gray-500 mt-2">Weekend: Closed</p>
                   </div>
                 </div>
               </div>
-
-              {/* Contact Form */}
-              <div className="md:col-span-2">
-                <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                    Send Us a Message
-                  </h2>
-                  <ContactFormWrapper />
-                </div>
-              </div>
-            </div>
+            </div> */}
           </div>
-        </AnimatedSection>
-      </div>
-    </main>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section ref={formSectionRef} className="py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className=" mb-4 text-3xl md:text-6xl">
+              Send Us a <span className="font-serif italic  text-primary">Message</span>
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Fill out the form below and we'll get back to you within 24 hours.
+            </p>
+          </div>
+
+          <div className="bg-secondary rounded-2xl   p-8 md:p-12">
+            <ContactFormWrapper />
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
+
+

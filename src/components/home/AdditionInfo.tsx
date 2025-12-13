@@ -7,7 +7,7 @@ import { services } from '@/lib/data/dummy';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const additionalServices = services.slice(0, services.length-1);
+const additionalServices = services.slice(5, services.length);
 
 function AdditionInfo() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -65,8 +65,8 @@ function AdditionInfo() {
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 70%",
-            end: "bottom 30%",
+            start: "top 100%",
+            end: "bottom 80%",
             scrub: 1.5,
           }
         });
@@ -94,6 +94,7 @@ function AdditionInfo() {
             scale: 1,
             opacity: 1,
             ease: "power2.out",
+            // markers: true,
             scrollTrigger: {
               trigger: containerRef.current,
               start: "top 70%",
@@ -155,7 +156,7 @@ function AdditionInfo() {
   return (
     <div className='min-h-screen container mx-auto'>
       <div className='flex justify-center items-center my-20 md:my-40'>
-        <h2 className='text-black text-xl md:text-2xl lg:text-3xl'>....and more additional <span className='font-serif italic text-primary'>Services</span></h2>
+        <h2 className=''>....and more  <span className='font-serif italic text-primary'>Services</span></h2>
       </div>
 
       <div
@@ -166,20 +167,20 @@ function AdditionInfo() {
           <div
             key={index}
             ref={addToCardsRefs}
-            className="flex flex-col sm:flex-row items-center bg-gray-50 p-4 rounded-2xl w-full sm:w-[45%] md:w-[40%] opacity-100 md:opacity-0 md:translate-y-[50px] md:scale-90"
+            className="flex flex-col sm:flex-row items-center bg-secondary p-4 rounded-2xl w-full sm:w-[45%] md:w-[40%] opacity-100 md:opacity-0 md:translate-y-[50px] md:scale-90"
           >
-            <div className="w-16 h-16 md:w-24 md:h-24 flex justify-center items-center bg-white rounded-lg md:rounded">
-              <Image 
-              src={item.cover}
-              alt={item.title}
-              width={1000}
-              height={1000}
-              className='rounded-xl md:rounded-2xl w-full h-full object-cover'
+            <div className="h-[20vh] w-[40vw] flex justify-center items-center  rounded-lg md:rounded">
+              <Image
+                src={item.cover}
+                alt={item.title}
+                width={2000}
+                height={5000}
+                className='rounded-xl md:rounded-2xl w-full h-full object-cover'
               ></Image>
             </div>
             <div className="px-4 mt-4 sm:mt-0">
-              <h2 className="text-black text-lg md:text-xl lg:text-2xl">{item.title}</h2>
-              <p className="text-gray-600 text-sm mt-2">
+              <h2 className="text-black text-lg md:text-xl lg:text-3xl">{item.title}</h2>
+              <p className="text-gray-800 text-base mt-2">
                 {item.description}
               </p>
             </div>
@@ -193,10 +194,10 @@ function AdditionInfo() {
         <div className="hidden md:block md:w-3/4 mx-auto">
           <div ref={containerRef} className="relative min-h-[700px]">
             {/* Background texts - Hidden on mobile */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
+            <div className="absolute inset-0 z-0 ">
               <div ref={leftTextRef} className="absolute top-1/4 left-0 w-1/2 px-8">
                 <h2 className="text-8xl lg:text-9xl font-bold text-secondary whitespace-nowrap">
-                  MAKE
+                  MAKE THE
                 </h2>
               </div>
 
@@ -210,56 +211,59 @@ function AdditionInfo() {
             {/* Image Container with scale animation */}
             <div className="relative flex justify-center items-center z-10">
               <div className="w-full max-w-lg mx-auto">
-                <div ref={imageRef} className="relative w-full h-auto aspect-842/1817">
+                <div ref={imageRef} className="relative h-[600px] mx-auto aspect-3/4">
                   <Image
-                    src="https://framerusercontent.com/images/yJLaUZwB3qYDuKfwXuJj6zQvge0.png?width=842&height=1817"
+                    src="/images/services/Frame.png"
                     alt="Hero Image"
                     className="object-contain"
                     fill
                     sizes="(max-width: 1200px) 70vw, 60vw"
                     priority
                   />
-                  <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-white via-white/70 to-transparent z-20"></div>
+                  <div className="absolute bottom-0 w-full h-1/3 bg-linear-to-t from-white via-white/70 to-transparent z-20"></div>
                 </div>
               </div>
             </div>
 
             {/* Hero Text */}
-            <div ref={heroTextRef} className="absolute bottom-8 left-0 right-0 z-30 flex justify-center">
+            {/* <div ref={heroTextRef} className="absolute bottom-8 left-0 right-0 z-30 flex justify-center">
               <div className="text-center px-4 max-w-xl mx-auto">
                 <h1 className="text-3xl lg:text-4xl font-bold text-black">
                   Your Hero Text Here
                 </h1>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
         {/* Mobile-only simplified image section WITH SCALE ANIMATION */}
-        <div className="md:hidden px-4">
-          <div className="relative w-full max-w-sm mx-auto">
-            <div ref={mobileImageRef} className="relative w-full h-auto aspect-842/1817">
-              <Image
-                src="https://framerusercontent.com/images/yJLaUZwB3qYDuKfwXuJj6zQvge0.png?width=842&height=1817"
-                alt="Hero Image"
-                className="object-contain"
-                fill
-                sizes="90vw"
-                priority
-              />
-            </div>
-            {/* Simple text below image on mobile */}
-            <div className="text-center mt-8">
-              <h1 className="text-2xl font-bold text-black">
-                Your Hero Text Here
-              </h1>
-            </div>
-          </div>
-        </div>
+
       </div>
-      
+
     </div>
   )
 }
 
 export default AdditionInfo
+
+
+//  <div className="md:hidden px-4">
+//           <div className="relative w-full max-w-sm mx-auto">
+//             <div ref={mobileImageRef} className="relative w-full h-auto aspect-4/5">
+//               <Image
+//                 src="/images/services/Frame.png"
+//                 alt="Hero Image"
+//                 className="object-contain"
+//                 fill
+//                 sizes="90vw"
+//                 priority
+//               />
+//             </div>
+//             {/* Simple text below image on mobile */}
+//             <div className="text-center mt-8">
+//               <h1 className="text-2xl font-bold text-black">
+//                 Your Hero Text Here
+//               </h1>
+//             </div>
+//           </div>
+//         </div>

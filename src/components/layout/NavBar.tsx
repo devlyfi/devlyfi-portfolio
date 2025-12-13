@@ -1,8 +1,9 @@
 "use client";
-
 import React, { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils"; // assuming you have this utility; if not, add it or inline the className logic
 
 type NavItemEl = HTMLDivElement | null;
 
@@ -15,71 +16,68 @@ const navContents = [
   // { title: "Blog", link: "/blog" },
 ];
 
+const STAGGER = 0.035;
+
+const TextRoll: React.FC<{
+  children: string;
+  className?: string;
+  center?: boolean;
+}> = ({ children, className }) => {
+  return (
+    <motion.span
+      initial="initial"
+      whileHover="hovered"
+      className={cn("relative block overflow-hidden", className)}
+      style={{ lineHeight: 0.75 }}
+    >
+      <div>
+        {children.split("").map((l, i) => {
+          const delay = STAGGER * Math.abs(i - (children.length - 1) / 2);
+          return (
+            <motion.span
+              variants={{
+                initial: { y: 0 },
+                hovered: { y: "-100%" },
+              }}
+              transition={{ ease: "easeInOut", delay }}
+              className="inline-block"
+              key={`top-${i}`}
+            >
+              {l}
+            </motion.span>
+          );
+        })}
+      </div>
+      <div className="absolute inset-0">
+        {children.split("").map((l, i) => {
+          const delay = STAGGER * Math.abs(i - (children.length - 1) / 2);
+          return (
+            <motion.span
+              variants={{
+                initial: { y: "100%" },
+                hovered: { y: 0 },
+              }}
+              transition={{ ease: "easeInOut", delay }}
+              className="inline-block"
+              key={`bottom-${i}`}
+            >
+              {l}
+            </motion.span>
+          );
+        })}
+      </div>
+    </motion.span>
+  );
+};
+
 export default function NavBar() {
-  const itemsRef = useRef<NavItemEl[]>([]);
-  const [activeNav, setActiveNav] = useState<string>("/");
+  const pathname = usePathname();
+  const [activeNav, setActiveNav] = useState(pathname);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const elements = itemsRef.current.filter(Boolean) as HTMLDivElement[];
-
-    elements.forEach((item) => {
-      const letters = item.querySelectorAll(".char");
-
-      const onEnter = () => {
-        gsap.killTweensOf(letters);
-
-        // Animate out: characters move up and fade out
-        gsap.to(letters, {
-          y: -20,
-          opacity: 0,
-          duration: 0.2,
-          stagger: 0.02,
-          ease: "power2.in",
-          onComplete: () => {
-            // Reset position to bottom for entrance
-            gsap.set(letters, { y: 20, opacity: 0 });
-            
-            // Animate in: characters move up from bottom with stagger
-            gsap.to(letters, {
-              y: 0,
-              opacity: 1,
-              duration: 0.3,
-              stagger: 0.03,
-              ease: "power3.out",
-            });
-          }
-        });
-      };
-
-      const onLeave = () => {
-        gsap.killTweensOf(letters);
-        
-        // Smooth reset to original position
-        gsap.to(letters, {
-          y: 0,
-          opacity: 1,
-          duration: 0.2,
-          ease: "power2.out",
-        });
-      };
-
-      item.addEventListener("mouseenter", onEnter);
-      item.addEventListener("mouseleave", onLeave);
-
-      return () => {
-        item.removeEventListener("mouseenter", onEnter);
-        item.removeEventListener("mouseleave", onLeave);
-      };
-    });
-  }, []);
-
-  const splitChars = (text: string) =>
-    text.split("").map((char, i) => (
-      <span key={i} className="char inline-block opacity-100">
-        {char}
-      </span>
-    ));
+    setActiveNav(pathname);
+  }, [pathname]);
 
   const handleNavClick = (link: string) => {
     setActiveNav(link);
@@ -92,20 +90,16 @@ export default function NavBar() {
 
   return (
     <div className="my-10 fixed top-0 left-0 right-0 z-50 ">
-      <nav className="max-w-7xl mx-auto flex justify-between items-center h-12 px-4 sm:px-6 lg:px-8">
+      <nav className="max-w-7xl mx-auto flex justify-between items-center h-12 px-4 sm:px-6 lg:px-0">
         {/* Logo */}
         <div className="text-xl font-bold">LOGO</div>
-
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center  gap-4 lg:gap-8 nav-bg h-full justify-center rounded-full">
+        <div className="hidden md:flex items-center gap-4 lg:gap-8 nav-bg h-full justify-center rounded-full">
           {navContents.map((item, index) => {
             const isActive = item.link === activeNav;
             return (
               <div
                 key={index}
-                ref={(el) => {
-                  itemsRef.current[index] = el;
-                }}
                 className={`relative group text-sm lg:text-base font-medium h-full flex items-center px-4 lg:px-8 rounded-full cursor-pointer transition-all duration-200 ${
                   isActive
                     ? "bg-[#EFF4FF] text-blue-800"
@@ -119,25 +113,24 @@ export default function NavBar() {
                     isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                   }`}
                 />
-
                 {/* Animated letters */}
                 <div className="flex pl-0.5 lg:pl-1 overflow-hidden">
                   <Link href={item.link} className="flex">
-                    {splitChars(item.title)}
+                    <TextRoll className="tracking-tight">
+                      {item.title}
+                    </TextRoll>
                   </Link>
                 </div>
               </div>
             );
           })}
         </div>
-
         {/* Desktop Button */}
         <div className="hidden md:block">
           <button className="bg-blue-600 text-white px-4 lg:px-6 py-2 rounded-full text-sm lg:text-base font-medium hover:bg-blue-700 transition-colors">
             Get Started
           </button>
         </div>
-
         {/* Mobile Menu Button */}
         <button
           className="md:hidden flex flex-col w-6 h-6 justify-center items-center space-y-1"
@@ -159,7 +152,6 @@ export default function NavBar() {
             }`}
           />
         </button>
-
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div className="fixed inset-0 bg-blue-800 z-40 md:hidden pt-20">
@@ -189,7 +181,6 @@ export default function NavBar() {
                   </Link>
                 );
               })}
-              
               {/* Mobile Button */}
               <button className="w-full bg-blue-600 text-white py-4 rounded-2xl text-lg font-medium hover:bg-blue-700 transition-colors mt-4">
                 Get Started

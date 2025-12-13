@@ -23,7 +23,7 @@ export default function LiveClock() {
   }, []);
 
   return (
-    <p className="text-primary font-medium text-sm mt-2">
+    <p className="text-primary font-medium text-sm ">
       {time}
     </p>
   );
