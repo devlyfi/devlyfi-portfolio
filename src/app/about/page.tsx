@@ -1,18 +1,12 @@
 import type { Metadata } from 'next';
 import { aboutPageData } from '@/lib/data/dummy';
-
-
-
-import AboutUsHero from '@/components/about/AboutUsHero';
-
 import MissionVisionSection from '@/components/about/MissionVisionSection';
 import ValuesSection from '@/components/about/ValuesSection';
 import Teams from '@/components/about/Teams';
-import { HoverExpand_001 } from '@/components/shared/ExpandOnHover';
-import RecentWorks from '@/components/home/RecentWorks';
 import CommonHero from '@/components/shared/CommonHero';
 import InfiniteImageScroll from '@/components/about/InfiniteImageScroll';
 import FAQ from '@/components/shared/Faq';
+import MiniCTA from '@/components/shared/MiniCTA';
 
   const images = [
     {
@@ -128,6 +122,8 @@ export default function AboutPage() {
 
       <Teams  />
       <FAQ theme='light' items={aboutPageData.faq}></FAQ>
+
+      <MiniCTA/>
     </main>
   );
 }
