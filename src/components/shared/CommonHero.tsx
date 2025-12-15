@@ -73,7 +73,7 @@ export default function CommonHero({ title, subtitle, className = "", tools }: C
              {title || " What we offer — clear direction, thoughtful design."}
             </h2>
             <p ref={subtitleRef} className='text-base text-gray-600'>
-              From brand identity to digital interfaces, Osei helps creative businesses build clarity and presence. Each service is tailored, strategic, and designed to grow with you.
+              {subtitle || "From brand identity to digital interfaces, Osei helps creative businesses build clarity and presence. Each service is tailored, strategic, and designed to grow with you."}
             </p>
           </div>
         </div>

@@ -30,40 +30,15 @@ export default function ServiceDetailNew({ service }: ServiceDetailNewProps) {
       {/* What We Offer - FULLY VISIBLE BENTO GRID */}
       <ServicesGrid service={service}></ServicesGrid>
 
-      <section>
+      {/* <section>
         <WhyChooseUsSection></WhyChooseUsSection>
-      </section>
+      </section> */}
 
       {/* Our Process - FULLY VISIBLE CARDS */}
-      <div className="bg-[#121315]">
-        <OurProcess></OurProcess>
+      <div className="">
+        <OurProcess service={service}></OurProcess>
       </div>
-      {/* <div className="">
-        <OurProcess></OurProcess>
-      </div> */}
-      {/* Tools */}
-      {/* <section className="py-20 md:py-32 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Tools & Technologies
-            </h2>
-            <p className="text-xl text-gray-600">
-              We use industry-leading tools to build exceptional solutions
-            </p>
-          </div>
-          <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-4">
-            {tools.map((tool, i) => (
-              <div
-                key={i}
-                className="tool-item px-6 py-3 rounded-full bg-white border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-500/5 transition-all duration-300 shadow-sm hover:shadow-md"
-              >
-                <span className="text-gray-900 font-medium">{tool}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
+     
 
       {/* Related Services */}
       <section className=" ">
@@ -91,7 +66,7 @@ export default function ServiceDetailNew({ service }: ServiceDetailNewProps) {
       </section>
 
       <div className="min-h-screen my-14 md:my-24 lg:my-32">
-        <FAQ items={generalFAQ}></FAQ>
+        <FAQ theme="light" items={generalFAQ}></FAQ>
       </div>
 
       <CTASection />

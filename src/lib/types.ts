@@ -1,5 +1,7 @@
 // Type definitions for the Devlyfi portfolio website
 
+import { StaticImageData } from "next/image";
+
 export interface NavItem {
   label: string;
   href: string;
@@ -33,7 +35,13 @@ export interface Service {
   cover: string;
   color?: string;
   bgColor?: string;
-  process?: string[];
+  process?: {
+    id: number;
+    title: string;
+    description: string;
+    tasks: string[];
+    icon: StaticImageData;
+  }[];
   featureImages?: string[]; // Images for bento grid cards at index 0 and 2
 }
 

@@ -1,3 +1,4 @@
+import { ImageIcons, ThreeDIcon } from "../image/image";
 import {
   CompanyInfo,
   NavigationData,
@@ -347,16 +348,95 @@ export const services: Service[] = [
       "/images/services/web.jpg",
     ],
     cover:
-      "/images/services/web-development.jpg",
+      "/images/services/web2.jpg",
     video: "/videos/services/web.mp4",
     process: [
-      "Discovery Phase: Understanding your vision and goals | We conduct in-depth analysis of your business objectives, target audience, market positioning, and technical requirements.",
-      "Design Architecture: Planning the blueprint | Our team creates detailed wireframes, interactive mockups, and clickable prototypes to visualize the complete user experience.",
-      "Agile Development: Building with precision | Using agile methodology, we develop your application in iterative two-week sprints with continuous integration.",
-      "Quality Assurance: Ensuring perfection | Comprehensive testing strategy including automated unit tests, integration tests, performance testing, and security audits.",
-      "Production Launch: Going live seamlessly | We deploy your application to production with zero downtime using blue-green deployment strategies.",
-      "Ongoing Support: Continuous improvement | Post-launch maintenance includes 24/7 monitoring, regular security updates, and performance optimization.",
+      {
+        id: 1,
+        title: "Understanding Your Needs",
+        description:
+          "We conduct in-depth analysis of your business objectives, target audience, market positioning, and technical requirements.",
+        tasks: [
+          "Analysis",
+          "Objectives",
+          "Audience",
+          "Requirements",
+          "Planning",
+        ],
+        icon: ThreeDIcon.searchBar
+      },
+      {
+        id: 2,
+        title: "Design and Prototyping",
+        description:
+          "We create visually appealing and user-friendly prototypes to present your vision and gather feedback.",
+        tasks: [
+          "Design",
+          "Prototypes",
+          "UI",
+          "Feedback",
+          "Concepts",
+        ],
+        icon: ThreeDIcon.stack
+      },
+      {
+        id: 3,
+        title: "Development and Testing",
+        description:
+          "We develop and test the web application using the best practices and technologies.",
+        tasks: [
+          "Development",
+          "Coding",
+          "Testing",
+          "QA",
+          "Framework",
+        ],
+        icon: ThreeDIcon.curly
+      },
+      {
+        id: 4,
+        title: "Deployment and Maintenance",
+        description:
+          "We deploy the web application to a production environment and provide ongoing maintenance and support.",
+        tasks: [
+          "Deployment",
+          "Maintenance",
+          "Support",
+          "Monitoring",
+          "Updates",
+        ],
+        icon: ThreeDIcon.launch
+      },
+      {
+        id: 5,
+        title: "Documentation and Training",
+        description:
+          "We provide detailed documentation and training to help you use and maintain the web application.",
+        tasks: [
+          "Documentation",
+          "Training",
+          "Guides",
+          "Instructions",
+          "Support",
+        ],
+        icon: ThreeDIcon.note
+      },
+      {
+        id: 6,
+        title: "Post Launch Strategy",
+        description:
+          "We guide you through post launch strategies to optimize performance, security, and user experience.",
+        tasks: [
+          "Optimization",
+          "Security",
+          "Performance",
+          "Monitoring",
+          "Strategy",
+        ],
+        icon: ThreeDIcon.target
+      },
     ],
+
     color: "#BCBEF7",
     bgColor: "#BCBEF7",
   },
@@ -377,20 +457,106 @@ export const services: Service[] = [
       "In-app purchases and monetization",
     ],
     cover:
-      "/images/services/appdev.jpg",
-      video: "/videos/services/mobile.mp4",
+      "/images/services/mobile.jpg",
+    video: "/videos/services/mobile.mp4",
     featureImages: [
       "/images/services/mobile.jpg",
       "/images/services/mobile.jpg",
     ],
     process: [
-      "Market Research: Understanding your audience | We conduct comprehensive market analysis, competitor research, and user persona development.",
-      "Interactive Prototype: Validating the concept | Creating high-fidelity interactive prototypes and detailed user flow diagrams.",
-      "Native Development: Building with excellence | Developing native or cross-platform applications with clean architecture.",
-      "Device Testing: Ensuring compatibility | Rigorous testing across multiple devices, screen sizes, and OS versions.",
-      "Store Launch: Maximizing visibility | Complete app store optimization including compelling descriptions and screenshots.",
-      "Continuous Evolution: Growing with users | Post-launch monitoring, crash analytics, and regular feature updates.",
+      {
+        id: 1,
+        title: "Understanding Your Needs",
+        description:
+          "We conduct in-depth analysis of your business objectives, target audience, market positioning, and technical requirements.",
+        tasks: [
+          "Analysis",
+          "Objectives",
+          "Audience",
+          "Requirements",
+          "Planning",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 2,
+        title: "Design and Prototyping",
+        description:
+          "We create wireframes and prototypes to visualize the app's structure and user flow.",
+        tasks: [
+          "Wireframes",
+          "Prototypes",
+          "UI",
+          "Flow",
+          "Concepts",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 3,
+        title: "Development and Testing",
+        description:
+          "We build the app using the chosen framework and tools, and perform quality assurance checks to ensure it meets your requirements.",
+        tasks: [
+          "Development",
+          "Coding",
+          "Framework",
+          "Testing",
+          "QA",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 4,
+        title: "Deployment and Launch",
+        description:
+          "We deploy the app to the App Store or Play Store, and provide post-launch support and maintenance.",
+        tasks: [
+          "Deployment",
+          "Launch",
+          "Stores",
+          "Verification",
+          "Support",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 5,
+        title: "Post Launch Strategy",
+        description:
+          "We guide you through marketing and growth strategies to help your app succeed in the market.",
+        tasks: [
+          "Marketing",
+          "Growth",
+          "Strategy",
+          "Promotion",
+          "Analysis",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 6,
+        title: "Ongoing Support",
+        description:
+          "We offer ongoing support and maintenance to ensure your app remains up-to-date and secure.",
+        tasks: [
+          "Maintenance",
+          "Updates",
+          "Security",
+          "Support",
+          "Monitoring",
+        ],
+        icon:ImageIcons.cube
+
+      },
     ],
+
+
     color: "#FCE8F4",
     bgColor: "#FCE8F4",
   },
@@ -419,13 +585,106 @@ export const services: Service[] = [
       "/images/services/uiuxhigh.png",
     video: "/videos/services/ui.mp4",
     process: [
-      "User Research: Understanding real needs | Deep dive into user behavior, pain points, and expectations.",
-      "Information Architecture: Structuring content logically | Creating intuitive information architecture and site maps.",
-      "Wireframe Creation: Establishing the foundation | Developing low-fidelity sketches and detailed wireframes.",
-      "Visual Design: Bringing beauty to function | Crafting high-fidelity mockups with your brand identity.",
-      "Interactive Prototype: Testing the experience | Building fully interactive prototypes that simulate the final product.",
-      "Usability Testing: Validating with users | Conducting moderated user testing sessions to gather feedback.",
+      {
+        id: 1,
+        title: "Understanding Your Needs",
+        description:
+          "We conduct in-depth analysis of your business objectives, target audience, market positioning, and technical requirements.",
+        tasks: [
+          "Analysis",
+          "Objectives",
+          "Audience",
+          "Positioning",
+          "Requirements",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 2,
+        title: "Research and Personas",
+        description:
+          "We conduct user research and create personas to understand your users and their needs.",
+        tasks: [
+          "Research",
+          "Personas",
+          "Users",
+          "Insights",
+          "Data",
+        ],
+        icon: ImageIcons.search
+      },
+      {
+        id: 3,
+        title: "Ideation & Strategy",
+        description:
+          "We brainstorm ideas and develop a design strategy that aligns with your business goals.",
+        tasks: [
+          "Ideation",
+          "Strategy",
+          "Planning",
+          "Concepts",
+          "Alignment",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 4,
+        title: "Wireframing and Prototyping",
+        description:
+          "We create wireframes and prototypes to visualize the app's structure and user flow.",
+        tasks: [
+          "Wireframes",
+          "Prototypes",
+          "Structure",
+          "Flow",
+          "Visualization",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 5,
+        title: "Visual Design and Branding",
+        description:
+          "We create visually appealing and user-friendly interfaces that align with your brand identity.",
+        tasks: [
+          "Design",
+          "Branding",
+          "UI",
+          "Aesthetics",
+          "Consistency",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 6,
+        title: "Interaction Design",
+        description:
+          "We design interactive elements and interactions that enhance user experience and engagement.",
+        tasks: [
+          "Interactions",
+          "Usability",
+          "UX",
+          "Engagement",
+          "Feedback",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 7,
+        title: "Usability Testing and Validation",
+        description:
+          "We conduct usability testing with real users to validate the design and identify areas for improvement.",
+        tasks: [
+          "Testing",
+          "Validation",
+          "Feedback",
+          "Improvement",
+          "Analysis",
+        ],
+        icon: ImageIcons.cube
+      },
     ],
+
     color: "#B0C2F4",
     bgColor: "#B0C2F4",
   },
@@ -455,13 +714,107 @@ export const services: Service[] = [
       "/images/services/ainew.jpg",
     video: "/videos/services/ai.mp4",
     process: [
-      "Discovery: Understanding your goals | Identifying opportunities where AI can bring measurable impact.",
-      "Data Strategy: Preparing high-quality datasets | Structuring, cleaning, and optimizing data for model training.",
-      "Model Selection: Choosing the right AI approach | Selecting or fine-tuning models for NLP, vision, or predictive tasks.",
-      "AI Development: Building smart systems | Developing custom AI models tailored to your business needs.",
-      "Integration & Automation: Making AI work for you | Seamlessly integrating AI features into your apps and workflows.",
-      "Evaluation & Optimization: Ensuring peak performance | Continuous testing, refinement, and improvement.",
+      {
+        id: 1,
+        title: "Problem Identification & Use-Case Analysis",
+        description:
+          "We analyze your business challenges and identify where AI can deliver real value through automation, prediction, or intelligence.",
+        tasks: [
+          "Analysis",
+          "Challenges",
+          "UseCases",
+          "Automation",
+          "Insights",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 2,
+        title: "Data Assessment & Preparation",
+        description:
+          "We evaluate available data sources, clean and structure the data, and prepare it for training reliable AI models.",
+        tasks: [
+          "Data",
+          "Cleaning",
+          "Structuring",
+          "Validation",
+          "Preparation",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 3,
+        title: "AI Model Selection & Architecture",
+        description:
+          "We choose the most suitable AI models, frameworks, and system architecture based on performance, scalability, and cost.",
+        tasks: [
+          "Selection",
+          "Models",
+          "Architecture",
+          "Frameworks",
+          "Scalability",
+        ],
+        icon: ImageIcons.dev
+      },
+      {
+        id: 4,
+        title: "Model Development & Training",
+        description:
+          "We develop, train, and fine-tune AI models using real-world data to ensure accuracy and reliability.",
+        tasks: [
+          "Development",
+          "Training",
+          "Tuning",
+          "Validation",
+          "Optimization",
+        ],
+        icon: ImageIcons.search
+      },
+      {
+        id: 5,
+        title: "AI Integration & Automation",
+        description:
+          "We integrate AI models into your existing systems, APIs, or workflows to enable intelligent automation and decision-making.",
+        tasks: [
+          "Integration",
+          "APIs",
+          "Automation",
+          "Workflows",
+          "Deployment",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 6,
+        title: "Testing, Validation & Performance Tuning",
+        description:
+          "We rigorously test AI outputs, validate results, and optimize models for speed, accuracy, and stability.",
+        tasks: [
+          "Testing",
+          "Validation",
+          "Optimization",
+          "Performance",
+          "Accuracy",
+        ],
+        icon: ImageIcons.starNew
+      },
+      {
+        id: 7,
+        title: "Deployment, Monitoring & Continuous Improvement",
+        description:
+          "We deploy AI solutions to production, monitor performance, retrain models when needed, and continuously improve results.",
+        tasks: [
+          "Deployment",
+          "Monitoring",
+          "Retraining",
+          "Improvement",
+          "Support",
+        ],
+        icon: ImageIcons.cube
+      },
     ],
+
+
     color: "#C3C7F7",
     bgColor: "#C3C7F7",
   }
@@ -490,13 +843,94 @@ export const services: Service[] = [
       "/images/services/cloud.jpg",
     ],
     process: [
-      "Infrastructure Assessment: Evaluating current state | We thoroughly evaluate your existing infrastructure and identify optimization opportunities.",
-      "Migration Strategy: Planning the journey | Developing a comprehensive cloud migration roadmap with detailed cost projections.",
-      "Data Migration: Moving seamlessly | Executing carefully planned data migration with zero downtime.",
-      "Cloud Implementation: Building infrastructure | Setting up secure cloud infrastructure with proper network configuration.",
-      "Performance Optimization: Maximizing efficiency | Fine-tuning cloud resources and implementing auto-scaling policies.",
-      "Ongoing Management: Maintaining excellence | Continuous monitoring, proactive security updates, and cost optimization.",
+      {
+        id: 1,
+        title: "Cloud Readiness Assessment",
+        description:
+          "We analyze your existing systems, workloads, and dependencies to evaluate cloud suitability and identify improvement opportunities.",
+        tasks: [
+          "Assessment",
+          "Analysis",
+          "Workloads",
+          "Dependencies",
+          "Evaluation",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 2,
+        title: "Migration Planning & Strategy",
+        description:
+          "We design a detailed cloud migration roadmap including timelines, risk mitigation, and cost estimation.",
+        tasks: [
+          "Planning",
+          "Strategy",
+          "Roadmap",
+          "Timeline",
+          "Budgeting",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 3,
+        title: "Secure Data & Application Migration",
+        description:
+          "We migrate data and applications with minimal downtime while ensuring data integrity and security.",
+        tasks: [
+          "Migration",
+          "Data",
+          "Applications",
+          "Security",
+          "Integrity",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 4,
+        title: "Cloud Infrastructure Setup",
+        description:
+          "We deploy scalable and secure cloud infrastructure with proper networking, access control, and compliance best practices.",
+        tasks: [
+          "Deployment",
+          "Infrastructure",
+          "Networking",
+          "Access",
+          "Compliance",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 5,
+        title: "Performance & Cost Optimization",
+        description:
+          "We optimize cloud resources, implement auto-scaling, and continuously improve performance while reducing costs.",
+        tasks: [
+          "Optimization",
+          "Performance",
+          "Resources",
+          "Scaling",
+          "Cost",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 6,
+        title: "Monitoring & Managed Services",
+        description:
+          "We provide continuous monitoring, security updates, backups, and ongoing maintenance to ensure reliability.",
+        tasks: [
+          "Monitoring",
+          "Security",
+          "Backups",
+          "Maintenance",
+          "Support",
+        ],
+        icon: ImageIcons.cube
+      },
     ],
+
+
     color: "#D6D7F4",
     bgColor: "#D6D7F4",
   },
@@ -524,87 +958,391 @@ export const services: Service[] = [
     cover: "/images/services/content-management-system.jpg",
     video: "/videos/services/wp.mp4",
     process: [
-      "Discovery & Planning: Understanding your goals | Analyzing requirements, user needs, and site structure.",
-      "Design Phase: Crafting the UI | Creating pixel-perfect layouts aligned with your brand identity.",
-      "Theme Development: Building the foundation | Developing custom themes with clean, scalable code.",
-      "Plugin Integration: Adding functionality | Configuring or developing plugins for advanced features.",
-      "Optimization: Ensuring speed & stability | Improving performance, caching, and core web vitals.",
-      "Launch & Deployment: Going live smoothly | Final testing, migration, and deployment with zero downtime.",
-      "Maintenance: Long-term support | Regular updates, backups, and security monitoring."
+      {
+        id: 1,
+        title: "Discovery & Planning",
+        description:
+          "We understand your goals by analyzing requirements, user needs, and overall site structure.",
+        tasks: [
+          "Requirements",
+          "Analysis",
+          "Planning",
+          "Structure",
+          "Alignment",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 2,
+        title: "Design Phase",
+        description:
+          "We create pixel-perfect UI layouts aligned with your brand identity and business objectives.",
+        tasks: [
+          "Layouts",
+          "Branding",
+          "UI",
+          "Consistency",
+          "Approval",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 3,
+        title: "Theme Development",
+        description:
+          "We build custom themes with clean, scalable, and maintainable code.",
+        tasks: [
+          "Themes",
+          "Coding",
+          "Scalability",
+          "Testing",
+          "Optimization",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 4,
+        title: "Plugin Integration",
+        description:
+          "We configure or develop plugins to add advanced functionality tailored to your needs.",
+        tasks: [
+          "Plugins",
+          "Integration",
+          "Customization",
+          "Configuration",
+          "Testing",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 5,
+        title: "Optimization",
+        description:
+          "We improve performance, caching, and core web vitals to ensure speed and stability.",
+        tasks: [
+          "Performance",
+          "Caching",
+          "Vitals",
+          "Speed",
+          "Stability",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 6,
+        title: "Launch & Deployment",
+        description:
+          "We perform final testing, migration, and deployment to go live smoothly with zero downtime.",
+        tasks: [
+          "Testing",
+          "Migration",
+          "Deployment",
+          "Verification",
+          "Release",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 7,
+        title: "Maintenance",
+        description:
+          "We provide long-term support including updates, backups, and continuous security monitoring.",
+        tasks: [
+          "Updates",
+          "Backups",
+          "Monitoring",
+          "Security",
+          "Support",
+        ],
+        icon: ImageIcons.cube
+      },
     ],
+
+
     color: "#B5BAEE",
     bgColor: "#B5BAEE",
   },
   {
-  id: "8",
-  slug: "website-maintenance",
-  title: "Website Maintenance",
-  description:
-    "Keep your website running smoothly with ongoing updates, security monitoring, performance optimization, and technical support.",
-  icon: "settings",
-  features: [
-    "Regular core, theme, and plugin updates",
-    "24/7 uptime monitoring",
-    "Security scanning & malware protection",
-    "Daily/weekly automated backups",
-    "Performance checks & optimization",
-    "Bug fixes and technical support",
-    "Content updates and small design tweaks",
-    "Broken link checks & error resolution"
-  ],
-  featureImages: [
-    "/images/services/main.jpg",
-    "/images/services/main.jpg"
-  ],
-  cover: "/images/services/sm.jpg",
-  video: "/videos/services/maintenance.mp4",
-  process: [
-    "Initial Audit: Evaluating site health | Assessing performance, security, and update requirements.",
-    "Setup & Configuration: Preparing the system | Implementing monitoring tools, backup routines, and security layers.",
-    "Regular Updates: Staying up-to-date | Applying updates to core files, themes, and plugins without downtime.",
-    "Performance Optimization: Keeping things fast | Caching, image optimization, and database cleanup.",
-    "Security Monitoring: Protecting your website | Malware scanning, firewall tuning, and vulnerability checks.",
-    "Continuous Support: Immediate assistance | Quick fixes, debugging, and monthly maintenance reports.",
-    "Backup & Restore: Peace of mind | Scheduled backups and guaranteed restoration when needed."
-  ],
-  color: "#B5BAEE",
-  bgColor: "#B5BAEE"
-},{
-  id: "9",
-  slug: "project-management",
-  title: "Project Management",
-  description:
-    "Protect your time, budget, and peace of mind with expert project managers who understand both business and technical execution.",
-  icon: "clipboard-check",
-  features: [
-    "End-to-end project planning and execution",
-    "Technical oversight to prevent scams and miscommunication",
-    "Vendor and developer coordination",
-    "Full-time, part-time, or meeting-based engagement options",
-    "Milestone tracking and transparent reporting",
-    "Scope management and requirement documentation",
-    "Quality assurance and delivery verification",
-    "Budget monitoring and risk management"
-  ],
-  featureImages: [
-    "/images/services/pm.jpg",
-    "/images/services/pm2.jpg"
-  ],
-  cover: "/images/services/pmmm.jpg",
-  video: "/videos/services/pm.mp4",
-  process: [
-    "Discovery & Consultation: Understanding your goals | Identifying your project needs, challenges, and ideal workflow.",
-    "Scope Definition: Setting the foundation | Creating clear, scam-proof requirements so no one can mislead or overcharge you.",
-    "Strategy & Planning: Building the roadmap | Budgeting, timelines, milestones, and resource planning handled by experts.",
-    "Team Coordination: Managing developers & vendors | We communicate, verify work, solve problems, and prevent technical confusion.",
-    "Progress Monitoring: Staying on track | Daily/weekly updates, timeline control, and obstacles resolved before they become costly.",
-    "Quality Check: Validating delivery | Ensuring all technical tasks meet standards before you accept anything.",
-    "Launch & Handover: Stress-free completion | Final documentation, knowledge transfer, and post-launch support.",
-    "Flexible Engagement: Work on your terms | Hire us per meeting, per hour, event-based, or full-project management."
-  ],
-  color: "#B5BAEE",
-  bgColor: "#B5BAEE"
-}
+    id: "8",
+    slug: "website-maintenance",
+    title: "Website Maintenance",
+    description:
+      "Keep your website running smoothly with ongoing updates, security monitoring, performance optimization, and technical support.",
+    icon: "settings",
+    features: [
+      "Regular core, theme, and plugin updates",
+      "24/7 uptime monitoring",
+      "Security scanning & malware protection",
+      "Daily/weekly automated backups",
+      "Performance checks & optimization",
+      "Bug fixes and technical support",
+      "Content updates and small design tweaks",
+      "Broken link checks & error resolution"
+    ],
+    featureImages: [
+      "/images/services/main.jpg",
+      "/images/services/main.jpg"
+    ],
+    cover: "/images/services/sm.jpg",
+    video: "/videos/services/maintenance.mp4",
+    process: [
+      {
+        id: 1,
+        title: "Initial Audit",
+        description:
+          "We assess overall site health by evaluating performance, security status, and update requirements.",
+        tasks: [
+          "Assessment",
+          "Performance",
+          "Security",
+          "Updates",
+          "Reporting",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 2,
+        title: "Setup & Configuration",
+        description:
+          "We prepare the system by implementing monitoring tools, automated backups, and security layers.",
+        tasks: [
+          "Monitoring",
+          "Backups",
+          "Configuration",
+          "Security",
+          "Automation",
+        ],
+        icon: ImageIcons.cube
+      },
+      {
+        id: 3,
+        title: "Regular Updates",
+        description:
+          "We keep your website up-to-date by safely applying core, theme, and plugin updates without downtime.",
+        tasks: [
+          "Core",
+          "Themes",
+          "Plugins",
+          "Testing",
+          "Deployment",
+        ],
+        icon: ImageIcons.cube
+
+      },
+      {
+        id: 4,
+        title: "Performance Optimization",
+        description:
+          "We improve speed and stability through caching, image optimization, and database cleanup.",
+        tasks: [
+          "Caching",
+          "Optimization",
+          "Images",
+          "Database",
+          "Speed",
+        ],
+        icon: ImageIcons.cube
+
+      },
+      {
+        id: 5,
+        title: "Security Monitoring",
+        description:
+          "We protect your website with continuous malware scanning, firewall tuning, and vulnerability checks.",
+        tasks: [
+          "Scanning",
+          "Firewall",
+          "Hardening",
+          "Monitoring",
+          "Alerts",
+        ],
+        icon: ImageIcons.cube
+
+      },
+      {
+        id: 6,
+        title: "Continuous Support",
+        description:
+          "We provide fast assistance including bug fixes, debugging, and monthly maintenance reports.",
+        tasks: [
+          "Support",
+          "Debugging",
+          "Fixes",
+          "Reports",
+          "Assistance",
+        ],
+        icon: ImageIcons.cube
+
+      },
+      {
+        id: 7,
+        title: "Backup & Restore",
+        description:
+          "We ensure peace of mind with scheduled backups and guaranteed restoration when needed.",
+        tasks: [
+          "Backups",
+          "Scheduling",
+          "Storage",
+          "Recovery",
+          "Verification",
+        ],
+        icon: ImageIcons.cube
+
+      },
+    ],
+
+
+    color: "#B5BAEE",
+    bgColor: "#B5BAEE"
+  }, {
+    id: "9",
+    slug: "project-management",
+    title: "Project Management",
+    description:
+      "Protect your time, budget, and peace of mind with expert project managers who understand both business and technical execution.",
+    icon: "clipboard-check",
+    features: [
+      "End-to-end project planning and execution",
+      "Technical oversight to prevent scams and miscommunication",
+      "Vendor and developer coordination",
+      "Full-time, part-time, or meeting-based engagement options",
+      "Milestone tracking and transparent reporting",
+      "Scope management and requirement documentation",
+      "Quality assurance and delivery verification",
+      "Budget monitoring and risk management"
+    ],
+    featureImages: [
+      "/images/services/pm.jpg",
+      "/images/services/pm2.jpg"
+    ],
+    cover: "/images/services/pmmm.jpg",
+    video: "/videos/services/pm.mp4",
+    process: [
+      {
+        id: 1,
+        title: "Discovery & Consultation",
+        description:
+          "We understand your goals by identifying project needs, challenges, and the ideal workflow.",
+        tasks: [
+          "Meetings",
+          "Requirements",
+          "Analysis",
+          "Review",
+          "Alignment",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 2,
+        title: "Scope Definition",
+        description:
+          "We define clear, scam-proof requirements so no one can mislead or overcharge you.",
+        tasks: [
+          "Features",
+          "Documentation",
+          "Deliverables",
+          "Boundaries",
+          "Approval",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 3,
+        title: "Strategy & Planning",
+        description:
+          "We build a realistic roadmap covering budget, timelines, milestones, and resources.",
+        tasks: [
+          "Roadmap",
+          "Budgeting",
+          "Timelines",
+          "Milestones",
+          "Risks",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 4,
+        title: "Team Coordination",
+        description:
+          "We manage developers and vendors by verifying work, solving issues, and reducing confusion.",
+        tasks: [
+          "Communication",
+          "Coordination",
+          "Verification",
+          "Clarification",
+          "Resolution",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 5,
+        title: "Progress Monitoring",
+        description:
+          "We ensure the project stays on track with regular updates and proactive issue handling.",
+        tasks: [
+          "Tracking",
+          "Reporting",
+          "Control",
+          "Monitoring",
+          "Adjustments",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 6,
+        title: "Quality Check",
+        description:
+          "We validate all deliverables to ensure they meet agreed standards before acceptance.",
+        tasks: [
+          "Validation",
+          "Testing",
+          "Review",
+          "Compliance",
+          "Approval",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 7,
+        title: "Launch & Handover",
+        description:
+          "We ensure stress-free completion with documentation, knowledge transfer, and support.",
+        tasks: [
+          "Deployment",
+          "Documentation",
+          "Transfer",
+          "Support",
+          "Closure",
+        ],
+        icon:ImageIcons.cube
+
+      },
+      {
+        id: 8,
+        title: "Flexible Engagement",
+        description:
+          "We offer engagement models that work on your terms and budget.",
+        tasks: [
+          "Consulting",
+          "Hourly",
+          "OnDemand",
+          "Management",
+          "Customization",
+        ],
+        icon:ImageIcons.cube
+
+      },
+    ],
+
+    color: "#B5BAEE",
+    bgColor: "#B5BAEE"
+  }
 
 
 ];

@@ -1,104 +1,169 @@
+import { Avatar, ThreeDIcon } from "@/lib/image/image";
 import { Service } from "@/lib/types";
-import React from "react";
+import { Star } from "lucide-react";
+import Image from "next/image";
+
 
 function ServicesGrid({ service }: { service: Service }) {
   return (
-    <section className=" bg-secondary overflow-visible py-14 md:py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="md:max-w-7xl mx-auto overflow-visible py-14 md:py-20">
+      <div className="px-4 md:px-6">
         <div className="text-center mb-12 max-w-2xl mx-auto md:max-w-3xl">
-          <h2 className=" mb-6  leading-tight">
+          <h2 className="mb-6 leading-tight">
             Your Ideas, Our Expertise, Impactful Results
           </h2>
-          <p className="text-md text-gray-700   leading-relaxed">
+          <p className="text-md text-gray-700 leading-relaxed">
             Comprehensive solutions tailored to your needs
           </p>
         </div>
 
-        {/* Bento Grid - 3x3 Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto auto-rows-[minmax(160px,auto)]">
-          {service.features?.map((feature, index) => {
-            // Define grid span classes per breakpoint
-            const gridClasses = (() => {
-              if (index === 0) {
-                // Card 1: Big image - 2 rows × 1 col on md, 2x2 on lg
-                return "md:row-span-2 md:col-span-1 lg:col-span-2 lg:row-span-2";
-              }
-              if (index === 1) {
-                // Card 2: Content - top right on lg
-                return "lg:col-span-1 lg:row-span-1";
-              }
-              if (index === 2) {
-                // Card 3: Second image - HIDDEN on md, shown only on lg (2 rows × 1 col)
-                return "hidden lg:block lg:col-span-1 lg:row-span-2";
-              }
-              if (index === 3) {
-                // Card 4: Content - bottom left area on md/lg
-                return "md:col-span-1 lg:col-span-1";
-              }
-              if (index === 4) {
-                // Card 5: Content - spans 2 columns on md, 1 col + 2 rows on lg
-                return "md:col-span-1 lg:col-span-1 lg:row-span-2";
-              }
-              if (index === 5) {
-                // Card 6: Last card - spans 2 columns on md, 2 columns on lg (full bottom row)
-                return "md:col-span-1 lg:col-span-2";
-              }
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap- w-full ">
+          {/* First column - Split in two with VISIBLE gap */}
+          <div className="h-full grid grid-cols-1 md:grid-rows-2 gap-y-4">
+            <div className="relative rounded-2xl overflow-hidden p-6 flex flex-col justify-between">
+              {/* Background Image */}
+              <Image
+                src="/images/grid-2.webp"
+                alt="Background"
+                fill
+                className="object-cover"
+              />
 
-              return "md:col-span-2 lg:col-span-2";
-            })();
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/20" />
 
-            const isImageOnly = index === 0 || index === 2;
-
-            // Skip rendering index 2 entirely on md and below (optional, but cleaner)
-            if (index === 2) {
-              return null; // Or keep the div with hidden + lg:block as above
-            }
-
-            return (
-              <div
-                key={index}
-                className={`offering-item group relative rounded-xl border-2 border-gray-200 transition-all duration-500 cursor-pointer bg-white overflow-hidden ${gridClasses}`}
-                style={{ minHeight: "160px" }}
-              >
-                {/* Image-only cards */}
-                {isImageOnly ? (
-                  <div className="relative z-10 h-full w-full">
-                    {service.featureImages &&
-                      service.featureImages[index === 0 ? 0 : 1] && (
-                        <div
-                          className="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110"
-                          style={{
-                            backgroundImage: `url(${
-                              service.featureImages[index === 0 ? 0 : 1]
-                            })`,
-                          }}
-                        />
-                      )}
-                  </div>
-                ) : (
-                  /* Content cards */
-                  <div className="relative z-10 h-full flex flex-col justify-center p-5 hover:bg-[#121315] hover:text-white transition duration-300">
-                    <div className="space-y-2">
-                      <h3 className="text-base lg:text-lg font-bold transition-colors duration-300">
-                        {feature}
-                      </h3>
-                      <p className="text-xs lg:text-sm leading-relaxed transition-colors duration-300">
-                        {index === 1
-                          ? "Innovative solutions tailored to meet your specific business requirements and objectives."
-                          : index === 3
-                          ? "Comprehensive approach combining strategy, design, and technology for optimal results."
-                          : index === 4
-                          ? "End-to-end services ensuring seamless implementation and long-term success."
-                          : "Strategic solutions designed to accelerate growth and maximize business value."}
-                      </p>
+              {/* Avatars (Top) */}
+              <div className="relative z-10">
+                <div className="flex -space-x-3">
+                  {[Avatar.avatar1, Avatar.avatar2, Avatar.avatar3].map((item, index) => (
+                    <div
+                      key={index}
+                      className="rounded-full w-14 h-14 flex items-center justify-center backdrop-blur-xl shadow-md overflow-hidden"
+                    >
+                      <Image
+                        src={item}
+                        alt="Avatar"
+                        className="object-cover w-full translate-y-2 h-full rounded-full"
+                        width={400}
+                        height={400}
+                      />
                     </div>
+                  ))}
+
+                  <div className="rounded-full w-14 h-14 backdrop-blur-xl flex items-center justify-center shadow-md">
+                    <p className="text-lg text-white font-medium ">12+</p>
                   </div>
-                )}
+                </div>
               </div>
-            );
-          })}
+
+              {/* Text (Bottom) */}
+              <div className="relative z-10 text-white">
+                <p className="text-2xl font-medium">12+ Creative Minds</p>
+                <small className="opacity-90">United minds working together</small>
+              </div>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-linear-to-l from-blue-50 via-blue-100 to-primary/40 flex flex-col justify-between">
+              {/* Star Icon (Top) */}
+              <div className="mb-6">
+                <Image
+                  src={ThreeDIcon.star}
+                  alt="Rating Star"
+                  className="w-18 h-16 rotate-30 rounded-2xl"
+                  height={2000}
+                  width={2000}
+                />
+              </div>
+
+              {/* Text Content (Bottom) */}
+              <div>
+                <p className="text-2xl font-medium">
+                  <span className="text-3xl font-medium">4.8/5</span> Customer Satisfaction
+                </p>
+                <small className="text-gray-700 ">We value your feedback</small>
+              </div>
+            </div>
+          </div>
+
+            {/* Second column - Simple centered content */}
+            <div className="bg-secondary relative h-full rounded-2xl flex items-center justify-center min-h-[200px] md:min-h-[400px]">
+              <Image
+                src="/images/human-vr.webp"
+                alt="Hero Image"
+                className="object-cover w-full h-full rounded-2xl"
+                height={2000}
+                width={2000}
+                priority
+              />
+              <div className="absolute left-0 bottom-0 p-4">
+
+                <p className=" text-xl text-white font-medium">In this era of Artificial Intelligence</p>
+                <small className="text-white">We are here to help your business succeed, and to make your vision a reality</small>
+              </div>
+            </div>
+
+
+            <div className="md:col-span-2 space-y-4 md:space-y-6">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-6 ">
+                <div className="md:w-1/2 h-48 md:h-60 bg-linear-to-l from-blue-50 via-blue-100 to-primary/40 rounded-2xl flex items-center justify-center relative">
+                  <Image
+                    src="/images/infinite.jpg"
+                    alt="Hero Image"
+                    className="object-cover w-full h-full rounded-2xl"
+                    height={2000}
+                    width={2000}
+                    priority
+                  />
+                  {/* <div className="absolute inset-0 bg-black/10 rounded-2xl" /> */}
+
+                  <div className="absolute left-0 bottom-0 p-4  ">
+                    <p className="  text-base  font-medium  ">
+                      We provide infinite possibilities with unlimited creativity
+                    </p>
+
+                  </div>
+                </div>
+                <div className="md:w-1/2 h-48 md:h-60 bg-linear-to-l from-blue-50 via-blue-100 to-primary/40 rounded-2xl flex items-center justify-center relative">
+                  <Image
+                    src="/images/cat2.jpg"
+                    alt="Hero Image"
+                    className="object-cover w-full h-full rounded-2xl"
+                    height={2000}
+                    width={2000}
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-black/15 rounded-2xl" />
+
+                  <div className="absolute left-0 bottom-0 p-4">
+                    <p className="text-base text-white  font-medium  ">
+                      From start to finish, we stand with our clients, offering continuous support at every stage.
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+
+              {/* Full width bottom section */}
+              <div className="bg-primary h-48 md:h-60 rounded-2xl flex items-center justify-center">
+
+                <Image
+                  src="/images/3dUI.jpg"
+                  alt="Hero Image"
+                  className="object-cover w-full h-full rounded-2xl"
+                  height={2000}
+                  width={2000}
+                  priority
+                />
+                <div className="absolute left-0 bottom-0 p-4">
+                  <p className="text-base text-white  font-medium  ">
+                    From start to finish, we stand with our clients, offering continuous support at every stage.
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
     </section>
   );
 }
