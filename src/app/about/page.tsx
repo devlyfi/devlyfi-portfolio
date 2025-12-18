@@ -51,7 +51,7 @@ const images = [
   },
   {
     src: "/images/x.com/4.jpeg",
-    alt: "Illustrations by my fav AarzooAly",
+    alt: "Illustrations by my fav AarzooAly.",
     code: "# 23",
   },
 ];
