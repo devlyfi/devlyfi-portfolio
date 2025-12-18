@@ -7,6 +7,8 @@ import AnimatedButton from '../ui/AnimatedButton';
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import LiveClock from '../shared/LiveClock';
+import Image from 'next/image';
+import { ThreeDIcon } from '@/lib/image/image';
 
 type FooterItemEl = HTMLDivElement | null;
 
@@ -80,6 +82,7 @@ export default function RevealFooter() {
 
   return (
     <footer className="bg-white">
+
       <div className="bg-primary">
         <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-white text-lg leading-relaxed">
@@ -89,7 +92,7 @@ export default function RevealFooter() {
             text="Let's talk today"
             textClass="text-black!"
             className=" text-white!  px-8 h-14 rounded-full font-medium text-base"
-            // arrow={true}
+          // arrow={true}
           />
         </div>
       </div>
@@ -130,7 +133,7 @@ export default function RevealFooter() {
             </h2>
             <p className="text-gray-600">Mon to Sat 9:00am – 8:30pm</p>
             <p className="text-gray-600">Sun: Closed</p>
-           <LiveClock />
+            <LiveClock />
 
           </div>
         </div>
@@ -168,6 +171,7 @@ export default function RevealFooter() {
               />
             </div>
           </div>
+
 
           {/* Main Pages */}
           <div className="md:col-span-2">
@@ -254,7 +258,14 @@ export default function RevealFooter() {
             </ul>
           </div>
         </div>
-
+        <Image
+          src={ThreeDIcon.foooter}
+          alt='Footer'
+          // fill
+          width={2000}
+          height={2000}
+          className="f-ull w-full obejct-cover"
+        ></Image>
         <hr className="my-12 border-gray-200" />
 
         {/* Bottom Bar */}
@@ -286,6 +297,7 @@ export default function RevealFooter() {
           />
         </div>
       </div>
+
     </footer>
   );
 }

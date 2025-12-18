@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/lib/data/dummy";
 import Image from "next/image";
+import CustomButton from "../shared/CustomButton";
 import Link from "next/link";
 import AnimatedText from "./AnimatedText";
 import AnimatedButton from "./AnimatedButton";
@@ -13,7 +14,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollReveal() {
   const rightCardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const mobileItemsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  const [bgColor, setBgColor] = useState("#FFFFFF");
   const [isMobile, setIsMobile] = useState(false);
   const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
 
@@ -40,37 +42,7 @@ export default function ScrollReveal() {
         if (trigger) trigger.kill();
       });
       scrollTriggersRef.current = [];
-
-      // Add fade-in animation for mobile items
-      const timer = setTimeout(() => {
-        mobileItemsRef.current.forEach((item, index) => {
-          if (!item) return;
-
-          gsap.fromTo(
-            item,
-            {
-              opacity: 0,
-              y: 50,
-            },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              delay: index * 0.1,
-              scrollTrigger: {
-                trigger: item,
-                start: "top 80%",
-                end: "bottom 20%",
-                toggleActions: "play none none reverse",
-              },
-            }
-          );
-        });
-      }, 100);
-
-      return () => {
-        clearTimeout(timer);
-      };
+      return;
     }
 
     // Small delay to ensure DOM is ready
@@ -112,6 +84,18 @@ export default function ScrollReveal() {
           scrollTriggersRef.current.push(cardTimeline.scrollTrigger);
         }
       });
+
+      // Animate gallery background based on scroll
+      services.forEach((section, index) => {
+        const bgTrigger = ScrollTrigger.create({
+          trigger: `.item-${index + 1}`,
+          start: "top center",
+          end: "bottom center",
+          onEnter: () => setBgColor(section.bgColor!),
+          onEnterBack: () => setBgColor(section.bgColor!),
+        });
+        scrollTriggersRef.current.push(bgTrigger);
+      });
     }, 100);
 
     return () => {
@@ -125,24 +109,30 @@ export default function ScrollReveal() {
 
   return (
     <div>
-      <div className="gallery w-full relative">
+      <div
+        className="gallery w-full relative transition-colors duration-500 "
+      // style={{ backgroundColor: bgColor }}
+      >
         {/* Desktop/Tablet Layout */}
         {!isMobile ? (
-          <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-0">
+          <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
             <div className="flex">
-              {/* LEFT SIDE – 1/2 width, text left-aligned */}
-              <div className="left w-full md:w-1/3">
-                {services.slice(0, 5).map((section, index) => (
+              {/* LEFT SIDE – 1/3 width, text left-aligned */}
+              <div className="left w-full md:w-1/2">
+                {services.map((section, index) => (
                   <div
                     key={index}
-                    className={`left-item item-${index + 1} min-h-screen flex items-center justify-start px-4 md:px-0`}
+                    className={`left-item item-${index + 1
+                      } min-h-screen flex items-center justify-start 
+                       px-4 md:px-0 `}
                   >
                     <div>
                       <AnimatedText
                         bidirectional
                         animationType="scale"
                         type="words"
-                        textClassName="font-light! text-left! text-2xl! md:text-5xl! lg:text-7xl!"
+                        textClassName="font-light! text-left!
+                       text-2xl! md:text-3xl! lg:text-5xl!"
                         text={section.title}
                         stagger={0.2}
                         triggerStart="top 80%"
@@ -158,6 +148,9 @@ export default function ScrollReveal() {
                         triggerStart="top 90%"
                         triggerEnd="top 60%"
                       ></AnimatedText>
+                      {/* <p className="my-4 text-md text-gray-800">
+                        {section.description}
+                      </p> */}
                       <Link
                         href={`/services/${section.title
                           .replace(/\s+/g, "-")
@@ -169,44 +162,41 @@ export default function ScrollReveal() {
                           text="View More"
                           hoverColor="black"
                         ></CustomButton> */}
+                        <AnimatedButton
+                          text="View More"
+                          className={`w-1/3 md:w-1/4 flex justify-center   border-2 border-gray-00 bg-inherit!`}
+                          textClass={`text-gray-700!`}
+                        // hoverColor="black"
+
+                        ></AnimatedButton>
                       </Link>
                     </div>
                   </div>
                 ))}
               </div>
 
-              {/* RIGHT SIDE – takes the remaining 1/2, positioned at right corner */}
+              {/* RIGHT SIDE – takes the remaining 2/3 */}
               <div
                 className="right-container
-                w-full md:w-1/2
-                h-screen flex items-center justify-center
-                fixed right-0 md:relative 
-                md:flex md:items-center md:justify-start"
-                style={{ 
-                  width: isMobile ? '100%' : '50%',
-                  right: isMobile ? 0 : undefined 
-                }}
+            w-full md:w-1/2
+            h-screen flex items-center justify-center
+           "
               >
-                <div className="relative w-full min-h-[30vh] md:min-h-[40vh] lg:min-h-[60vh] max-w-4xl mx-auto">
-                  {services.slice(0, 5).map((item, index) => (
+                <div className="relative w-full min-h-[30vh] md:min-h-[40vh] lg:min-h-[60vh] rounded-4xl!">
+                  {services.map((item, index) => (
                     <div
                       key={index}
                       ref={(el) => {
                         if (el) rightCardsRef.current[index] = el;
                       }}
-                      className="absolute flex items-center justify-center
-                      text-base md:text-lg lg:text-xl font-medium text-black
-                      rounded-4xl border-none overflow-hidden w-[90%] h-[85%]"
-                      // style={{ 
-                      //   backgroundColor: item.color,
-                      //   right: 0,
-                      //   transform: 'translateY(-50%)',
-                      //   top: '50%'
-                      // }}
+                      className="absolute inset-1/4 flex items-center justify-center
+                text-base md:text-lg lg:text-xl font-medium text-black
+                  overflow-hidden w-[75%] h-[60%] mx-auto rounded-4xl"
+                    // style={{ backgroundColor: item.color }}
                     >
                       <Image
                         src={item.cover}
-                        className="w-full h-full object-cover"
+                        className="cover object-cover w-full h-full "
                         height={5000}
                         width={5000}
                         alt={item.title}
@@ -218,19 +208,16 @@ export default function ScrollReveal() {
             </div>
           </div>
         ) : (
-          /* Mobile Layout - No shadow, with fade-in animation */
-          <div className="flex flex-col space-y-8 py-10 px-4">
-            {services.slice(0, 5).map((section, index) => (
+          /* Mobile Layout - No animation, sequential display */
+          <div className="flex flex-col space-y-12 py-10">
+            {services.map((section, index) => (
               <div
                 key={index}
-                ref={(el) => {
-                  if (el) mobileItemsRef.current[index] = el;
-                }}
-                className="w-full rounded-3xl overflow-hidden bg-white"
-                style={{ backgroundColor: section.color || 'white' }}
+                className="w-full rounded-3xl overflow-hidden shadow-lg"
+              // style={{ backgroundColor: section.color }}
               >
                 {/* Image Section */}
-                <div className="w-full h-[40vh] rounded-3xl overflow-hidden">
+                <div className="w-full h-[45vh] rounded-b-3xl overflow-hidden">
                   <Image
                     src={section.cover}
                     className="w-full h-full object-cover"
