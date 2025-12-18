@@ -4,44 +4,45 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef } from "react";
 import ShinyBadge from "../ui/shiny-badge";
 import TextAnimate from "../ui/TextAnimate";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
+import { ThreeDIcon } from "@/lib/image/image";
 
 const projects = [
     {
         title: "Client-focused solutions.",
         description:
             "We listen to your needs and build custom software solutions tailored specifically to your business goals.",
-        src: "https://framerusercontent.com/images/HjrIbMlxQF2quPYpUhzfiIHgP8.png?width=1004&height=1004",
+        src: ThreeDIcon.c,
     },
     {
         title: "Innovation-driven approach.",
         description:
             "Our team leverages cutting-edge technologies to create innovative solutions that give you a competitive edge.",
-        src: "https://framerusercontent.com/images/HjrIbMlxQF2quPYpUhzfiIHgP8.png?width=1004&height=1004",
+        src: ThreeDIcon.i,
     },
     {
         title: "Fast, agile delivery.",
         description:
             "We move quickly without compromising quality, delivering solutions that help you launch faster and scale better.",
-        src: "/images/lummi/img10.png",
+        src: ThreeDIcon.f,
     },
     {
         title: "Technical excellence.",
         description:
             "Built by experienced developers who write clean, maintainable code that stands the test of time.",
-        src: "/images/lummi/img15.png",
+        src: ThreeDIcon.t,
     },
     {
         title: "Continuous support.",
         description:
             "We don't just deliver and disappear. We provide ongoing support and iterate based on your feedback.",
-        src: "/images/lummi/img12.png",
+        src: ThreeDIcon.s,
     },
     {
         title: "Measurable results.",
         description:
             "We focus on outcomes that matter—increased efficiency, better user experience, and real business growth.",
-        src: "/images/lummi/img12.png",
+        src: ThreeDIcon.m,
     },
 ];
 
@@ -56,7 +57,7 @@ const StickyCard_001 = ({
 }: {
     i: number;
     title: string;
-    src: string;
+    src: StaticImageData;
     description: string;
     progress: any;
     range: [number, number];
@@ -110,7 +111,7 @@ const Skiper16 = () => {
                 className="relative flex w-full flex-col items-center px-4 md:max-w-7xl md:mx-auto justify-center pb-[50vh]  "
             >
                 <div className="absolute left-1/2 top-[12%] md:top-[15%] grid -translate-x-1/2 content-start justify-items-center gap-6 text-center">
-                    <span className="after:from-background after:to-foreground relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-gradient-to-b after:content-['']">
+                    <span className="after:from-background after:to-foreground relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-linear-to-b after:content-['']">
                         scroll down to see card stack
                     </span>
                 </div>
