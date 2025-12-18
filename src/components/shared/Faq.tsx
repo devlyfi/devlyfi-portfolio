@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { ChevronDown } from "lucide-react";
 import gsap from "gsap";
 import ShinyBadge from "../ui/shiny-badge";
+import { Plus } from "lucide-react";
 
 export interface FAQItem {
   id: string;
@@ -16,7 +16,7 @@ export interface FAQProps {
   subtitle?: string;
   items: FAQItem[];
   className?: string;
-  theme?: "dark" | "light"; // NEW
+  theme?: "dark" | "light";
 }
 
 /* ------------------ Single FAQ Item ------------------ */
@@ -31,54 +31,72 @@ const FAQSingleItem: React.FC<{
 
   const isDark = theme === "dark";
 
-  const textColor = isDark ? "text-white" : "text-black";
-  const textSecondary = isDark ? "text-white/70" : "text-black/70";
-  //   const borderColor = isDark ? "border-white/10" : "border-black/10";
-  const hoverBg = isDark ? "hover:bg-secondary" : "hover:bg-primary/5";
+  // Modern styling constants
+  const borderColor = isDark ? "border-white/10" : "border-black/5";
+  const questionColor = isDark 
+    ? (isOpen ? "text-white" : "text-white/60") 
+    : (isOpen ? "text-black" : "text-black/60");
+  const answerColor = isDark ? "text-white/70" : "text-gray-600";
+  const hoverColor = isDark ? "group-hover:text-white" : "group-hover:text-black";
 
   useEffect(() => {
     if (contentRef.current && iconRef.current) {
       if (isOpen) {
-        gsap.set(contentRef.current, { height: "auto" });
-        const autoHeight = contentRef.current.offsetHeight;
-        gsap.fromTo(
-          contentRef.current,
-          { height: 0, opacity: 0 },
-          { height: autoHeight, opacity: 1, duration: 0.7, ease: "power3.out" }
-        );
-        gsap.to(iconRef.current, { rotation: 180, duration: 0.4 });
+        gsap.to(contentRef.current, { 
+            height: "auto", 
+            opacity: 1, 
+            duration: 0.5, 
+            ease: "power2.out" 
+        });
+        gsap.to(iconRef.current, { 
+            rotation: 45, 
+            duration: 0.3, 
+            ease: "back.out(1.7)" 
+        });
       } else {
-        gsap.to(contentRef.current, { height: 0, opacity: 0, duration: 0.4 });
-        gsap.to(iconRef.current, { rotation: 0, duration: 0.4 });
+        gsap.to(contentRef.current, { 
+            height: 0, 
+            opacity: 0, 
+            duration: 0.4, 
+            ease: "power2.in" 
+        });
+        gsap.to(iconRef.current, { 
+            rotation: 0, 
+            duration: 0.3, 
+            ease: "power2.inOut" 
+        });
       }
     }
   }, [isOpen]);
 
   return (
-    <div className={` `}>
+    <div className={`border-b ${borderColor} last:border-none`}>
       <button
         onClick={onToggle}
-        className={`w-full py-4 px-2 flex items-center justify-between group transition-colors duration-300 rounded-lg ${hoverBg}`}
+        className="w-full py-6 md:py-8 flex items-start justify-between group text-left focus:outline-none cursor-pointer"
       >
-        <h3
-          className={`text-lg sm:text-2xl font-thin transition-colors duration-300 pr-4 ${textColor}`}
+        <span
+          className={`text-lg md:text-2xl font-light tracking-wide transition-colors duration-300 pr-8 ${questionColor} ${hoverColor}`}
         >
           {item.question}
-        </h3>
-        <div ref={iconRef}>
-          <ChevronDown
-            className={`w-5 h-5 ${isDark ? "text-white/60" : "text-black/60"}`}
-          />
+        </span>
+        
+        <div 
+            ref={iconRef} 
+            className={`flex-shrink-0 mt-1 transition-colors duration-300 ${isDark ? "text-white" : "text-black"}`}
+        >
+          <div className={`p-2 rounded-full border ${isDark ? "border-white/20" : "border-black/10"}`}>
+             <Plus className="w-4 h-4 md:w-5 md:h-5" />
+          </div>
         </div>
       </button>
 
       <div
         ref={contentRef}
-        className="overflow-hidden"
-        style={{ height: 0, opacity: 0 }}
+        className="overflow-hidden h-0 opacity-0"
       >
-        <div className="pb-6 pr-8 px-4 ">
-          <p className={`${textSecondary} font-custom leading-relaxed text-lg`}>
+        <div className="pb-8 max-w-3xl">
+          <p className={`text-base md:text-lg leading-relaxed font-light ${answerColor}`}>
             {item.answer}
           </p>
         </div>
@@ -89,55 +107,54 @@ const FAQSingleItem: React.FC<{
 
 /* ------------------ Main FAQ Component ------------------ */
 const FAQ: React.FC<FAQProps> = ({
-  title = "Frequently Asked Questions",
-  subtitle = "Everything you need to know",
+  title = "FAQ",
+  subtitle = "Common Queries",
   items,
   className = "",
-  theme = "dark", // default
+  theme = "dark",
 }) => {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
 
+  // Allow single open item for accordion effect (optional, but cleaner for large questions)
+  // Or keep multiple open. Let's toggle.
   const toggleItem = (id: string) => {
     setOpenItems((prev) => {
       const updated = new Set(prev);
-      updated.has(id) ? updated.delete(id) : updated.add(id);
+      if (updated.has(id)) {
+        updated.delete(id);
+      } else {
+        updated.clear(); 
+        updated.add(id);
+      }
       return updated;
     });
   };
 
   const isDark = theme === "dark";
-
-  const bgColor = isDark ? "bg-[#121315]" : "bg-white";
-  // const subtitleColor = isDark ? "text-white/60" : "text-black/60";
+  const bgColor = isDark ? "bg-[#111]" : "bg-white"; // Slightly lighter dark bg
   const titleColor = isDark ? "text-white" : "text-black";
 
   return (
-    <section
-      className={`w-full  ${bgColor} ${className}`}
-    >
-      <div className="w-full px-4 md:max-w-6xl mx-auto font-custom">
-        {/* Header */}
-        <div className="text-center mb-12 sm:mb-20 md:mb-24 max-w-96 md:max-w-3xl mx-auto">
-          <div className="flex justify-center">
-            <div className="text-center lg:text-left my-14 md:my-20 ">
-              <ShinyBadge
-                text={title}
-                className="inline-block  py-2 rounded-full border uppercase text-lg! tracking-wider"
-              >
-                {/* Why Design Monks? */}
-              </ShinyBadge>
+    <section className={`w-full py-20 md:py-28 ${bgColor} ${className}`}>
+      <div className="w-full px-4 md:max-w-7xl mx-auto font-sans">
+        
+        {/* Header Layout */}
+        <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-12 md:mb-20 gap-6">
+            <div className="space-y-4">
+                <ShinyBadge text={title} className="bg-transparent border border-current opacity-60 inline-flex" />
+                <h2 className={`text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight ${titleColor}`}>
+                    {subtitle}
+                </h2>
             </div>
-          </div>
-
-          <h2
-            className={`leading-tight ${titleColor} font-custom`}
-          >
-            {subtitle}
-          </h2>
+            <div className={`max-w-md ${isDark ? "text-white/60" : "text-black/60"}`}>
+                <p className="text-base font-light leading-relaxed">
+                    Have questions? We&apos;ve got answers. If you can&apos;t find what you&apos;re looking for, feel free to reach out to our team.
+                </p>
+            </div>
         </div>
 
-        {/* FAQ Items */}
-        <div className="space-y-10">
+        {/* FAQ List */}
+        <div className="flex flex-col">
           {items.map((item) => (
             <FAQSingleItem
               key={item.id}
