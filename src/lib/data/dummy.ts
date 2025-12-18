@@ -1,4 +1,4 @@
-import { ImageIcons, ThreeDIcon } from "../image/image";
+import { ImageIcons, ServiceImages, ThreeDIcon } from "../image/image";
 import {
   CompanyInfo,
   NavigationData,
@@ -347,8 +347,7 @@ export const services: Service[] = [
       "/images/services/web2.jpg",
       "/images/services/web.jpg",
     ],
-    cover:
-      "/images/services/web2.jpg",
+    cover: ServiceImages.webDev,
     video: "/videos/services/web.mp4",
     process: [
       {
@@ -456,8 +455,7 @@ export const services: Service[] = [
       "Offline functionality",
       "In-app purchases and monetization",
     ],
-    cover:
-      "/images/services/mobile.jpg",
+    cover: ServiceImages.appDev1,
     video: "/videos/services/mobile.mp4",
     featureImages: [
       "/images/services/mobile.jpg",
@@ -581,8 +579,7 @@ export const services: Service[] = [
       "/images/services/ui.jpg",
       "/images/services/ux-ux.jpg",
     ],
-    cover:
-      "/images/services/uiuxhigh.png",
+    cover: ServiceImages.webColor,
     video: "/videos/services/ui.mp4",
     process: [
       {
@@ -710,8 +707,7 @@ export const services: Service[] = [
       "/images/services/ai.jpg",
       "/images/services/ai2.jpg",
     ],
-    cover:
-      "/images/services/ainew.jpg",
+    cover: ServiceImages.seo,
     video: "/videos/services/ai.mp4",
     process: [
       {
@@ -835,8 +831,7 @@ export const services: Service[] = [
       "Cloud migration services",
       "Multi-cloud and hybrid solutions",
     ],
-    cover:
-      "/images/services/cloudservice.jpg",
+    cover: ServiceImages.cloud1,
     video: "/videos/services/cloud.mp4",
     featureImages: [
       "/images/services/cloud.jpg",
@@ -955,7 +950,7 @@ export const services: Service[] = [
       "/images/services/wordpress.jpg",
       "/images/services/wordpress2.jpg"
     ],
-    cover: "/images/services/content-management-system.jpg",
+    cover: ServiceImages.wp,
     video: "/videos/services/wp.mp4",
     process: [
       {
@@ -1083,7 +1078,7 @@ export const services: Service[] = [
       "/images/services/main.jpg",
       "/images/services/main.jpg"
     ],
-    cover: "/images/services/sm.jpg",
+    cover: ServiceImages.seo,
     video: "/videos/services/maintenance.mp4",
     process: [
       {
@@ -1215,7 +1210,7 @@ export const services: Service[] = [
       "/images/services/pm.jpg",
       "/images/services/pm2.jpg"
     ],
-    cover: "/images/services/pmmm.jpg",
+    cover: ServiceImages.app,
     video: "/videos/services/pm.mp4",
     process: [
       {

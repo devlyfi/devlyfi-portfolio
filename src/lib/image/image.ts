@@ -37,6 +37,18 @@ import s from '../../../public/images/threed/s.png'
 import m from '../../../public/images/threed/m.png'
 import i from '../../../public/images/threed/i.png'
 import c from '../../../public/images/threed/c.png'
+import foooter from '../../../public/images/threed/foooter.png'
+
+
+import app from '../../../public/images/threed/app.jpg'
+import cloud1 from '../../../public/images/threed/cloud-1.jpg'
+import seo from '../../../public/images/threed/seo.webp'
+import webColor from '../../../public/images/threed/web-color.webp'
+import web from '../../../public/images/threed/web.webp'
+import wp from '../../../public/images/threed/wp.webp'
+import appDev from '../../../public/images/threed/app-dev.png'
+import webDev from '../../../public/images/services/web-dev.png'
+import appDev1 from '../../../public/images/services/app-dev.png'
 export const Avatar = {
     avatar1,
     avatar2,
@@ -79,5 +91,18 @@ export const ThreeDIcon = {
     s,
     m,
     i,
-    c
+    c,
+    foooter
+}
+
+export const ServiceImages = {
+    app,
+    cloud1,
+    seo,
+    webColor,
+    web,
+    wp,
+    appDev,
+    appDev1,
+    webDev
 }

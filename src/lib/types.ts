@@ -32,7 +32,7 @@ export interface Service {
   video?: string;
   icon: string;
   features: string[];
-  cover: string;
+  cover: StaticImageData;
   color?: string;
   bgColor?: string;
   process?: {

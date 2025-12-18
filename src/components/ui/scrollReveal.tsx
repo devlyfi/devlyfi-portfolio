@@ -54,7 +54,7 @@ export default function ScrollReveal() {
         end: "bottom bottom",
         pin: ".right-container",
         markers: false,
-         invalidateOnRefresh: true,
+        invalidateOnRefresh: true,
       });
       scrollTriggersRef.current.push(pinTrigger);
 
@@ -111,7 +111,7 @@ export default function ScrollReveal() {
     <div>
       <div
         className="gallery w-full relative transition-colors duration-500 "
-        style={{ backgroundColor: bgColor }}
+      // style={{ backgroundColor: bgColor }}
       >
         {/* Desktop/Tablet Layout */}
         {!isMobile ? (
@@ -182,7 +182,7 @@ export default function ScrollReveal() {
             h-screen flex items-center justify-center
            "
               >
-                <div className="relative w-full min-h-[30vh] md:min-h-[40vh] lg:min-h-[60vh]">
+                <div className="relative w-full min-h-[30vh] md:min-h-[40vh] lg:min-h-[60vh] rounded-4xl!">
                   {services.map((item, index) => (
                     <div
                       key={index}
@@ -191,12 +191,12 @@ export default function ScrollReveal() {
                       }}
                       className="absolute inset-1/4 flex items-center justify-center
                 text-base md:text-lg lg:text-xl font-medium text-black
-                 rounded-4xl overflow-hidden w-[75%] h-[60%] mx-auto"
-                      style={{ backgroundColor: item.color }}
+                  overflow-hidden w-[75%] h-[60%] mx-auto rounded-4xl"
+                    // style={{ backgroundColor: item.color }}
                     >
                       <Image
                         src={item.cover}
-                        className="cover object-cover"
+                        className="cover object-cover w-full h-full "
                         height={5000}
                         width={5000}
                         alt={item.title}
@@ -214,7 +214,7 @@ export default function ScrollReveal() {
               <div
                 key={index}
                 className="w-full rounded-3xl overflow-hidden shadow-lg"
-                style={{ backgroundColor: section.color }}
+              // style={{ backgroundColor: section.color }}
               >
                 {/* Image Section */}
                 <div className="w-full h-[45vh] rounded-b-3xl overflow-hidden">
