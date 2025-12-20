@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/lib/data/dummy";
 import Image from "next/image";
-import CustomButton from "../shared/CustomButton";
 import Link from "next/link";
 import AnimatedText from "./AnimatedText";
 import AnimatedButton from "./AnimatedButton";
@@ -14,13 +13,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollReveal() {
   const rightCardsRef = useRef<(HTMLDivElement | null)[]>([]);
-
   const [bgColor, setBgColor] = useState("#FFFFFF");
   const [isMobile, setIsMobile] = useState(false);
   const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
 
   useEffect(() => {
-    // Check if mobile on mount and resize
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
@@ -35,9 +32,7 @@ export default function ScrollReveal() {
   }, []);
 
   useEffect(() => {
-    // Only run animations on non-mobile devices
     if (isMobile) {
-      // Clean up any existing scroll triggers when switching to mobile
       scrollTriggersRef.current.forEach((trigger) => {
         if (trigger) trigger.kill();
       });
@@ -45,9 +40,7 @@ export default function ScrollReveal() {
       return;
     }
 
-    // Small delay to ensure DOM is ready
     const timer = setTimeout(() => {
-      // Pin the right container
       const pinTrigger = ScrollTrigger.create({
         trigger: ".gallery",
         start: "top top",
@@ -58,7 +51,6 @@ export default function ScrollReveal() {
       });
       scrollTriggersRef.current.push(pinTrigger);
 
-      // Animate each right card based on left section scroll
       services.forEach((_, index) => {
         const card = rightCardsRef.current[index];
         if (!card) return;
@@ -85,7 +77,6 @@ export default function ScrollReveal() {
         }
       });
 
-      // Animate gallery background based on scroll
       services.forEach((section, index) => {
         const bgTrigger = ScrollTrigger.create({
           trigger: `.item-${index + 1}`,
@@ -109,131 +100,112 @@ export default function ScrollReveal() {
 
   return (
     <div>
-      <div
-        className="gallery w-full relative transition-colors duration-500 "
-      // style={{ backgroundColor: bgColor }}
-      >
+      <div className="gallery w-full relative transition-colors duration-500">
         {/* Desktop/Tablet Layout */}
         {!isMobile ? (
-          <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
-            <div className="flex">
-              {/* LEFT SIDE – 1/3 width, text left-aligned */}
-              <div className="left w-full md:w-1/2">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row">
+              {/* LEFT SIDE - Responsive width */}
+              <div className="left w-full lg:w-1/2">
                 {services.map((section, index) => (
                   <div
                     key={index}
                     className={`left-item item-${index + 1
-                      } min-h-screen flex items-center justify-start 
-                       px-4 md:px-0 `}
+                      } min-h-screen flex items-center justify-start py-8 lg:py-0`}
                   >
-                    <div>
+                    <div className="w-full max-w-2xl">
                       <AnimatedText
                         bidirectional
                         animationType="scale"
                         type="words"
-                        textClassName="font-light! text-left!
-                       text-2xl! md:text-3xl! lg:text-5xl!"
+                        textClassName="font-light! text-left! 
+                         text-3xl! sm:text-4xl! lg:text-5xl! xl:text-6xl!"
                         text={section.title}
                         stagger={0.2}
                         triggerStart="top 80%"
-                      ></AnimatedText>
+                      />
                       <AnimatedText
                         bidirectional
                         animationType="fade"
                         type="words"
-                        className="my-4 "
-                        textClassName="text-lg! font-medium text-gray-800!"
+                        className="my-4 sm:my-6"
+                        textClassName="text-base! sm:text-lg! lg:text-xl! font-medium text-gray-800!"
                         text={section.description}
                         stagger={0.1}
                         triggerStart="top 90%"
                         triggerEnd="top 60%"
-                      ></AnimatedText>
-                      {/* <p className="my-4 text-md text-gray-800">
-                        {section.description}
-                      </p> */}
+                      />
                       <Link
                         href={`/services/${section.title
                           .replace(/\s+/g, "-")
                           .toLowerCase()}`}
                       >
-                        {/* <CustomButton
-                          className={`border-2 border-black mt-5`}
-                          textColor="black"
-                          text="View More"
-                          hoverColor="black"
-                        ></CustomButton> */}
                         <AnimatedButton
                           text="View More"
-                          className={`w-1/3 md:w-1/4 flex justify-center   border-2 border-gray-00 bg-inherit!`}
-                          textClass={`text-gray-700!`}
-                        // hoverColor="black"
-
-                        ></AnimatedButton>
+                          className="w-full sm:w-3/4 lg:w-1/2 xl:w-1/3 flex justify-center border-2 border-gray-600 bg-inherit! mt-4 sm:mt-6"
+                          textClass="text-gray-700!"
+                        />
                       </Link>
                     </div>
                   </div>
                 ))}
               </div>
 
-              {/* RIGHT SIDE – takes the remaining 2/3 */}
-              <div
-                className="right-container
-            w-full md:w-1/2
-            h-screen flex items-center justify-center
-           "
-              >
-                <div className="relative w-full min-h-[30vh] md:min-h-[40vh] lg:min-h-[60vh] rounded-4xl!">
-                  {services.map((item, index) => (
-                    <div
-                      key={index}
-                      ref={(el) => {
-                        if (el) rightCardsRef.current[index] = el;
-                      }}
-                      className="absolute inset-1/4 flex items-center justify-center
-                text-base md:text-lg lg:text-xl font-medium text-black
-                  overflow-hidden w-[75%] h-[60%] mx-auto rounded-4xl"
-                    // style={{ backgroundColor: item.color }}
-                    >
-                      <Image
-                        src={item.cover}
-                        className="cover object-cover w-full h-full "
-                        height={5000}
-                        width={5000}
-                        alt={item.title}
-                      />
-                    </div>
-                  ))}
+              {/* RIGHT SIDE - Smaller card that maintains aspect ratio */}
+              <div className="right-container w-full lg:w-1/2 h-screen sticky top-0">
+                <div className="flex items-center justify-center h-full w-full px-4 sm:px-6 lg:px-8">
+                  <div className="relative w-full max-w-2xl mx-auto aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/3] lg:aspect-[16/10] rounded-3xl lg:rounded-4xl overflow-hidden">
+                    {services.map((item, index) => (
+                      <div
+                        key={index}
+                        ref={(el) => {
+                          if (el) rightCardsRef.current[index] = el;
+                        }}
+                        className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden"
+                      >
+                        <Image
+                          src={item.cover}
+                          className="object-contain w-full h-full"
+                          height={1000}
+                          width={1000}
+                          alt={item.title}
+                          priority={index === 0}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         ) : (
-          /* Mobile Layout - No animation, sequential display */
-          <div className="flex flex-col space-y-12 py-10">
+          /* Mobile Layout - Fixed image cropping */
+          <div className="flex flex-col space-y-8 sm:space-y-12 py-6 sm:py-10 px-4 sm:px-6">
             {services.map((section, index) => (
               <div
                 key={index}
-                className="w-full rounded-3xl overflow-hidden shadow-lg"
-              // style={{ backgroundColor: section.color }}
+                className="w-full rounded-3xl overflow-hidden shadow-lg bg-white"
               >
-                {/* Image Section */}
-                <div className="w-full h-[45vh] rounded-b-3xl overflow-hidden">
+                {/* Image Section - Remove any bottom margin/padding */}
+                <div className="w-full h-[40vh] sm:h-[45vh] overflow-hidden">
                   <Image
                     src={section.cover}
-                    className="w-full h-full object-cover"
+                    className="object-cover w-full h-full"
                     height={5000}
                     width={5000}
                     alt={section.title}
+                    priority={index < 2}
                   />
                 </div>
 
-                {/* Content Section */}
-                <div className="p-6">
-                  <h2 className="font-light text-3xl mb-4">
+                {/* Content Section - Directly after image */}
+                <div className="p-5 sm:p-6 pt-4 sm:pt-5">
+                  <h2 className="font-light text-2xl sm:text-3xl mb-3 sm:mb-4">
                     {section.title}
                   </h2>
 
-                  <p className="my-4 text-md text-gray-900 leading-relaxed">
+                  <p className="text-sm sm:text-base text-gray-900 leading-relaxed mb-4 sm:mb-5">
                     {section.description}
                   </p>
 
@@ -244,8 +216,8 @@ export default function ScrollReveal() {
                     >
                       <AnimatedButton
                         text="View More"
-                        className="w-1/2 flex justify-center md:w-1/4 border-2 border-gray-600 bg-inherit!"
-                        textClass="text-gray-700!"
+                        className="w-full sm:w-3/4 md:w-1/2 flex justify-center border-2 border-gray-600 bg-inherit!"
+                        textClass="text-gray-700! text-sm! sm:text-base!"
                       />
                     </Link>
                   </div>

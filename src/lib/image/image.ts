@@ -38,18 +38,21 @@ import m from '../../../public/images/threed/m.png'
 import i from '../../../public/images/threed/i.png'
 import c from '../../../public/images/threed/c.png'
 import foooter from '../../../public/images/threed/foooter.png'
+import foooter2 from '../../../public/images/threed/footer-v2.png'
 
 
 import app from '../../../public/images/threed/app.jpg'
-import cloud1 from '../../../public/images/threed/cloud-1.jpg'
+import cloud1 from '../../../public/images/services/cloud.png'
 import seo from '../../../public/images/threed/seo.webp'
 import webColor from '../../../public/images/threed/web-color.webp'
 import web from '../../../public/images/threed/web.webp'
-import wp from '../../../public/images/threed/wp.webp'
+import cms from '../../../public/images/services/cms.png'
 import appDev from '../../../public/images/threed/app-dev.png'
 import webDev from '../../../public/images/services/web-dev.png'
 import appDev1 from '../../../public/images/services/app-dev.png'
 import uiUx from '../../../public/images/services/ui-ux.png'
+import aiSolutions from '../../../public/images/services/ai-solutions.png'
+import maintenance from '../../../public/images/services/maintenance.png'
 export const Avatar = {
     avatar1,
     avatar2,
@@ -93,7 +96,8 @@ export const ThreeDIcon = {
     m,
     i,
     c,
-    foooter
+    foooter,
+    foooter2
 }
 
 export const ServiceImages = {
@@ -102,9 +106,11 @@ export const ServiceImages = {
     seo,
     webColor,
     web,
-    wp,
+    cms,
     appDev,
     appDev1,
     webDev,
-    uiUx
+    uiUx,
+    aiSolutions,
+    maintenance
 }
