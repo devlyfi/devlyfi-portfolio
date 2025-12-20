@@ -258,8 +258,20 @@ export default function RevealFooter() {
             </ul>
           </div>
         </div>
-        <Image
+        {/* <Image
           src={ThreeDIcon.foooter}
+          alt='Footer'
+          // fill
+          width={2000}
+          height={2000}
+          className="f-ull w-full obejct-cover"
+        ></Image>
+        <br />
+        <br />
+        <br /> */}
+
+        <Image
+          src={ThreeDIcon.foooter2}
           alt='Footer'
           // fill
           width={2000}
