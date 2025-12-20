@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Blog | Devlyfi',
     description:
-      'Stay updated with the latest insights, tutorials, and industry trends in software development. Expert articles on web development, mobile apps, cloud computing, and more.',
+      'Stay updated with the latest insight, tutorials, and industry trends in software development. Expert articles on web development, mobile apps, cloud computing, and more.',
     images: ['/og-image.jpg'],
     creator: '@devlyfi',
   },
