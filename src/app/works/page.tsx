@@ -159,6 +159,7 @@ function Services() {
           duration: 0.8,
           delay: 0.9,
           ease: "power3.out",
+          
           scrollTrigger: {
             trigger: descriptionRef.current,
             start: "top 85%",

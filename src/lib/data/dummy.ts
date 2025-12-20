@@ -579,7 +579,7 @@ export const services: Service[] = [
       "/images/services/ui.jpg",
       "/images/services/ux-ux.jpg",
     ],
-    cover: ServiceImages.webColor,
+    cover: ServiceImages.uiUx,
     video: "/videos/services/ui.mp4",
     process: [
       {
@@ -707,7 +707,7 @@ export const services: Service[] = [
       "/images/services/ai.jpg",
       "/images/services/ai2.jpg",
     ],
-    cover: ServiceImages.seo,
+    cover: ServiceImages.aiSolutions,
     video: "/videos/services/ai.mp4",
     process: [
       {
@@ -950,7 +950,7 @@ export const services: Service[] = [
       "/images/services/wordpress.jpg",
       "/images/services/wordpress2.jpg"
     ],
-    cover: ServiceImages.wp,
+    cover: ServiceImages.cms,
     video: "/videos/services/wp.mp4",
     process: [
       {
@@ -1078,7 +1078,7 @@ export const services: Service[] = [
       "/images/services/main.jpg",
       "/images/services/main.jpg"
     ],
-    cover: ServiceImages.seo,
+    cover: ServiceImages.maintenance,
     video: "/videos/services/maintenance.mp4",
     process: [
       {
