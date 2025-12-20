@@ -579,7 +579,7 @@ export const services: Service[] = [
       "/images/services/ui.jpg",
       "/images/services/ux-ux.jpg",
     ],
-    cover: ServiceImages.webColor,
+    cover: ServiceImages.uiUx,
     video: "/videos/services/ui.mp4",
     process: [
       {

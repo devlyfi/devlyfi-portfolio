@@ -49,6 +49,7 @@ import wp from '../../../public/images/threed/wp.webp'
 import appDev from '../../../public/images/threed/app-dev.png'
 import webDev from '../../../public/images/services/web-dev.png'
 import appDev1 from '../../../public/images/services/app-dev.png'
+import uiUx from '../../../public/images/services/ui-ux.png'
 export const Avatar = {
     avatar1,
     avatar2,
@@ -104,5 +105,6 @@ export const ServiceImages = {
     wp,
     appDev,
     appDev1,
-    webDev
+    webDev,
+    uiUx
 }
