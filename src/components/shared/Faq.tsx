@@ -142,7 +142,7 @@ const FAQ: React.FC<FAQProps> = ({
         <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-12 md:mb-20 gap-6">
             <div className="space-y-4">
                 <ShinyBadge text={title} className="bg-transparent border border-current opacity-60 inline-flex" />
-                <h2 className={`text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight ${titleColor}`}>
+                <h2 className={`text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight ${titleColor}`}>
                     {subtitle}
                 </h2>
             </div>

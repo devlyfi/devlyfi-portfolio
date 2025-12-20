@@ -1,167 +1,128 @@
-'use client';
+"use client";
 
-import { useState, useMemo } from 'react';
-import { BlogPost } from '@/lib/types';
-import { BlogCard } from '@/components/shared/BlogCard';
-import { AnimatedSection } from '@/components/animations/AnimatedSection';
-import { Button } from '@/components/ui/button';
+import { useState, useMemo } from "react";
+import { BlogPost } from "@/lib/types";
+import { BlogCard } from "../shared";
+import { Search, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-interface BlogGridProps {
-  posts: BlogPost[];
-}
+const BlogGrid = ({ posts }: { posts: BlogPost[] }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-export function BlogGrid({ posts }: BlogGridProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [selectedTag, setSelectedTag] = useState<string>('All');
-  const [displayCount, setDisplayCount] = useState(9);
-
-  // Extract unique categories and tags
+  // Extract unique categories
   const categories = useMemo(() => {
-    const cats = new Set(posts.map((post) => post.category));
-    return ['All', ...Array.from(cats).sort()];
+    const cats = ["All", ...new Set(posts.map((post) => post.category))].filter(
+      Boolean
+    );
+    return cats;
   }, [posts]);
 
-  const tags = useMemo(() => {
-    const allTags = new Set<string>();
-    posts.forEach((post) => {
-      post.tags.forEach((tag) => allTags.add(tag));
-    });
-    return ['All', ...Array.from(allTags).sort()];
-  }, [posts]);
-
-  // Filter posts based on selected category and tag
+  // Filter posts
   const filteredPosts = useMemo(() => {
     return posts.filter((post) => {
-      const categoryMatch = selectedCategory === 'All' || post.category === selectedCategory;
-      const tagMatch = selectedTag === 'All' || post.tags.includes(selectedTag);
-      return categoryMatch && tagMatch;
+      const matchesSearch =
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory =
+        selectedCategory === "All" || post.category === selectedCategory;
+      return matchesSearch && matchesCategory;
     });
-  }, [posts, selectedCategory, selectedTag]);
-
-  // Paginated posts
-  const displayedPosts = filteredPosts.slice(0, displayCount);
-  const hasMore = displayCount < filteredPosts.length;
-
-  const handleLoadMore = () => {
-    setDisplayCount((prev) => prev + 9);
-  };
-
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-    setDisplayCount(9); // Reset pagination
-  };
-
-  const handleTagChange = (tag: string) => {
-    setSelectedTag(tag);
-    setDisplayCount(9); // Reset pagination
-  };
+  }, [posts, searchQuery, selectedCategory]);
 
   return (
-    <section className="py-16">
-      <div className="container-custom">
-        {/* Filter Section */}
-        <AnimatedSection animation="fadeInUp">
-          <div className="mb-12 space-y-6">
-            {/* Category Filter */}
-            <div>
-              <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                Filter by Category
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
-                  <Button
-                    key={category}
-                    variant={selectedCategory === category ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => handleCategoryChange(category)}
-                    className="transition-all"
-                  >
-                    {category}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {/* Tag Filter */}
-            <div>
-              <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                Filter by Tag
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {tags.map((tag) => (
-                  <Button
-                    key={tag}
-                    variant={selectedTag === tag ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => handleTagChange(tag)}
-                    className="transition-all"
-                  >
-                    {tag}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {/* Results Count */}
-            <div className="text-sm text-muted-foreground">
-              Showing {displayedPosts.length} of {filteredPosts.length} posts
-              {(selectedCategory !== 'All' || selectedTag !== 'All') && (
-                <button
-                  onClick={() => {
-                    setSelectedCategory('All');
-                    setSelectedTag('All');
-                    setDisplayCount(9);
-                  }}
-                  className="ml-2 text-primary hover:underline"
-                >
-                  Clear filters
-                </button>
+    <div className="space-y-12">
+      {/* Search and Filter Section */}
+      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        {/* Category Filter */}
+        <div className="flex flex-wrap gap-2 ">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`relative cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                selectedCategory === category
+                  ? "text-primary-foreground"
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+              }`}
+            >
+              {selectedCategory === category && (
+                <motion.div
+                  layoutId="activeCategory"
+                  className="absolute inset-0 rounded-full bg-primary"
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                />
               )}
-            </div>
-          </div>
-        </AnimatedSection>
+              <span className="relative z-10">{category}</span>
+            </button>
+          ))}
+        </div>
 
-        {/* Blog Grid */}
-        {filteredPosts.length > 0 ? (
-          <>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {displayedPosts.map((post, index) => (
-                <AnimatedSection
-                  key={post.id}
-                  animation="fadeInUp"
-                  delay={index * 0.1}
-                >
-                  <BlogCard post={post} variant="grid" />
-                </AnimatedSection>
-              ))}
-            </div>
-
-            {/* Load More Button */}
-            {hasMore && (
-              <AnimatedSection animation="fadeInUp">
-                <div className="mt-12 text-center">
-                  <Button
-                    onClick={handleLoadMore}
-                    size="lg"
-                    variant="outline"
-                    className="min-w-[200px]"
-                  >
-                    Load More Posts
-                  </Button>
-                </div>
-              </AnimatedSection>
-            )}
-          </>
-        ) : (
-          <AnimatedSection animation="fadeInUp">
-            <div className="py-20 text-center">
-              <p className="text-lg text-muted-foreground">
-                No posts found matching your filters. Try adjusting your selection.
-              </p>
-            </div>
-          </AnimatedSection>
-        )}
+        {/* Search Input */}
+        <div className="relative w-full md:w-72">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="Search articles..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full rounded-full border border-input bg-background py-2 pl-10 pr-10 text-sm ring-offset-background transition-shadow focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery("")}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
+        </div>
       </div>
-    </section>
+
+      {/* Blog Grid */}
+      {filteredPosts.length > 0 ? (
+        <motion.div 
+          layout
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          <AnimatePresence>
+            {filteredPosts.map((post) => (
+              <motion.div
+                layout
+                key={post.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+                className="h-full"
+              >
+                <BlogCard post={post} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      ) : (
+        <div className="flex flex-col items-center justify-center py-20 text-center">
+          <div className="rounded-full bg-muted p-6">
+            <Search className="h-10 w-10 text-muted-foreground" />
+          </div>
+          <h3 className="mt-4 text-lg font-semibold">No articles found</h3>
+          <p className="mt-2 text-muted-foreground">
+            We couldn't find any articles matching your criteria.
+          </p>
+          <button
+            onClick={() => {
+              setSearchQuery("");
+              setSelectedCategory("All");
+            }}
+            className="mt-6 text-primary hover:underline"
+          >
+            Clear all filters
+          </button>
+        </div>
+      )}
+    </div>
   );
-}
+};
+
+export default BlogGrid;

@@ -24,7 +24,7 @@ export function BlogCard({ post, variant = "grid" }: BlogCardProps) {
   });
 
   return (
-    <Link href={`/blog/${post.slug}`} className="block group">
+    <Link href={`/blog/${post.slug}`} className="block group h-full">
       <Card
         className={`overflow-hidden h-full transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-primary/40 ${
           isList ? "md:flex md:flex-row" : ""
