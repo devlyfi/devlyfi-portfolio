@@ -11,6 +11,9 @@ import {
   FAQItem,
 } from "../types";
 
+import blogsData from "./blogs.json";
+export const blogPosts: BlogPost[] = blogsData;
+
 // Company Information
 export const companyInfo: CompanyInfo = {
   name: "Devlyfi",
@@ -1483,45 +1486,6 @@ export const works: Work[] = [
   },
 ];
 
-// Blog Posts Data
-export const blogPosts: BlogPost[] = [
-  {
-    id: "1",
-    slug: "future-of-web-development-2024",
-    title: "The Future of Web Development in 2024",
-    excerpt:
-      "Explore the latest trends and technologies shaping the future of web development, from AI integration to edge computing.",
-    content:
-      "<p>The web development landscape is evolving at an unprecedented pace. As we move through 2024, several key trends are reshaping how we build and deploy web applications.</p>",
-    featuredImage: "/images/blog/web-dev-future.jpg",
-    author: {
-      name: "Sarah Johnson",
-      avatar: "/images/authors/sarah.jpg",
-    },
-    publishedAt: "2024-01-15",
-    category: "Web Development",
-    tags: ["AI", "Edge Computing", "React", "Trends"],
-    readTime: 8,
-  },
-  {
-    id: "2",
-    slug: "mobile-app-performance-optimization",
-    title: "Mobile App Performance Optimization: Best Practices",
-    excerpt:
-      "Learn proven techniques to optimize your mobile app performance and deliver a smooth user experience.",
-    content:
-      "<p>Performance is crucial for mobile app success. Users expect fast, responsive applications, and even small delays can lead to abandonment.</p>",
-    featuredImage: "/images/blog/mobile-performance.jpg",
-    author: {
-      name: "Michael Chen",
-      avatar: "/images/authors/michael.jpg",
-    },
-    publishedAt: "2024-01-22",
-    category: "Mobile Development",
-    tags: ["Performance", "Optimization", "Mobile", "Best Practices"],
-    readTime: 10,
-  },
-];
 
 // General FAQ Data
 export const generalFAQ: FAQItem[] = [

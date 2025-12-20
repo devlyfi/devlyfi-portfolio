@@ -92,7 +92,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     },
     keywords: post.tags.join(', '),
     articleSection: post.category,
-    wordCount: post.content.split(/\s+/).length,
+    wordCount: post.content.reduce((acc, paragraph) => acc + paragraph.split(/\s+/).length, 0),
   };
 
   // BreadcrumbList structured data schema

@@ -13,7 +13,7 @@ const navContents = [
   { title: "Services", link: "/services" },
   { title: "About", link: "/about" },
   { title: "Contact", link: "/contact" },
-  // { title: "Blog", link: "/blog" },
+  { title: "Blogs", link: "/blog" },
 ];
 
 const STAGGER = 0.035;

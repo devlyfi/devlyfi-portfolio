@@ -1,7 +1,10 @@
 import { Metadata } from 'next';
-import { AnimatedSection } from '@/components/animations/AnimatedSection';
-import { BlogGrid } from '@/components/blog/BlogGrid';
+
+
 import { blogPosts } from '@/lib/data/dummy';
+import CommonHero from "@/components/shared/CommonHero";
+import MiniCTA from "@/components/shared/MiniCTA";
+import BlogGrid from '@/components/blog/BlogGrid';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -36,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Blog | Devlyfi',
     description:
-      'Stay updated with the latest insights, tutorials, and industry trends in software development. Expert articles on web development, mobile apps, cloud computing, and more.',
+      'Stay updated with the latest insight, tutorials, and industry trends in software development. Expert articles on web development, mobile apps, cloud computing, and more.',
     images: ['/og-image.jpg'],
     creator: '@devlyfi',
   },
@@ -55,50 +58,17 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-primary/5 to-transparent py-20">
-        <div className="container-custom">
-          <AnimatedSection animation="fadeInUp">
-            <div className="mx-auto max-w-3xl text-center">
-              <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                Blog & Insights
-              </h1>
-              <p className="text-lg text-muted-foreground sm:text-xl">
-                Stay updated with the latest trends, best practices, and insights in software
-                development. Our team shares knowledge on web development, mobile apps, cloud
-                computing, AI, and more.
-              </p>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
+    <div className="min-h-screen max-w-7xl mx-auto">
+      <CommonHero
+        title="Blog & Insights"
+        subtitle="Stay updated with the latest trends, best practices, and insights in software development. Our team shares knowledge on web development, mobile apps, cloud computing, AI, and more."
+      />
 
       {/* Blog Grid with Filters */}
       <BlogGrid posts={blogPosts} />
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-t from-primary/5 to-transparent py-20">
-        <div className="container-custom">
-          <AnimatedSection animation="fadeInUp">
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="mb-4 text-3xl font-bold sm:text-4xl">
-                Want to Work With Us?
-              </h2>
-              <p className="mb-8 text-lg text-muted-foreground">
-                Have a project in mind? Let's discuss how we can help you achieve your goals
-                with innovative technology solutions.
-              </p>
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-3 text-base font-medium text-white transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              >
-                Get in Touch
-              </a>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
+      <MiniCTA />
     </div>
   );
 }
